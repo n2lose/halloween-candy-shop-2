@@ -65,16 +65,25 @@ The Dashboard `RevenueChart` uses a single Recharts `BarChart` with a weekly/yea
 
 ---
 
-## API Contracts
+## API Contracts (v3.0 — approved 2026-04-10)
 
-| Method | Path | Auth | Notes |
-|--------|------|------|-------|
-| POST | `/login` | No | Returns `{ access_token, refresh_token }` |
-| POST | `/refresh` | Refresh token in Bearer header | Returns `{ access_token }` |
-| GET | `/dashboard` | Access token | Returns `{ stats, sales_overview, bestsellers }` |
-| GET | `/orders?page=1&q=` | Access token | Returns `{ orders, total, page }` |
+**Public** (no token required):
+| Method | Path | Notes |
+|--------|------|-------|
+| POST | `/auth/register` | `{ username, password }` → tokens |
+| POST | `/auth/login` | `{ username, password }` → tokens |
+| POST | `/auth/refresh` | Refresh token in Bearer header → `{ access_token }` |
+| GET | `/products` | List all 10 Halloween candy products |
+| GET | `/products/:id` | Single product, 404 if not found |
 
-Token specs: access token 15min, refresh token 30 days. Full shapes in `docs/specs/api-spec.md`.
+**Protected** (access token required):
+| Method | Path | Notes |
+|--------|------|-------|
+| GET | `/auth/me` | Returns `{ id, username }` — used by sidebar |
+| GET | `/dashboard` | Returns `{ stats, sales_overview, bestsellers }` |
+| GET | `/orders?page=1&q=` | Returns `{ orders, total, page, per_page, total_pages }` |
+
+Token specs: access 15min, refresh 30 days. Full request/response shapes: `docs/specs/api-spec.md`.
 
 ---
 
