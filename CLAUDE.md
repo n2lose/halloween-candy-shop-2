@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Full-stack analytics dashboard for Freddy's Halloween candy shop. **Assignment project** — no production database, uses in-memory TypeScript arrays. The code has not been written yet; this repo contains planning docs and is ready for implementation.
+Full-stack Halloween candy shop with analytics dashboard and storefront. **Assignment project** — no production database, uses in-memory TypeScript arrays. The code has not been written yet; this repo contains planning docs and is ready for implementation.
 
-**User flow**: Login → Dashboard (stats + chart + bestsellers) → Orders (search + pagination)
+**User flow**: Register/Login → Dashboard (stats + chart + bestsellers) → Orders (search + pagination + history) → Checkout (Stripe test mode)
 
 ---
 
@@ -38,14 +38,16 @@ Each feature follows the pattern `*.router.ts` (Express routes) + `*.service.ts`
 
 ```
 auth/           auth.router.ts, auth.service.ts, auth.middleware.ts
+products/       products.router.ts, products.service.ts
 dashboard/      dashboard.router.ts, dashboard.service.ts
 orders/         orders.router.ts, orders.service.ts
+stripe/         stripe.router.ts, stripe.service.ts
 data/           orders.ts, products.ts, users.ts  ← in-memory mock arrays
 types/          index.ts  ← shared interfaces
 app.ts          Express setup, CORS, route mounting
 ```
 
-`auth.middleware.ts` exports `verifyAccessToken()` — applied to all routes except `/login` and `/refresh`.
+`auth.middleware.ts` exports `verifyAccessToken()` — applied to all routes except `/auth/register`, `/auth/login`, `/auth/refresh`, and `/products`.
 
 ### Frontend (`frontend/src/`)
 
@@ -65,25 +67,28 @@ The Dashboard `RevenueChart` uses a single Recharts `BarChart` with a weekly/yea
 
 ---
 
-## API Contracts (v3.0 — approved 2026-04-10)
+## API Contracts (v2.0 — approved 2026-04-10)
 
 **Public** (no token required):
 | Method | Path | Notes |
 |--------|------|-------|
-| POST | `/auth/register` | `{ username, password }` → tokens |
-| POST | `/auth/login` | `{ username, password }` → tokens |
+| POST | `/auth/register` | `{ name, email, password }` → tokens |
+| POST | `/auth/login` | `{ email, password }` → tokens |
 | POST | `/auth/refresh` | Refresh token in Bearer header → `{ access_token }` |
-| GET | `/products` | List all 10 Halloween candy products |
+| GET | `/products` | List all 10 Halloween candy products (with emoji, price, stock) |
 | GET | `/products/:id` | Single product, 404 if not found |
 
 **Protected** (access token required):
 | Method | Path | Notes |
 |--------|------|-------|
-| GET | `/auth/me` | Returns `{ id, username }` — used by sidebar |
+| GET | `/auth/me` | Returns `{ id, name, email }` — used by sidebar |
 | GET | `/dashboard` | Returns `{ stats, sales_overview, bestsellers }` |
-| GET | `/orders?page=1&q=` | Returns `{ orders, total, page, per_page, total_pages }` |
+| POST | `/stripe/create-payment-intent` | `{ items }` → `{ clientSecret, amount }` |
+| POST | `/orders` | `{ paymentIntentId, customer, items }` → order detail (verify Stripe first) |
+| GET | `/orders` | User's order history (paginated) |
+| GET | `/orders/:id` | Single order detail, 403 if not owner |
 
-Token specs: access 15min, refresh 30 days. Full request/response shapes: `docs/specs/api-spec.md`.
+**11 endpoints total.** Token specs: access 15min, refresh 30 days. Stripe test mode. Full request/response shapes: `docs/specs/api-spec.md`.
 
 ---
 
@@ -98,7 +103,7 @@ Token specs: access 15min, refresh 30 days. Full request/response shapes: `docs/
 
 ## Implementation Workflow
 
-Plans live in `docs/plans/` (PLAN-001 through PLAN-008, currently DRAFT). Work on a feature only after its plan is **APPROVED**:
+Plans live in `docs/plans/` (PLAN-001 through PLAN-011, currently DRAFT). Work on a feature only after its plan is **APPROVED**:
 
 ```
 DRAFT → (review) → APPROVED → implement → DONE
@@ -110,7 +115,7 @@ Branch per plan: `feat/PLAN-00X-short-description`
 
 ## Mock Data
 
-- **Credentials**: `{ username: "freddy", password: "ElmStreet2019" }` (only user, no registration)
+- **Default user**: `{ name: "Freddy", email: "freddy@halloween.shop", password: "ElmStreet2019" }` (pre-seeded, registration also available)
 - **Products**: Pumpkin Spice Lollipop, Witch Finger Gummy, Skull Chocolate Bar, Spider Web Cotton Candy, Ghost Marshmallow, Cauldron Caramel Apple, Vampire Fang Candy Corn, Black Cat Licorice, Frankenstein Fudge, Zombie Brain Gummy
 - **Orders**: ~30 mock orders spread across last 7 days and 12 months (for chart data)
 
@@ -120,4 +125,7 @@ Branch per plan: `feat/PLAN-00X-short-description`
 
 - In-memory data resets on server restart (acceptable for assignment)
 - Token storage in localStorage (acceptable for assignment)
+- Stripe test mode only — never charge real money; test card `4242 4242 4242 4242`
+- Card details never touch backend — Stripe handles tokenisation via `@stripe/react-stripe-js`
+- Env vars: `STRIPE_SECRET_KEY`, `VITE_STRIPE_PUBLISHABLE_KEY`, `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`
 - UI designs: `docs/Designs/Freddys_Dashboard.png`, `Freddys_Login.png`, `Freddys_Orders.png`

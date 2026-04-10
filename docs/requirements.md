@@ -54,13 +54,39 @@ project-root/
 
 ### 1. Authentication
 
-#### POST `/login`
+#### POST `/auth/register`
 
 Request:
 
 ```json
 {
-  "username": "freddy",
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "password": "secretPassword123"
+}
+```
+
+Response:
+
+```json
+{
+  "access_token": "jwt_token",
+  "refresh_token": "refresh_token"
+}
+```
+
+* Creates a new user account
+* Return error if email already registered
+
+---
+
+#### POST `/auth/login`
+
+Request:
+
+```json
+{
+  "email": "freddy@halloween.shop",
   "password": "ElmStreet2019"
 }
 ```
@@ -80,7 +106,7 @@ Response:
 
 ---
 
-#### POST `/refresh`
+#### POST `/auth/refresh`
 
 Headers:
 
@@ -98,56 +124,112 @@ Response:
 
 ---
 
-### 2. Dashboard API
+#### GET `/auth/me` (protected)
 
-#### GET `/dashboard`
-
-Headers:
-
-```
-Authorization: Bearer <access_token>
-```
-
-Response example:
+Response:
 
 ```json
 {
-  "sales_overview": {
-    "weekly": [],
-    "yearly": []
-  },
-  "top_products": [],
-  "best_sellers": []
+  "id": "usr_abc123",
+  "name": "Freddy",
+  "email": "freddy@halloween.shop"
 }
 ```
 
 ---
 
-### 3. Orders API
+### 2. Products API
 
-#### GET `/orders?page=1&q=search_term`
+#### GET `/products` (public)
 
-Headers:
+Response: Array of 10 Halloween candy products with id, name, emoji, price, stock.
 
+#### GET `/products/:id` (public)
+
+Response: Single product or 404.
+
+---
+
+### 3. Dashboard API
+
+#### GET `/dashboard` (protected)
+
+Response example:
+
+```json
+{
+  "stats": { "today": {}, "last_week": {}, "last_month": {} },
+  "sales_overview": { "weekly": [], "yearly": [] },
+  "bestsellers": []
+}
 ```
-Authorization: Bearer <access_token>
+
+---
+
+### 4. Stripe Payment
+
+#### POST `/stripe/create-payment-intent` (protected)
+
+Request:
+
+```json
+{
+  "items": [{ "productId": "prod_1", "quantity": 2 }]
+}
 ```
 
 Response:
 
 ```json
 {
-  "orders": [],
-  "total": 50,
-  "page": 1
+  "clientSecret": "pi_xxx_secret_yyy",
+  "amount": 599
 }
 ```
 
-Requirements:
+* Uses Stripe SDK in **test mode** — never charges real money
+* Test card: `4242 4242 4242 4242`
 
-* Pagination
-* Search (by product name or customer)
-* Mock dataset
+---
+
+### 5. Orders API
+
+#### POST `/orders` (protected)
+
+Request:
+
+```json
+{
+  "paymentIntentId": "pi_xxx",
+  "customer": { "name": "Jane", "email": "jane@example.com", "address": "123 Elm St" },
+  "items": [{ "productId": "prod_1", "quantity": 2 }]
+}
+```
+
+* Backend verifies PaymentIntent status with Stripe before persisting
+* Card number stored as last-4 only
+* Returns full order detail with orderId
+
+#### GET `/orders` (protected)
+
+```json
+{
+  "orders": [],
+  "total": 12,
+  "page": 1,
+  "per_page": 10,
+  "total_pages": 2
+}
+```
+
+* Returns only orders belonging to the authenticated user
+* Pagination support
+
+#### GET `/orders/:id` (protected)
+
+* Returns full order detail
+* Returns 403 if order does not belong to current user
+* Returns 404 if order not found
 
 ---
 
@@ -155,33 +237,70 @@ Requirements:
 
 ### 1. Login Page
 
-* Form: username & password
-* Call `/login`
+* Form: email & password
+* Call `/auth/login`
 * Store tokens (access + refresh)
 * Handle login errors
+* Link to Register page
 
 ---
 
-### 2. Dashboard Page
+### 2. Register Page
+
+* Form: name, email, password, confirm password
+* Call `/auth/register`
+* Store tokens on success
+* Redirect to Dashboard
+
+---
+
+### 3. Dashboard Page
 
 * Fetch data from `/dashboard`
-* Display charts
-* Toggle:
+* Display stats cards (Today / Last Week / Last Month)
+* Display charts with toggle:
 
-  * Weekly view
-  * Yearly view
+  * Weekly view (last 7 days)
+  * Yearly view (last 12 months)
+* Display bestsellers table
 * Handle token expiration (auto refresh)
 
 ---
 
-### 3. Orders Page
+### 4. Orders Page (History)
 
 * Fetch from `/orders`
 * Features:
 
-  * Search input
-  * Pagination
-  * Table display
+  * Paginated table of past orders
+  * Click order → order detail view (`/orders/:id`)
+
+---
+
+### 5. Checkout Page
+
+* Shipping form: name, email, address
+* Stripe Card Element for payment (`@stripe/react-stripe-js`)
+* Order summary sidebar
+* On submit: create PaymentIntent → confirm card → POST /orders
+* Redirect to Order Confirmation page
+
+---
+
+### 6. Product List Page
+
+* Fetch from `/products`
+* Grid of 10 Halloween candy products
+* Add to cart functionality
+* Cart icon with item count badge
+
+---
+
+### 7. Cart
+
+* Slide-out drawer from right
+* Quantity +/−, remove item, subtotal
+* "Checkout" button → requires login
 
 ---
 
