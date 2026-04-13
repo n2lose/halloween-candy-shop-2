@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { authRouter } from "./auth/auth.router.js";
 
 dotenv.config();
 
@@ -13,8 +14,9 @@ app.get("/", (_req: Request, res: Response) => {
   res.json({ status: "ok" });
 });
 
-// Route mounting (filled in PLAN-002 through PLAN-005)
-// app.use("/auth", authRouter);
+app.use("/auth", authRouter);
+
+// Route mounting (filled in PLAN-003 through PLAN-005)
 // app.use("/products", productsRouter);
 // app.use("/dashboard", dashboardRouter);
 // app.use("/orders", ordersRouter);
