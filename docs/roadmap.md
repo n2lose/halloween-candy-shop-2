@@ -15,7 +15,7 @@ PLAN-006 Integration tests
 
 ## Sprint 1 — Backend API
 
-**Goal**: Tất cả 11 endpoints hoạt động, test được bằng curl
+**Goal**: All 11 endpoints working, testable via curl
 
 | Task | Plan | Status |
 |------|------|--------|
@@ -35,13 +35,13 @@ PLAN-006 Integration tests
 | `GET /orders/:id` (detail, 403 guard) | PLAN-005 | TODO |
 | Integration tests (register → order flow) | PLAN-006 | TODO |
 
-**Done criteria**: All 11 endpoints tested với curl, error cases handled, integration tests pass
+**Done criteria**: All 11 endpoints tested with curl, error cases handled, integration tests pass
 
 ---
 
 ## Sprint 2 — Frontend
 
-**Goal**: React app kết nối backend, match designs, full checkout flow
+**Goal**: React app connected to backend, matches designs, full checkout flow
 
 | Task | Plan | Status |
 |------|------|--------|
@@ -65,12 +65,12 @@ PLAN-006 Integration tests
 
 ---
 
-## Bonus (nếu có thời gian)
+## Bonus (if time permits)
 
 | Item | Priority |
 |------|----------|
-| Unit tests cho backend services (PLAN-002 → 005) | HIGH |
-| Loading & error states trên frontend | MEDIUM |
+| Unit tests for backend services (PLAN-002 → 005) | HIGH |
+| Loading & error states on frontend | MEDIUM |
 | Docker setup (docker-compose.yml) | LOW |
 
 ---
@@ -79,6 +79,6 @@ PLAN-006 Integration tests
 
 | Milestone | Condition |
 |-----------|-----------|
-| **M1: API Ready** | Sprint 1 done, all 11 endpoints tested với curl |
+| **M1: API Ready** | Sprint 1 done, all 11 endpoints tested with curl |
 | **M2: App Working** | Register → Browse → Cart → Checkout → Order History flow end-to-end |
-| **M3: Deliverable** | README xong, `public/` folder có production build |
+| **M3: Deliverable** | README complete, `public/` folder contains production build |

@@ -14,7 +14,7 @@ Full-stack Halloween candy shop with analytics dashboard and storefront. **Assig
 
 ```bash
 # Backend (port 3001)
-cd backend && npm run dev       # dev server
+cd backend && npm run dev       # dev server (tsx watch)
 cd backend && npm test          # all tests
 cd backend && npx jest auth     # run single test file/folder
 cd backend && npm run lint
@@ -67,7 +67,7 @@ The Dashboard `RevenueChart` uses a single Recharts `BarChart` with a weekly/yea
 
 ---
 
-## API Contracts (v2.0 — approved 2026-04-10)
+## API Contracts (v2.1 — approved 2026-04-13)
 
 **Public** (no token required):
 | Method | Path | Notes |
@@ -106,10 +106,34 @@ The Dashboard `RevenueChart` uses a single Recharts `BarChart` with a weekly/yea
 Plans live in `docs/plans/` (PLAN-001 through PLAN-011, currently DRAFT). Work on a feature only after its plan is **APPROVED**:
 
 ```
-DRAFT → (review) → APPROVED → implement → DONE
+1. Read specs + designs → 2. Create plan (--permission-mode plan) → 3. Human review + approve
+→ 4. Implement each task → 5. /write-tests → 6. /review-pr → 7. /commit → 8. Update plan → DONE
 ```
 
-Branch per plan: `feat/PLAN-00X-short-description`
+### Git
+
+- Branch per plan: `feat/PLAN-00X-short-description`
+- Commits: `type(scope): description` — types: `feat`, `fix`, `test`, `refactor`, `docs`, `chore`
+- Scopes: `auth`, `dashboard`, `orders`, `products`, `stripe`, `frontend`, `backend`, `docs`
+
+### Tools
+
+| Situation | Tool |
+|-----------|------|
+| New task | `claude --permission-mode plan` |
+| Commit | `/commit` |
+| Before PR | `/review-pr` |
+| Bug > 15 min | `debugger` subagent |
+| Write tests | `/write-tests` or `test-engineer` subagent |
+
+### Definition of Done
+
+- Code implements requirements correctly
+- Tests written and passing
+- `/review-pr` has no CRITICAL/HIGH issues
+- `npm run lint` passes
+- Manual test on local browser
+- Plan file status → DONE
 
 ---
 
@@ -128,4 +152,4 @@ Branch per plan: `feat/PLAN-00X-short-description`
 - Stripe test mode only — never charge real money; test card `4242 4242 4242 4242`
 - Card details never touch backend — Stripe handles tokenisation via `@stripe/react-stripe-js`
 - Env vars: `STRIPE_SECRET_KEY`, `VITE_STRIPE_PUBLISHABLE_KEY`, `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`
-- UI designs: `docs/Designs/Freddys_Dashboard.png`, `Freddys_Login.png`, `Freddys_Orders.png`
+- UI designs: `docs/designs/Freddys_Dashboard.png`, `Freddys_Login.png`, `Freddys_Orders.png`

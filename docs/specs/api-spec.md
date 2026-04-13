@@ -1,6 +1,6 @@
 # API Specification — Freddy's Halloween Candy Shop
 
-**Version**: 2.0.0 (APPROVED — 2026-04-10 by Lam Nguyen)
+**Version**: 2.1.0 (APPROVED — 2026-04-13 by Lam Nguyen)
 **Base URL**: `http://localhost:3001`
 **Auth**: Bearer JWT (access token in Authorization header)
 
@@ -10,7 +10,7 @@
 
 ### POST `/auth/register`
 
-**Description**: Tạo tài khoản mới, trả về token pair.
+**Description**: Create a new account, return token pair.
 
 **Request**:
 ```json
@@ -38,7 +38,7 @@
 
 ### POST `/auth/login`
 
-**Description**: Đăng nhập, trả về token pair.
+**Description**: Login with email and password, return token pair.
 
 **Request**:
 ```json
@@ -69,7 +69,7 @@
 
 ### POST `/auth/refresh`
 
-**Description**: Đổi refresh token lấy access token mới.
+**Description**: Exchange refresh token for a new access token.
 
 **Headers**:
 ```
@@ -152,7 +152,7 @@ Authorization: Bearer <refresh_token>
 
 **Auth required**: Yes (access token)
 
-**Description**: Tổng hợp analytics data. Tính toán từ mock orders data.
+**Description**: Aggregated analytics data. Computed from mock orders data.
 
 **Response 200**:
 ```json
@@ -196,7 +196,7 @@ Authorization: Bearer <refresh_token>
 
 **Auth required**: Yes (access token)
 
-**Description**: Tạo Stripe PaymentIntent dựa trên items trong cart. Frontend dùng `clientSecret` để confirm payment qua Stripe.js.
+**Description**: Create a Stripe PaymentIntent based on cart items. Frontend uses `clientSecret` to confirm payment via Stripe.js.
 
 **Request**:
 ```json
@@ -228,7 +228,7 @@ Authorization: Bearer <refresh_token>
 
 **Auth required**: Yes (access token)
 
-**Description**: Tạo order sau khi Stripe payment succeeded. Backend verify PaymentIntent trước khi lưu.
+**Description**: Create an order after Stripe payment succeeded. Backend verifies PaymentIntent before persisting.
 
 **Request**:
 ```json
@@ -248,7 +248,7 @@ Authorization: Bearer <refresh_token>
 **Response 201**:
 ```json
 {
-  "orderId": "ORD-8F3K2",
+  "orderId": "ORD-0001",
   "items": [
     {
       "productId": "prod_1",
@@ -283,7 +283,7 @@ Authorization: Bearer <refresh_token>
 
 **Auth required**: Yes (access token)
 
-**Description**: Lịch sử orders của user hiện tại. Chỉ trả về orders thuộc về user đó.
+**Description**: Current user's order history. Returns only orders belonging to that user.
 
 **Query params**:
 | Param | Type | Default | Description |
@@ -296,7 +296,7 @@ Authorization: Bearer <refresh_token>
 {
   "orders": [
     {
-      "orderId": "ORD-8F3K2",
+      "orderId": "ORD-0001",
       "total": 5.98,
       "status": "processing",
       "createdAt": "2026-04-10T08:00:00.000Z"
@@ -317,12 +317,12 @@ Authorization: Bearer <refresh_token>
 
 **Auth required**: Yes (access token)
 
-**Description**: Chi tiết 1 order. Trả về 403 nếu order không thuộc về user hiện tại.
+**Description**: Single order detail. Returns 403 if the order does not belong to the current user.
 
 **Response 200**:
 ```json
 {
-  "orderId": "ORD-8F3K2",
+  "orderId": "ORD-0001",
   "items": [
     {
       "productId": "prod_1",
@@ -389,3 +389,39 @@ Authorization: Bearer <refresh_token>
 ```
 
 **Test card**: `4242 4242 4242 4242` | Any future expiry | Any CVV
+
+---
+
+## Clarifications & Edge Cases
+
+### Authentication
+
+- **User ID format**: Internal storage uses auto-increment `number`. API responses format as `"usr_{id}"` (e.g., `"usr_1"`). JWT payload `sub` remains `number`.
+- **Email case sensitivity**: All emails are normalized to lowercase before storage and comparison. `Freddy@Halloween.Shop` matches `freddy@halloween.shop`.
+- **Password validation**: Minimum 6 characters, maximum 100 characters. No complexity rules. `confirmPassword` is frontend-only validation — not sent to API.
+
+### Products & Stock
+
+- **Stock is read-only**: Stock values are for display only. No decrement on purchase (acceptable for assignment scope — in-memory data resets on restart).
+
+### Stripe & Orders
+
+- **Duplicate PaymentIntent guard**: Backend must track used `paymentIntentId` values. If a `paymentIntentId` has already been used to create an order, return `400 { "error": "Payment already used" }`.
+- **Items validation**: `POST /stripe/create-payment-intent` and `POST /orders` must validate:
+  - `items` array is non-empty
+  - Each `productId` exists in the products list
+  - Each `quantity` is a positive integer
+  - Return `400 { "error": "Invalid items" }` on failure
+- **Amount calculation**: Backend calculates total in cents using `Math.round(price * 100) * quantity` per item to avoid floating-point precision issues. Client-provided prices are never trusted.
+
+### Orders Search & Pagination
+
+- **Pagination boundaries**: `page` defaults to `1`. Values `< 1` are clamped to `1`. Values exceeding `total_pages` return `{ orders: [], total, page, per_page: 10, total_pages }`.
+- **Empty results**: New users with 0 orders receive `{ orders: [], total: 0, page: 1, per_page: 10, total_pages: 0 }`.
+- **Search safety**: The `q` parameter uses string `includes()` matching (case-insensitive), not regex, to avoid injection of special characters.
+
+### Dashboard
+
+- **Timezone**: All date calculations use the server's local timezone (acceptable for assignment). No timezone conversion.
+- **Bestsellers scope**: Computed from **all orders** (all-time), not filtered by time period.
+- **Consistency**: `stats.today.revenue` and `sales_overview.weekly[0].revenue` are computed in the same request from the same data source, so they are always consistent.
