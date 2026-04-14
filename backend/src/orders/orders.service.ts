@@ -62,6 +62,7 @@ export function listOrders(userId: number, page: number, q: string): PaginatedOr
   return {
     orders: paginated.map((o) => ({
       orderId: o.orderId,
+      customerName: o.shipping.name,
       total: o.total,
       status: o.status,
       createdAt: o.createdAt,

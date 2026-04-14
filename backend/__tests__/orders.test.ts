@@ -26,6 +26,7 @@ describe("GET /orders", () => {
     expect(res.body.total_pages).toBe(3);
     expect(res.body.per_page).toBe(10);
     expect(res.body.page).toBe(1);
+    expect(res.body.orders[0]).toHaveProperty("customerName");
   });
 
   it("returns page 2 correctly", async () => {
