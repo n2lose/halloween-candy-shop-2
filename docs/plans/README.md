@@ -53,26 +53,32 @@ Implement → security-check (auto on auth/) → /write-tests → /review-pr →
 
 ## Plans
 
-### Sprint 1 — Backend API
+### Sprint 1 — Backend API ✅ COMPLETE
 
 | Plan | Feature | Status | Branch |
 |------|---------|--------|--------|
-| [PLAN-001](./PLAN-001-backend-foundation.md) | Backend setup (Express + TypeScript + mock data) | DRAFT | `feat/PLAN-001-backend-foundation` |
-| [PLAN-002](./PLAN-002-auth.md) | Auth endpoints (`/register`, `/login`, `/refresh`, `/me`) | DRAFT | `feat/PLAN-002-auth` |
-| [PLAN-003](./PLAN-003-products.md) | Products endpoints (`GET /products`, `GET /products/:id`) | DRAFT | `feat/PLAN-003-products` |
-| [PLAN-004](./PLAN-004-dashboard.md) | Dashboard endpoint (`GET /dashboard`) | DRAFT | `feat/PLAN-004-dashboard` |
-| [PLAN-005](./PLAN-005-stripe-orders.md) | Stripe + Orders endpoints (`POST /stripe`, `POST/GET /orders`) | DRAFT | `feat/PLAN-005-stripe-orders` |
-| [PLAN-006](./PLAN-006-integration-tests.md) | Integration tests (register → order full flow) | DRAFT | `feat/PLAN-006-integration-tests` |
+| [PLAN-001](./PLAN-001-backend-foundation.md) | Backend setup (Express + TypeScript + mock data) | DONE | `feat/PLAN-001-backend-foundation` |
+| [PLAN-002](./PLAN-002-auth.md) | Auth endpoints (`/register`, `/login`, `/refresh`, `/me`) | DONE | `feat/PLAN-002-auth` |
+| [PLAN-003](./PLAN-003-products.md) | Products endpoints (`GET /products`, `GET /products/:id`) | DONE | `feat/PLAN-003-products` |
+| [PLAN-004](./PLAN-004-dashboard.md) | Dashboard endpoint (`GET /dashboard`) | DONE | `feat/PLAN-004-dashboard` |
+| [PLAN-005](./PLAN-005-stripe-orders.md) | Stripe + Orders endpoints (`POST /stripe`, `POST/GET /orders`) | DONE | `feat/PLAN-005-stripe-orders` |
+| [PLAN-006](./PLAN-006-integration-tests.md) | Integration tests — 42 tests, all passing | DONE | `feat/PLAN-006-integration-tests` |
 
-### Sprint 2 — Frontend
+### Sprint 2 — Frontend (Design: "The Haunted Atelier")
+
+> **Scope decision (2026-04-14)**: No Customers page — excluded (no API, beyond assignment scope).
+> Design reference: `docs/designs/stitch/` — each folder has `screen.png` + `code.html`.
+> Design system: `docs/designs/stitch/gilded_ghouls_confections/DESIGN.md`
 
 | Plan | Feature | Status | Branch |
 |------|---------|--------|--------|
-| [PLAN-007](./PLAN-007-frontend-setup.md) | Frontend setup (Vite + React + Router + Axios client) | DRAFT | `feat/PLAN-007-frontend-setup` |
-| [PLAN-008](./PLAN-008-auth-pages.md) | Login + Register pages + token flow + ProtectedRoute | DRAFT | `feat/PLAN-008-auth-pages` |
-| [PLAN-009](./PLAN-009-dashboard-page.md) | Dashboard page (stats cards + chart toggle + bestsellers) | DRAFT | `feat/PLAN-009-dashboard-page` |
-| [PLAN-010](./PLAN-010-products-cart-checkout.md) | Products page + Cart drawer + Checkout (Stripe) | DRAFT | `feat/PLAN-010-products-cart-checkout` |
-| [PLAN-011](./PLAN-011-orders-page.md) | Orders page (table + search + pagination + detail) | DRAFT | `feat/PLAN-011-orders-page` |
+| [PLAN-007](./PLAN-007-frontend-setup.md) | Frontend setup (Vite + React + Router + Axios + design tokens) | DRAFT | `feat/PLAN-007-frontend-setup` |
+| [PLAN-008](./PLAN-008-auth-pages.md) | Login + Register pages + ProtectedRoute + Sidebar layout | DRAFT | `feat/PLAN-008-auth-pages` |
+| [PLAN-009](./PLAN-009-dashboard-page.md) | Dashboard (Atelier Overview — stats cards + chart + bestsellers) | DRAFT | `feat/PLAN-009-dashboard-page` |
+| [PLAN-010](./PLAN-010-products-cart-checkout.md) | Products Gallery + Grimoire Cart + Checkout (Stripe) | DRAFT | `feat/PLAN-010-products-cart-checkout` |
+| [PLAN-011](./PLAN-011-orders-page.md) | Order Manifest (table + search + pagination + detail) | DRAFT | `feat/PLAN-011-orders-page` |
+
+> **Backend patch needed in PLAN-007**: `GET /orders` list response needs `shipping.name` added so Orders table can display customer name per design.
 
 ## How to Create a Plan
 
