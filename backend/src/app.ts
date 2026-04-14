@@ -1,11 +1,13 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import { authRouter } from "./auth/auth.router.js";
 import { productsRouter } from "./products/products.router.js";
 import { dashboardRouter } from "./dashboard/dashboard.router.js";
-
-dotenv.config();
+import { stripeRouter } from "./stripe/stripe.router.js";
+import { ordersRouter } from "./orders/orders.router.js";
 
 const app = express();
 
@@ -19,11 +21,8 @@ app.get("/", (_req: Request, res: Response) => {
 app.use("/auth", authRouter);
 app.use("/products", productsRouter);
 app.use("/dashboard", dashboardRouter);
-
-// Route mounting (filled in PLAN-005)
-// app.use("/dashboard", dashboardRouter);
-// app.use("/orders", ordersRouter);
-// app.use("/stripe", stripeRouter);
+app.use("/stripe", stripeRouter);
+app.use("/orders", ordersRouter);
 
 // Global error handler — must have 4 params to be recognised by Express
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
