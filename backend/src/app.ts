@@ -1,4 +1,6 @@
 import dotenv from "dotenv";
+// Must run before any import that reads process.env at module-level.
+// Stripe uses lazy init (getStripe()) because ESM hoists static imports before this line.
 dotenv.config();
 
 import express, { NextFunction, Request, Response } from "express";
