@@ -99,7 +99,7 @@ backend/src/
 
 ## Key Technical Decisions
 
-See `adr/` folder for detailed reasoning. Summary:
+See `tech-stack.md` for detailed reference. Summary:
 
 | Decision | Choice | Reason |
 |----------|--------|--------|

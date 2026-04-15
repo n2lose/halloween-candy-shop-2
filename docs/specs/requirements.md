@@ -284,6 +284,7 @@ Request:
 * Order summary sidebar
 * On submit: create PaymentIntent → confirm card → POST /orders
 * Redirect to Order Confirmation page
+* **Post-checkout navigation**: After successful order, use `navigate(path, { replace: true })` to prevent back-button re-submission. Clear cart after successful order.
 
 ---
 
@@ -301,6 +302,8 @@ Request:
 * Slide-out drawer from right
 * Quantity +/−, remove item, subtotal
 * "Checkout" button → requires login
+* **Cart scope**: Cart is per-user — clear localStorage cart on logout. When a new user logs in, they start with an empty cart.
+* **Price freshness**: Cart stores `productId` and `quantity` only. Display prices are fetched from `/products` on cart open to ensure freshness. The backend always calculates the actual amount server-side.
 
 ---
 
@@ -309,6 +312,7 @@ Request:
 * Automatically refresh token when expired
 * Retry failed requests after refreshing
 * Logout if refresh token is invalid
+* **Concurrent refresh**: When multiple API calls receive 401 simultaneously, the axios interceptor must queue all failed requests and send only **one** refresh call. After the refresh succeeds, replay all queued requests with the new token. If refresh fails, logout and redirect all.
 
 ---
 
