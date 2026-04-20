@@ -1,26 +1,14 @@
 // ─── Auth ────────────────────────────────────────────────────────────────────
 
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-}
-
 export interface TokenPair {
   access_token: string;
   refresh_token: string;
 }
 
-export interface AccessTokenPayload {
-  sub: number;
-  email: string;
+export interface UserProfile {
+  id: string;
   name: string;
-}
-
-export interface RefreshTokenPayload {
-  sub: number;
-  type: "refresh";
+  email: string;
 }
 
 // ─── Products ────────────────────────────────────────────────────────────────
@@ -53,18 +41,33 @@ export interface ShippingInfo {
 
 export interface PaymentInfo {
   last4: string;
-  status: "succeeded";
+  status: string;
 }
 
 export interface Order {
   orderId: string;
-  userId: number;
   items: OrderItem[];
   shipping: ShippingInfo;
   payment: PaymentInfo;
   total: number;
   status: OrderStatus;
   createdAt: string;
+}
+
+export interface OrderSummary {
+  orderId: string;
+  customerName: string;
+  total: number;
+  status: OrderStatus;
+  createdAt: string;
+}
+
+export interface PaginatedOrders {
+  orders: OrderSummary[];
+  total: number;
+  page: number;
+  per_page: number;
+  total_pages: number;
 }
 
 // ─── Dashboard ───────────────────────────────────────────────────────────────
@@ -86,7 +89,7 @@ export interface Bestseller {
   revenue: number;
 }
 
-export interface DashboardResponse {
+export interface DashboardData {
   stats: {
     today: StatsBlock;
     last_week: StatsBlock;
@@ -99,28 +102,9 @@ export interface DashboardResponse {
   bestsellers: Bestseller[];
 }
 
-// ─── API Request / Response shapes ───────────────────────────────────────────
+// ─── Cart ─────────────────────────────────────────────────────────────────────
 
-export interface PaginatedOrdersResponse {
-  orders: Array<{
-    orderId: string;
-    customerName: string;
-    total: number;
-    status: OrderStatus;
-    createdAt: string;
-  }>;
-  total: number;
-  page: number;
-  per_page: number;
-  total_pages: number;
-}
-
-export interface CreatePaymentIntentRequest {
-  items: Array<{ productId: string; quantity: number }>;
-}
-
-export interface CreateOrderRequest {
-  paymentIntentId: string;
-  customer: ShippingInfo;
-  items: Array<{ productId: string; quantity: number }>;
+export interface CartItem {
+  productId: string;
+  quantity: number;
 }
