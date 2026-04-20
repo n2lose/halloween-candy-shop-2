@@ -1,10 +1,12 @@
 // ─── Auth ────────────────────────────────────────────────────────────────────
 
 export interface User {
-  id: number;
+  id: string;
   name: string;
   email: string;
   password: string;
+  role: "admin" | "customer";
+  createdAt: string;
 }
 
 export interface TokenPair {
@@ -13,13 +15,14 @@ export interface TokenPair {
 }
 
 export interface AccessTokenPayload {
-  sub: number;
+  userId: string;
+  role: "admin" | "customer";
   email: string;
   name: string;
 }
 
 export interface RefreshTokenPayload {
-  sub: number;
+  userId: string;
   type: "refresh";
 }
 
@@ -28,9 +31,9 @@ export interface RefreshTokenPayload {
 export interface Product {
   id: string;
   name: string;
-  emoji: string;
   price: number;
   stock: number;
+  createdAt: string;
 }
 
 // ─── Orders ──────────────────────────────────────────────────────────────────
@@ -58,7 +61,7 @@ export interface PaymentInfo {
 
 export interface Order {
   orderId: string;
-  userId: number;
+  userId: string;
   items: OrderItem[];
   shipping: ShippingInfo;
   payment: PaymentInfo;

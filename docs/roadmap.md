@@ -19,23 +19,23 @@ PLAN-006 Integration tests
 
 | Task | Plan | Status |
 |------|------|--------|
-| Express + TypeScript project setup | PLAN-001 | TODO |
-| Mock data: users, products, orders | PLAN-001 | TODO |
-| Types/interfaces | PLAN-001 | TODO |
-| `POST /auth/register` | PLAN-002 | TODO |
-| `POST /auth/login` | PLAN-002 | TODO |
-| `POST /auth/refresh` | PLAN-002 | TODO |
-| `GET /auth/me` + JWT middleware | PLAN-002 | TODO |
-| `GET /products` | PLAN-003 | TODO |
-| `GET /products/:id` | PLAN-003 | TODO |
-| `GET /dashboard` | PLAN-004 | TODO |
-| `POST /stripe/create-payment-intent` | PLAN-005 | TODO |
-| `POST /orders` (verify Stripe → persist) | PLAN-005 | TODO |
-| `GET /orders` (user's history, paginated) | PLAN-005 | TODO |
-| `GET /orders/:id` (detail, 403 guard) | PLAN-005 | TODO |
-| Integration tests (register → order flow) | PLAN-006 | TODO |
+| Express + TypeScript project setup | PLAN-001 | DONE |
+| Mock data: users, products, orders | PLAN-001 | DONE |
+| Types/interfaces | PLAN-001 | DONE |
+| `POST /auth/register` | PLAN-002 | DONE |
+| `POST /auth/login` | PLAN-002 | DONE |
+| `POST /auth/refresh` | PLAN-002 | DONE |
+| `GET /auth/me` + JWT middleware | PLAN-002 | DONE |
+| `GET /products` | PLAN-003 | DONE |
+| `GET /products/:id` | PLAN-003 | DONE |
+| `GET /dashboard` | PLAN-004 | DONE |
+| `POST /stripe/create-payment-intent` | PLAN-005 | DONE |
+| `POST /orders` (verify Stripe → persist) | PLAN-005 | DONE |
+| `GET /orders` (user's history, paginated) | PLAN-005 | DONE |
+| `GET /orders/:id` (detail, 403 guard) | PLAN-005 | DONE |
+| Integration tests (42/42 passing) | PLAN-006 | DONE |
 
-**Done criteria**: All 11 endpoints tested with curl, error cases handled, integration tests pass
+**Done criteria**: All 11 endpoints tested with curl, error cases handled, integration tests pass ✅
 
 ---
 
@@ -45,20 +45,23 @@ PLAN-006 Integration tests
 
 | Task | Plan | Status |
 |------|------|--------|
-| Vite + React + TypeScript + Router setup | PLAN-007 | TODO |
-| Axios client + token interceptors (auto-refresh) | PLAN-007 | TODO |
-| Auth store (Context + localStorage) + Cart store | PLAN-007 | TODO |
+| Vite + React + TypeScript + Router setup | PLAN-007 | DONE |
+| Tailwind CSS v3 + design tokens (Haunted Atelier) | PLAN-007 | DONE |
+| Axios client + token interceptors (auto-refresh) | PLAN-007 | DONE |
+| Auth store (Context + localStorage) + Cart store | PLAN-007 | DONE |
+| Backend patch: `customerName` in `GET /orders` | PLAN-007 | DONE |
 | Login page — match `Freddys_Login.png` | PLAN-008 | TODO |
 | Register page | PLAN-008 | TODO |
 | ProtectedRoute + Sidebar layout | PLAN-008 | TODO |
+| Storefront Topnav layout | PLAN-008 | TODO |
 | Dashboard — stats cards (Today/Week/Month) | PLAN-009 | TODO |
 | Dashboard — bar chart with weekly/yearly toggle | PLAN-009 | TODO |
 | Dashboard — bestsellers table | PLAN-009 | TODO |
 | Products page — grid with "Add to Cart" | PLAN-010 | TODO |
-| Cart drawer — qty +/−, subtotal | PLAN-010 | TODO |
+| Cart page — qty +/−, subtotal | PLAN-010 | TODO |
 | Checkout page — shipping + Stripe Card Element | PLAN-010 | TODO |
 | Order confirmation page | PLAN-010 | TODO |
-| Orders history — paginated table | PLAN-011 | TODO |
+| Orders history — paginated table + search | PLAN-011 | TODO |
 | Order detail page (403 guard) | PLAN-011 | TODO |
 
 **Done criteria**: All screens match designs, Stripe test payment works, token auto-refresh works

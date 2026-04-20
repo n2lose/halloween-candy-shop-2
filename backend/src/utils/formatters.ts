@@ -9,7 +9,3 @@ export function formatDate(date: Date): string {
 export function formatOrderId(id: number): string {
   return `ORD-${String(id).padStart(4, "0")}`;
 }
-
-export function formatUserId(id: number): string {
-  return `usr_${id}`;
-}

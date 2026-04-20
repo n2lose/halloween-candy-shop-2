@@ -255,20 +255,34 @@ await stripe.confirmCardPayment(clientSecret, {
 
 Card data flow: User enters card into `<CardElement>` → Stripe.js tokenizes client-side → only the token travels over the network → **backend never sees the card number**.
 
-### CSS Modules — Styling
+### Tailwind CSS v3 — Styling
 
-CSS files are automatically scoped — class names become unique (`.button` → `.button_a1b2c3`). Each component has isolated styles, no conflicts.
+Utility-first CSS framework — compose styles directly in JSX class names. No style conflicts, no naming required. Custom design tokens extend the default theme.
 
 ```tsx
-// DashboardPage.module.css
-.statsGrid { display: grid; gap: 1rem; }
-
-// DashboardPage.tsx
-import styles from './DashboardPage.module.css';
-<div className={styles.statsGrid}>...</div>
+// All styles in JSX — no separate CSS file needed
+<div className="bg-surface-container-high rounded-xl p-6 text-on-surface">
+  <h2 className="font-headline text-2xl text-primary">Dashboard</h2>
+</div>
 ```
 
-Zero config with Vite — just name the file `*.module.css`.
+**Custom design tokens** (Haunted Atelier palette) in `tailwind.config.ts`:
+```ts
+colors: {
+  "surface":          "#131313",  // base background
+  "primary":          "#ffb783",  // orange accent
+  "tertiary":         "#8adb4d",  // eerie green (success/delivered)
+  "on-surface":       "#e5e2e1",  // primary text
+  "outline-variant":  "#594238",  // ghost borders
+  // ...30+ tokens total
+}
+fontFamily: {
+  headline: ["Newsreader", "serif"],   // display headings
+  body:     ["Manrope", "sans-serif"], // body + UI
+}
+```
+
+Dark mode enabled globally via `html { @apply dark; }` in `index.css`. Material Symbols Outlined loaded via Google Fonts CDN.
 
 ---
 
@@ -285,7 +299,7 @@ Zero config with Vite — just name the file `*.module.css`.
 | `stripe` | prod | Stripe API SDK |
 | `dotenv` | prod | Load .env vars |
 | `typescript` | dev | TypeScript compiler |
-| `ts-node-dev` | dev | Dev server + hot reload |
+| `tsx` | dev | Dev server + hot reload (ESM-compatible) |
 | `jest` | dev | Test runner |
 | `ts-jest` | dev | Jest TypeScript transformer |
 | `supertest` | dev | HTTP testing for Express |
@@ -304,6 +318,8 @@ Zero config with Vite — just name the file `*.module.css`.
 | `typescript` | dev | TypeScript compiler |
 | `vite` | dev | Build tool + dev server |
 | `@vitejs/plugin-react` | dev | Vite React plugin |
+| `tailwindcss` | dev | Utility-first CSS framework |
+| `postcss` + `autoprefixer` | dev | Tailwind CSS processing pipeline |
 | `@types/react` + `@types/react-dom` | dev | React type definitions |
 
 ---

@@ -5,7 +5,7 @@ import type { Order, CreateOrderRequest, PaginatedOrdersResponse } from "../type
 
 // ─── Create order ─────────────────────────────────────────────────────────────
 
-export async function createOrder(userId: number, body: CreateOrderRequest): Promise<Order> {
+export async function createOrder(userId: string, body: CreateOrderRequest): Promise<Order> {
   const { paymentIntentId, customer, items } = body;
 
   if (usedPaymentIntents.has(paymentIntentId)) throw new Error("Payment already used");
@@ -38,7 +38,7 @@ export async function createOrder(userId: number, body: CreateOrderRequest): Pro
 
 // ─── List orders (paginated + search) ────────────────────────────────────────
 
-export function listOrders(userId: number, page: number, q: string): PaginatedOrdersResponse {
+export function listOrders(userId: string, page: number, q: string): PaginatedOrdersResponse {
   const safePage = Math.max(1, page);
   const perPage = 10;
 
@@ -76,7 +76,7 @@ export function listOrders(userId: number, page: number, q: string): PaginatedOr
 
 // ─── Get single order ─────────────────────────────────────────────────────────
 
-export function getOrder(orderId: string, userId: number): Order {
+export function getOrder(orderId: string, userId: string): Order {
   const order = findOrderById(orderId);
   if (!order) throw new Error("Order not found");
   if (order.userId !== userId) throw new Error("Forbidden");
