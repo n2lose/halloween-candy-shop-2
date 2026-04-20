@@ -1,6 +1,6 @@
 # PLAN-015: Customer API — Products, Stripe, Orders
 
-**Status**: IN PROGRESS
+**Status**: DONE
 
 ## Context
 
