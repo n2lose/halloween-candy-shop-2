@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { getOrders } from "../../api/orders";
+import { getAdminOrders } from "../../api/admin";
 import type { AdminOrderSummary, PaginatedOrders } from "../../types/index";
 import Badge from "../../components/ui/Badge";
 import Pagination from "../../components/ui/Pagination";
@@ -24,8 +24,8 @@ export default function AdminOrdersPage() {
   // Fetch runs when page/search changes; setLoading(true) is set in handlers (not in effect)
   useEffect(() => {
     let cancelled = false;
-    getOrders(page, search)
-      .then(r => { if (!cancelled) setResult(r.data as PaginatedOrders<AdminOrderSummary>); })
+    getAdminOrders(page, search)
+      .then(r => { if (!cancelled) setResult(r.data); })
       .catch(() => { if (!cancelled) setResult(null); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };

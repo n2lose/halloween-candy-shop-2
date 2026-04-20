@@ -43,7 +43,9 @@ Admin-facing pages wrapped in `AdminLayout`. Data wired to `/admin/*` endpoints 
 | "IN TRANSIT" status | Not implemented — API has processing/shipped/delivered |
 | Essence Breakdown, Retention donut | Removed — no API support |
 
-## Remaining TODO
+## Completed (2026-04-20 follow-up)
 
-- [ ] Wire `PATCH /admin/orders/:id/status` in `AdminOrderDetailPage` status dropdown
-- [ ] Admin Products CRUD: create modal, edit modal, delete confirm dialog (`POST/PUT/DELETE /admin/products`)
+- [x] Wire `PATCH /admin/orders/:id/status` in `AdminOrderDetailPage` — inline Saved/Failed feedback
+- [x] Admin Products CRUD: ProductModal (create/edit) + DeleteModal with confirmation
+- [x] Fix `AdminOrdersPage` to call `/admin/orders` instead of `/orders` (customer endpoint bug)
+- [x] Created `api/admin.ts` with all admin-specific API functions

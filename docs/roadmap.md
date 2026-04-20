@@ -96,8 +96,8 @@ PLAN-006 Integration Tests
 | Admin Orders — table, search, pagination, click-to-detail | PLAN-018 | DONE |
 | Admin Order Detail — items, shipping, payment cards + status select | PLAN-018 | DONE |
 | Admin Products — inventory table, stock indicators | PLAN-018 | DONE |
-| PATCH /admin/orders/:id/status — wire status dropdown | PLAN-018 | TODO |
-| Admin Products CRUD modals (create, edit, delete) | PLAN-018 | TODO |
+| PATCH /admin/orders/:id/status — wire status dropdown | PLAN-018 | DONE |
+| Admin Products CRUD modals (create, edit, delete) | PLAN-018 | DONE |
 | Products gallery — hero, 5-col grid, qty controls, out-of-stock | PLAN-019 | DONE |
 | Cart drawer — open/close, empty state, count badge | PLAN-019 | DONE |
 | Checkout — shipping form + simulated payment + order create | PLAN-019 | DONE |

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getOrder } from "../../api/orders";
+import { getAdminOrder, updateOrderStatus } from "../../api/admin";
 import type { Order, OrderStatus } from "../../types/index";
 import Badge from "../../components/ui/Badge";
 import Card from "../../components/ui/Card";
@@ -14,20 +14,40 @@ function fmtDate(iso: string) {
   });
 }
 
+const STATUSES: OrderStatus[] = ["processing", "shipped", "delivered"];
+
 export default function AdminOrderDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [saveMsg, setSaveMsg] = useState("");
 
   useEffect(() => {
     if (!id) return;
-    getOrder(id)
+    getAdminOrder(id)
       .then(r => setOrder(r.data))
       .catch(() => setError("Order not found or access denied."))
       .finally(() => setLoading(false));
   }, [id]);
+
+  const handleStatusChange = async (status: string) => {
+    if (!order) return;
+    setSaving(true);
+    setSaveMsg("");
+    try {
+      const res = await updateOrderStatus(order.orderId, status);
+      setOrder(res.data);
+      setSaveMsg("Saved");
+      setTimeout(() => setSaveMsg(""), 2000);
+    } catch {
+      setSaveMsg("Failed to update");
+    } finally {
+      setSaving(false);
+    }
+  };
 
   if (loading) return <div className="flex items-center justify-center h-64"><Spinner size="lg" /></div>;
   if (error || !order) return <EmptyState icon="⚠️" title="Order not found" description={error} />;
@@ -52,16 +72,26 @@ export default function AdminOrderDetailPage() {
         </div>
 
         {/* Status change */}
-        <select
-          defaultValue={order.status}
-          onChange={e => console.log("Status change:", e.target.value)} // wired in PLAN-018
-          className="bg-surface-container-high border-none rounded-xl px-4 py-2.5 text-sm font-label
-                     text-on-surface focus:ring-1 focus:ring-primary/40 outline-none cursor-pointer"
-        >
-          {(["processing", "shipped", "delivered"] as OrderStatus[]).map(s => (
-            <option key={s} value={s} className="capitalize">{s.charAt(0).toUpperCase() + s.slice(1)}</option>
-          ))}
-        </select>
+        <div className="flex items-center gap-3">
+          {saveMsg && (
+            <span className={`text-xs font-label ${saveMsg === "Saved" ? "text-tertiary" : "text-error"}`}>
+              {saveMsg}
+            </span>
+          )}
+          {saving && <Spinner size="sm" />}
+          <select
+            value={order.status}
+            onChange={e => handleStatusChange(e.target.value)}
+            disabled={saving}
+            className="bg-surface-container-high border-none rounded-xl px-4 py-2.5 text-sm font-label
+                       text-on-surface focus:ring-1 focus:ring-primary/40 outline-none cursor-pointer
+                       disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {STATUSES.map(s => (
+              <option key={s} value={s}>{s.charAt(0).toUpperCase() + s.slice(1)}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -99,7 +129,6 @@ export default function AdminOrderDetailPage() {
 
         {/* Right column */}
         <div className="flex flex-col gap-4">
-          {/* Shipping */}
           <Card padding="md">
             <h3 className="text-sm font-label uppercase tracking-widest text-secondary/40 mb-4">Shipping Ritual</h3>
             <div className="space-y-2 text-sm font-label">
@@ -109,7 +138,6 @@ export default function AdminOrderDetailPage() {
             </div>
           </Card>
 
-          {/* Payment */}
           <Card padding="md">
             <h3 className="text-sm font-label uppercase tracking-widest text-secondary/40 mb-4">Payment Incantation</h3>
             <div className="flex items-center gap-3">
