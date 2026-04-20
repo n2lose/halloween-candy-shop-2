@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#203243",
+                        "on-primary-fixed": "#301400",
+                        "on-tertiary": "#183800",
+                        "surface-dim": "#131313",
+                        "surface-bright": "#393939",
+                        "surface": "#131313",
+                        "primary": "#ffb783",
+                        "on-primary": "#4f2500",
+                        "surface-container": "#201f1f",
+                        "surface-container-low": "#1c1b1b",
+                        "secondary": "#b5c8df",
+                        "on-primary-container": "#451f00",
+                        "on-secondary-fixed": "#091d2e",
+                        "inverse-primary": "#944a00",
+                        "on-background": "#e5e2e1",
+                        "on-primary-fixed-variant": "#713700",
+                        "on-surface-variant": "#e0c0b2",
+                        "on-secondary-container": "#a4b7cd",
+                        "tertiary-fixed-dim": "#8adb4d",
+                        "secondary-fixed-dim": "#b5c8df",
+                        "on-tertiary-container": "#143000",
+                        "tertiary-container": "#56a315",
+                        "primary-container": "#db7619",
+                        "on-error": "#690005",
+                        "primary-fixed": "#ffdcc5",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#353534",
+                        "outline-variant": "#594238",
+                        "secondary-container": "#36485b",
+                        "background": "#131313",
+                        "inverse-surface": "#e5e2e1",
+                        "on-surface": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb783",
+                        "on-tertiary-fixed": "#0b2000",
+                        "tertiary-fixed": "#a5f866",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline": "#a88a7e",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "secondary-fixed": "#d1e4fb",
+                        "inverse-on-surface": "#313030",
+                        "tertiary": "#8adb4d",
+                        "on-tertiary-fixed-variant": "#255100",
+                        "surface-variant": "#353534",
+                        "surface-tint": "#ffb783",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-fixed-variant": "#36485b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.parchment-texture {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBhEO73MZKjbgEfHcpkINPYJe5jHqBl3XFyYj6bSpOdLv8OQfWm-Byk5bWYE1vSfZsHUIZycmQcIOmEJlk4BzpOkpKN3MiXb4Z4TWYglktERMMePOjzBr7naK2xfSJXJLFtCahoSxcweeBNq4G6u3EWQxEbT9AnunKLMViPUtgcNnyt_Da9U1ghjjPXQkfW5XC8cu60r6dbA-Q-taixfq6Uh7s7JTmoeKdwyNBkjRI56cbjflULbFI_vFAdu5_bNyKqd1qvwVYxECPQ);
+    opacity: 0.03;
+    pointer-events: none
+    }</style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30">
+<div class="fixed inset-0 parchment-texture z-50"></div>
+<!-- SideNavBar Component -->
+<aside class="fixed inset-y-0 left-0 flex flex-col py-8 bg-[#201f1f] dark:bg-[#201f1f] h-screen w-64 border-r-0 z-40 font-['Newsreader'] tracking-tight">
+<div class="px-6 mb-10 flex items-center gap-3">
+<span class="text-2xl font-bold text-[#ffb783] italic">The Haunted Atelier</span>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-4 text-[#ffb783] border-l-4 border-[#db7619] bg-[#2a2a2a] pl-4 py-3 transition-all duration-300 active:opacity-90 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 text-[#b5c8df] hover:text-[#e5e2e1] hover:bg-[#2a2a2a] pl-6 py-3 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-medium">Orders</span>
+</a>
+<a class="flex items-center gap-4 text-[#b5c8df] hover:text-[#e5e2e1] hover:bg-[#2a2a2a] pl-6 py-3 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-medium">Inventory</span>
+</a>
+<a class="flex items-center gap-4 text-[#b5c8df] hover:text-[#e5e2e1] hover:bg-[#2a2a2a] pl-6 py-3 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-medium">Customers</span>
+</a>
+</nav>
+<div class="px-6 mb-8">
+<button class="w-full py-3 px-4 bg-gradient-to-r from-primary to-primary-container text-on-primary-fixed font-headline font-bold rounded-xl shadow-lg hover:brightness-110 transition-all">
+                New Collection
+            </button>
+</div>
+<div class="mt-auto space-y-1 border-t border-outline-variant/10 pt-4">
+<a class="flex items-center gap-4 text-[#b5c8df] hover:text-[#e5e2e1] hover:bg-[#2a2a2a] pl-6 py-3 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+<a class="flex items-center gap-4 text-[#b5c8df] hover:text-[#e5e2e1] hover:bg-[#2a2a2a] pl-6 py-3 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-medium">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar Component -->
+<header class="fixed top-0 right-0 left-64 h-16 flex items-center justify-between px-8 z-40 bg-[#131313]/80 backdrop-blur-xl shadow-[0_20_40px_rgba(0,0,0,0.4)]">
+<div class="flex items-center gap-4">
+<h1 class="font-headline text-2xl font-extrabold text-primary tracking-tight">Atelier Overview</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 material-symbols-outlined text-sm">search</span>
+<input class="bg-surface-container-lowest border-none text-xs tracking-widest font-label py-2 pl-10 pr-4 rounded-full w-64 focus:ring-1 focus:ring-tertiary/20" placeholder="SEARCH RECIPES..." type="text"/>
+</div>
+<div class="flex items-center gap-4 text-[#b5c8df]">
+<button class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/20">
+<img alt="Admin Avatar" class="w-full h-full object-cover" data-alt="portrait of a sophisticated man with a well-groomed beard wearing an elegant charcoal waistcoat in a dimly lit artisanal study" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnWsLP-GKEy0Xf8DGB82ZTkahM8A7oemL1-9jNpn4BdWHhgUdTUhtgavVVXTTW4k-WOS5pFOX2HgSymPrrNi0yt06hcuRCySOvTGZPfWxByROCid9JvOVnhNIkP-2_wePDJkTiccQ02KOr4aqClWbhI2h6tJqSCLjUYiVNTVmnabzPPO6KI8l5G2xzzjVYgud5VcC2F6EJCiuJ5Q77VBv-LWLmN2T42UuTX7KRS2SXi-L2XU1F0FZx3enfHrMi0p86BXh0sjaMKzi_"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="pt-24 pb-12 px-8 max-w-7xl mx-auto space-y-10">
+<!-- Summary Cards Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Today -->
+<div class="bg-surface-container-high p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<p class="font-label text-xs uppercase tracking-widest text-secondary mb-2">Today</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-headline font-bold text-primary">$1,284</h3>
+<span class="text-tertiary text-xs font-bold">+12%</span>
+</div>
+<p class="text-on-surface-variant text-sm mt-1">42 Artisanal Orders</p>
+</div>
+<!-- Last Week -->
+<div class="bg-surface-container-high p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl" data-icon="history">history</span>
+</div>
+<p class="font-label text-xs uppercase tracking-widest text-secondary mb-2">Last Week</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-headline font-bold text-on-surface">$8,940</h3>
+<span class="text-tertiary text-xs font-bold">+5.4%</span>
+</div>
+<p class="text-on-surface-variant text-sm mt-1">218 Confections Crafted</p>
+</div>
+<!-- Last Month -->
+<div class="bg-surface-container-high p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl" data-icon="calendar_month">calendar_month</span>
+</div>
+<p class="font-label text-xs uppercase tracking-widest text-secondary mb-2">Last Month</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-headline font-bold text-on-surface">$34,210</h3>
+<span class="text-primary text-xs font-bold">-2.1%</span>
+</div>
+<p class="text-on-surface-variant text-sm mt-1">892 Enchanted Shipments</p>
+</div>
+</section>
+<!-- Revenue Chart Section -->
+<section class="bg-surface-container rounded-xl p-8 space-y-6 shadow-xl">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline text-2xl font-bold text-on-surface">Revenue Performance</h2>
+<p class="text-on-surface-variant text-sm italic">Tracking the ghostly ebb and flow of commerce</p>
+</div>
+<div class="flex bg-surface-container-lowest p-1 rounded-lg">
+<button class="px-4 py-1.5 text-xs font-label font-bold uppercase tracking-wider rounded-md bg-primary text-on-primary-fixed shadow-md transition-all">7 Days</button>
+<button class="px-4 py-1.5 text-xs font-label font-bold uppercase tracking-wider rounded-md text-secondary hover:text-on-surface transition-all">12 Months</button>
+</div>
+</div>
+<!-- Placeholder for Chart - Visualized with CSS -->
+<div class="relative h-64 w-full flex items-end justify-between gap-4 pt-10">
+<div class="absolute inset-0 flex flex-col justify-between opacity-10 pointer-events-none">
+<div class="border-t border-on-surface"></div>
+<div class="border-t border-on-surface"></div>
+<div class="border-t border-on-surface"></div>
+<div class="border-t border-on-surface"></div>
+</div>
+<div class="relative group w-full h-[60%] bg-surface-container-high rounded-t-lg transition-all hover:h-[75%] hover:bg-primary-container/30">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-xs font-bold text-primary">$1.1k</div>
+</div>
+<div class="relative group w-full h-[45%] bg-surface-container-high rounded-t-lg transition-all hover:h-[60%] hover:bg-primary-container/30"></div>
+<div class="relative group w-full h-[85%] bg-surface-container-high rounded-t-lg transition-all hover:h-[95%] hover:bg-primary-container/30"></div>
+<div class="relative group w-full h-[70%] bg-surface-container-high rounded-t-lg transition-all hover:h-[80%] hover:bg-primary-container/30"></div>
+<div class="relative group w-full h-[95%] bg-gradient-to-t from-primary-container/40 to-primary rounded-t-lg transition-all">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs font-bold text-primary">$1.8k</div>
+</div>
+<div class="relative group w-full h-[55%] bg-surface-container-high rounded-t-lg transition-all hover:h-[65%] hover:bg-primary-container/30"></div>
+<div class="relative group w-full h-[65%] bg-surface-container-high rounded-t-lg transition-all hover:h-[75%] hover:bg-primary-container/30"></div>
+</div>
+<div class="flex justify-between text-[10px] uppercase tracking-[0.2em] font-label text-on-surface-variant px-2">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</section>
+<!-- Bestsellers Table Section -->
+<section class="space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="font-headline text-2xl font-bold text-on-surface">Atelier Bestsellers</h2>
+<button class="text-tertiary text-sm font-label uppercase tracking-widest hover:underline transition-all">View Full Catalog</button>
+</div>
+<div class="overflow-hidden bg-surface-container-low rounded-xl">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/10">
+<th class="px-6 py-4 font-label text-xs uppercase tracking-widest text-secondary">Product Name</th>
+<th class="px-6 py-4 font-label text-xs uppercase tracking-widest text-secondary">Price</th>
+<th class="px-6 py-4 font-label text-xs uppercase tracking-widest text-secondary"># Units Sold</th>
+<th class="px-6 py-4 font-label text-xs uppercase tracking-widest text-secondary text-right">Revenue</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="group hover:bg-surface-container-high/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high overflow-hidden border border-outline-variant/10">
+<img alt="Ghostly Ganache" class="w-full h-full object-cover" data-alt="a single exquisite dark chocolate truffle with white spectral swirling patterns on a slate background with moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkCRoa3rWRpblbcRVoMZI2VjjORz678H-caTxqvHlP5KMp4BXkdOtSJlrKECI2oGtSNe772U1SOLdPQeJB-IrJfHwuefXzgJrgxqT_A7qZafo4qC9f6FmAm96zoxuwZ0AbH7MQkT9lLNaRbdRH_Z4r0bZzQeeFpfr-xJaTfU6JOyyOLZFaosISeo4hFH-SkChHCO5wHzbJUWiUKqVD64fBeqc81hnsfxzM_uYJTelgAtTDYCYtIsRZUCeYzNC1r4EEuGvcUkHMYDrn"/>
+</div>
+<span class="font-headline font-bold text-on-surface group-hover:text-primary transition-colors">Ghostly Dark Ganache</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant font-medium">$4.50</td>
+<td class="px-6 py-4 text-on-surface-variant">1,240</td>
+<td class="px-6 py-4 text-right font-headline font-bold text-primary">$5,580</td>
+</tr>
+<tr class="group hover:bg-surface-container-high/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high overflow-hidden border border-outline-variant/10">
+<img alt="Pumpkin Praline" class="w-full h-full object-cover" data-alt="artisan pumpkin shaped pralines with a metallic copper shimmer dusting on a dark wooden textured surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwQ_tyAEi2WOgvNaa7bzmqoRHP4oibuKB5bqmE1l91n7Z1vlgAXWxcDnVi9_dFqRu7AoPt-LpPytHbHzJRkKHZg-pR-wBDgZBTGf_v0jQgNLDMM61UxdGjRHa7Fx0l7pfBC9sKIGLi209_KVj7xWFNNlgZ_M5GdeQ6h5B2OJMds3V_Y9bJMbT5nVU0Lxe1s12b0CH4W4jACCouEW4WbamA3UiKjD5MWhXwqW8IWOQ7XI7O8kQy5GdpXzH46dUf-c8Jwdoitc4dJjUD"/>
+</div>
+<span class="font-headline font-bold text-on-surface group-hover:text-primary transition-colors">Copper Pumpkin Praline</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant font-medium">$3.75</td>
+<td class="px-6 py-4 text-on-surface-variant">980</td>
+<td class="px-6 py-4 text-right font-headline font-bold text-primary">$3,675</td>
+</tr>
+<tr class="group hover:bg-surface-container-high/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high overflow-hidden border border-outline-variant/10">
+<img alt="Bat Wings Brittle" class="w-full h-full object-cover" data-alt="shards of dark violet honey brittle shaped like jagged wings in a crystal bowl with dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkFn1w5flsrykQ07zCorBErABKd63jeAySpEM6BRsSG7gI7tr4cuZPjcb3NUx5c0J_WBgy17O3HqQDtybbhlWXouPEBokJ4E2-GLJEJKS_NMbYidhLIepcSpG5bCeIuusuJEDblxG_LWpaJjIRtpI0KKdz6dI_AmfwNjQ1bOJDGZUKynW3SPdtk8gE5JfikO4auFvmHNCRhib8PMcIfmxx-gQ-cun2yt0YdqgHfI08wugb_QrsgQYz1ukcoHYYbiichwhtIKIZVfZg"/>
+</div>
+<span class="font-headline font-bold text-on-surface group-hover:text-primary transition-colors">Midnight Honey Brittle</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant font-medium">$5.00</td>
+<td class="px-6 py-4 text-on-surface-variant">645</td>
+<td class="px-6 py-4 text-right font-headline font-bold text-primary">$3,225</td>
+</tr>
+<tr class="group hover:bg-surface-container-high/50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high overflow-hidden border border-outline-variant/10">
+<img alt="Wicked Plum" class="w-full h-full object-cover" data-alt="deep purple plum flavored gummies dusted in sour emerald sugar crystals on a silver platter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJDT9i3yP7SMEjTh7pcfP293GnfkCAVe2ND-rUMkaDYA_pr3P5UGH-0PMwoE4vJICGdmQcHSzeT84yfxqS0HE1Bly_OHabbqMHpJwhZjDGB0ytbo1xZc6ozlV5TIfJQzFz27yodimgqhlEbFXmU78Pex7PCwePSlZnOjlPjshJDVLUSmkLAmslUSwFVuDCIDAJthAi-RobzmX2Y6s1ypZ-vDi1f2qPRNuaELxqUBvliff2f3fpPVAmLop0vgbmDJCh2r7XgM4MTMCI"/>
+</div>
+<span class="font-headline font-bold text-on-surface group-hover:text-primary transition-colors">Wicked Emerald Sour</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant font-medium">$2.50</td>
+<td class="px-6 py-4 text-on-surface-variant">820</td>
+<td class="px-6 py-4 text-right font-headline font-bold text-primary">$2,050</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+</body></html>

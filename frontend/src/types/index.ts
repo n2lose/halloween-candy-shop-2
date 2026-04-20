@@ -9,6 +9,13 @@ export interface UserProfile {
   id: string;
   name: string;
   email: string;
+  role: "admin" | "customer";
+}
+
+export interface AuthResponse {
+  access_token: string;
+  refresh_token: string;
+  user: UserProfile;
 }
 
 // ─── Products ────────────────────────────────────────────────────────────────
@@ -56,14 +63,17 @@ export interface Order {
 
 export interface OrderSummary {
   orderId: string;
-  customerName: string;
   total: number;
   status: OrderStatus;
   createdAt: string;
 }
 
-export interface PaginatedOrders {
-  orders: OrderSummary[];
+export interface AdminOrderSummary extends OrderSummary {
+  customerName: string;
+}
+
+export interface PaginatedOrders<T extends OrderSummary = OrderSummary> {
+  orders: T[];
   total: number;
   page: number;
   per_page: number;

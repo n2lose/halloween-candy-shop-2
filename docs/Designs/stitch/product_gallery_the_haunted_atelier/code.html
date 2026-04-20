@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Haunted Atelier | Product Gallery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#131313",
+                    "primary-container": "#db7619",
+                    "secondary-container": "#36485b",
+                    "on-secondary-fixed": "#091d2e",
+                    "outline-variant": "#594238",
+                    "inverse-on-surface": "#313030",
+                    "surface-tint": "#ffb783",
+                    "primary-fixed": "#ffdcc5",
+                    "primary": "#ffb783",
+                    "on-primary-container": "#451f00",
+                    "background": "#131313",
+                    "on-primary-fixed": "#301400",
+                    "surface-dim": "#131313",
+                    "tertiary-container": "#56a315",
+                    "on-surface-variant": "#e0c0b2",
+                    "on-background": "#e5e2e1",
+                    "surface-container-low": "#1c1b1b",
+                    "on-error-container": "#ffdad6",
+                    "on-error": "#690005",
+                    "on-tertiary-container": "#143000",
+                    "surface-container": "#201f1f",
+                    "on-secondary-container": "#a4b7cd",
+                    "surface-variant": "#353534",
+                    "on-tertiary-fixed-variant": "#255100",
+                    "error": "#ffb4ab",
+                    "surface-bright": "#393939",
+                    "surface-container-high": "#2a2a2a",
+                    "inverse-surface": "#e5e2e1",
+                    "secondary-fixed-dim": "#b5c8df",
+                    "on-surface": "#e5e2e1",
+                    "inverse-primary": "#944a00",
+                    "secondary-fixed": "#d1e4fb",
+                    "tertiary": "#8adb4d",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-secondary": "#203243",
+                    "primary-fixed-dim": "#ffb783",
+                    "outline": "#a88a7e",
+                    "on-primary-fixed-variant": "#713700",
+                    "tertiary-fixed-dim": "#8adb4d",
+                    "tertiary-fixed": "#a5f866",
+                    "on-tertiary": "#183800",
+                    "secondary": "#b5c8df",
+                    "on-primary": "#4f2500",
+                    "surface-container-highest": "#353534",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed": "#0b2000",
+                    "on-secondary-fixed-variant": "#36485b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Manrope", "sans-serif"],
+                    "label": ["Manrope", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #131313; color: #e5e2e1; }
+        .font-serif { font-family: 'Newsreader', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .noise-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-surface selection:bg-primary-container selection:text-on-primary-container">
+<div class="noise-overlay fixed inset-0 z-[100]"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#131313] flex justify-between items-center px-8 h-20 w-full max-w-none">
+<div class="text-2xl font-serif italic text-[#ffb783]">The Haunted Atelier</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-[#ffb783] border-b-2 border-[#db7619] pb-1 font-body font-medium transition-colors duration-300" href="#">Collections</a>
+<a class="text-[#e5e2e1] opacity-80 hover:text-[#ffb783] transition-colors duration-300 font-body font-medium" href="#">Artifacts</a>
+<a class="text-[#e5e2e1] opacity-80 hover:text-[#ffb783] transition-colors duration-300 font-body font-medium" href="#">The Vault</a>
+<a class="text-[#e5e2e1] opacity-80 hover:text-[#ffb783] transition-colors duration-300 font-body font-medium" href="#">Our Story</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-[#e5e2e1] hover:text-[#ffb783] transition-colors duration-300 active:scale-95">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="text-[#e5e2e1] hover:text-[#ffb783] transition-colors duration-300 active:scale-95">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar (Hidden on Mobile) -->
+<aside class="hidden lg:flex h-full w-72 fixed left-0 top-0 bg-[#0e0e0e] flex-col py-8 gap-4 pt-24 z-40">
+<div class="px-8 mb-8">
+<div class="text-xl font-serif text-[#ffb783]">The Atelier</div>
+<div class="text-xs font-body opacity-60 text-[#e5e2e1] uppercase tracking-widest">Curated Confections</div>
+</div>
+<div class="flex flex-col gap-1 pr-4">
+<a class="flex items-center gap-4 py-3 px-8 text-[#ffb783] font-bold bg-[#2a2a2a] rounded-r-full transition-all ease-in-out 300ms" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span>Shop All</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-8 text-[#e5e2e1] opacity-70 hover:bg-[#201f1f] hover:text-[#ffb783] transition-all ease-in-out 300ms" href="#">
+<span class="material-symbols-outlined">bakery_dining</span>
+<span>Seasonal Kits</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-8 text-[#e5e2e1] opacity-70 hover:bg-[#201f1f] hover:text-[#ffb783] transition-all ease-in-out 300ms" href="#">
+<span class="material-symbols-outlined">diamond</span>
+<span>Cacao Artifacts</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-8 text-[#e5e2e1] opacity-70 hover:bg-[#201f1f] hover:text-[#ffb783] transition-all ease-in-out 300ms" href="#">
+<span class="material-symbols-outlined">redeem</span>
+<span>Gifts</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-1 pr-4 border-t border-[#201f1f] pt-4">
+<a class="flex items-center gap-4 py-3 px-8 text-[#e5e2e1] opacity-70 hover:bg-[#201f1f] hover:text-[#ffb783] transition-all ease-in-out 300ms" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-4 py-3 px-8 text-[#e5e2e1] opacity-70 hover:bg-[#201f1f] hover:text-[#ffb783] transition-all ease-in-out 300ms" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span>Track Order</span>
+</a>
+</div>
+</aside>
+<main class="lg:pl-72 pt-20">
+<!-- Hero Section -->
+<section class="relative h-[614px] flex items-center px-8 md:px-16 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="New Collection Hero" class="w-full h-full object-cover opacity-40 mix-blend-luminosity" data-alt="Close-up of artisan chocolates with dark cocoa dust and edible gold leaf in a moody, low-light gothic setting with soft candle light shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLyTK6VX_dC36Q7_qH-JSkWHngj89yKWKw9ZmaXYbx7ahoQHIDa_cr5Dnh_6uee9vSUfCGnpM5rbik1HTuBvJtDVmrxkYcXxnkt_NODjYNRbDi0dkCmJMQ09KvRIP927RTa5C7USbur1htjhINyedbp0IaGV6HA8r41hMsaDuVyHnMeNSzwOlfcxz7LlAKHohQs-a9su-hcJn__XQ7RSpYkmnDZ-leZk_b-9OrgKgzxzIpx9ekdM5ZTpBZ4uKsYk7PNZPpEPAhGXi2"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/60 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-2xl">
+<span class="inline-block px-4 py-1 mb-6 text-xs font-label uppercase tracking-[0.3em] bg-primary-container text-on-primary-fixed rounded-full">New Collection</span>
+<h1 class="text-6xl md:text-8xl font-serif font-light text-on-background mb-6 leading-tight italic">Ethereal <br/>Indulgence</h1>
+<p class="text-lg md:text-xl font-body text-on-surface opacity-80 mb-8 max-w-lg leading-relaxed">Discover our latest batch of hand-poured artifacts, infused with rare botanicals and the essence of autumnal shadows.</p>
+<div class="flex gap-4">
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary-fixed font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-primary/20 transition-all active:scale-95">Explore the Vault</button>
+<button class="px-8 py-4 text-primary font-bold border border-primary/20 rounded-xl hover:bg-primary/10 transition-all">Our Story</button>
+</div>
+</div>
+</section>
+<!-- Product Gallery Grid -->
+<section class="px-8 py-24 bg-surface">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div>
+<h2 class="text-4xl font-serif text-primary italic mb-2">Curated Artifacts</h2>
+<p class="text-on-surface opacity-60 font-body">Selected with care from the shadow-kitchen.</p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-lg text-sm text-on-surface hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-sm">tune</span> Filter
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-lg text-sm text-on-surface hover:bg-surface-bright transition-colors">
+                        Sort By <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12">
+<!-- Card 1 -->
+<div class="group relative bg-surface-container-high rounded-xl overflow-visible transition-all duration-500 hover:-translate-y-2">
+<div class="h-80 -mt-8 mx-6 overflow-hidden rounded-xl bg-surface-container-lowest">
+<img alt="Ghostly Dark Ganache" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Exquisite dark chocolate truffle with a ghostly white chocolate swirl atop a dark slate background with mystical smoke wisps" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpg3KQRTPvQ1rtKMwNlGxIhBxjzFMJN8B6qQHLZ1MqSXkwY0BA9-O5n3aYeEAkNE-TSIPv2cZzPWnaiv-GN2Z4qCkbZGNz7Ghmh4gzFgMGRzpyCD13iGgCBNiIOd9RdART1F0ye3U3auxhVCZm_IlE_DxLq4EQs0OCYj6MflejTJVR4m8mBP_waBDjcTYPxcZuyFw2823PmHEzSn8AOOI8mDejv0yiIMN99jNC4TrCmDRKRgRmOiFWq8puO1_5Nq71YoZvfseYiUaI"/>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-2xl font-serif italic text-on-background">Ghostly Dark Ganache</h3>
+<span class="text-primary-container font-serif text-xl">$24.00</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-8 line-clamp-2 leading-relaxed">A 72% dark cocoa shell filled with ethereal vanilla bean cream and a hint of silver dust.</p>
+<button class="w-full flex items-center justify-center gap-3 bg-surface-container-highest hover:bg-primary-container hover:text-on-primary-fixed py-4 rounded-lg font-bold transition-all group/btn active:scale-95">
+<span class="material-symbols-outlined text-lg">auto_fix_high</span>
+                            Add to Grimoire
+                        </button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative bg-surface-container-high rounded-xl overflow-visible transition-all duration-500 hover:-translate-y-2">
+<div class="h-80 -mt-8 mx-6 overflow-hidden rounded-xl bg-surface-container-lowest">
+<img alt="Copper Pumpkin Praline" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Artisanal pumpkin-shaped chocolates with a shimmering copper luster finish resting on dark autumn leaves and rustic wood" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM-HfUrCvNfkR2YKFDX_Cigl0wmHWe8CvRpWz16tESyemnQckFdnJ5zvSFikgmTzQ8H1PJSBg7ca3vhLdEqce-1NguBOKmQhm6iTXL0sqD0QCg3Af1lo60yKKL7DYb8YRLiXbB8ap5jUS9nUuMyA7_l5aSSOTjkbmNIC_UXEW3L79diAkuGFchEQOHnZFjatxgoVRL4fyUgaF_bCqpz5I62BHmcnwK561Gji-ERCDGCbWwbfPM_MnbXbwXqW_VYWFIvJ2c3PCPxgX3"/>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-2xl font-serif italic text-on-background">Copper Pumpkin Praline</h3>
+<span class="text-primary-container font-serif text-xl">$18.00</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-8 line-clamp-2 leading-relaxed">Roasted pumpkin seed butter encased in a shimmering copper-dusted caramel shell.</p>
+<button class="w-full flex items-center justify-center gap-3 bg-surface-container-highest hover:bg-primary-container hover:text-on-primary-fixed py-4 rounded-lg font-bold transition-all group/btn active:scale-95">
+<span class="material-symbols-outlined text-lg">auto_fix_high</span>
+                            Add to Grimoire
+                        </button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative bg-surface-container-high rounded-xl overflow-visible transition-all duration-500 hover:-translate-y-2">
+<div class="h-80 -mt-8 mx-6 overflow-hidden rounded-xl bg-surface-container-lowest">
+<img alt="Midnight Honey Brittle" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Shards of dark honey brittle with embedded black sesame seeds and dried lavender petals, dramatic lighting on charcoal surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6lw9BOl5tRaNnV9EDjtInN93K6CPpw4scX0VY41rIty4oyvo5hfzajCGPAOPy04RkM4oM6V4S-SKWgheMGFnWrOiAYLLShOo1byZaungrPZq7k6UQAoBm8Rw4km0T3vaF8NZBMIr4Y-2uPCDbmogmPqXSM6eJpM6G8MPRy_z52PE_ZqbhLCx-tLwATxsyFjk8oz1aOWe3VnUGrJBdiEVj91mYqhiMNtHWG6fQxsZ4JO-yUlXTUpGqCOT_yQwF80vKBCUKFA9iib8_"/>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-2xl font-serif italic text-on-background">Midnight Honey Brittle</h3>
+<span class="text-primary-container font-serif text-xl">$16.00</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-8 line-clamp-2 leading-relaxed">Burnt honey sponge toffee dipped in midnight-dark chocolate and sprinkled with black sea salt.</p>
+<button class="w-full flex items-center justify-center gap-3 bg-surface-container-highest hover:bg-primary-container hover:text-on-primary-fixed py-4 rounded-lg font-bold transition-all group/btn active:scale-95">
+<span class="material-symbols-outlined text-lg">auto_fix_high</span>
+                            Add to Grimoire
+                        </button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group relative bg-surface-container-high rounded-xl overflow-visible transition-all duration-500 hover:-translate-y-2 xl:mt-12">
+<div class="h-80 -mt-8 mx-6 overflow-hidden rounded-xl bg-surface-container-lowest">
+<img alt="Blackened Rose Truffle" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Dark chocolate truffle with a deep crimson rose petal garnish in a moody setting with velvet textures and old silver antiques" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCshGJWZ4_X4_7rrITtlSEU4GqYvDgM1zAlX0QY-lQYuMk-E7wxuNAB7AyjZ5SNpSqPFy6Co0-jUFgwb-zIMAmVHCunSGQrdTv7M5L2VonO_GrRozjZe7aKXhmCgpOYDqaE5qb2x2rMWZP0YmwXp4yT4sW8mmFiysn4aBY0N7pVynA6MRel5ENXUqkoB0bePecyTXaUy5dyIUqo57J6m-9ltcWpIZqd8Mi3dQYvMM3022o36sQIiZUc1bpznHshxYrQJaH9o1xrRE0P"/>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-2xl font-serif italic text-on-background">Blackened Rose Truffle</h3>
+<span class="text-primary-container font-serif text-xl">$22.00</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-8 line-clamp-2 leading-relaxed">Damask rose water infusion layered with a bitter cocoa reduction for a floral mystery.</p>
+<button class="w-full flex items-center justify-center gap-3 bg-surface-container-highest hover:bg-primary-container hover:text-on-primary-fixed py-4 rounded-lg font-bold transition-all group/btn active:scale-95">
+<span class="material-symbols-outlined text-lg">auto_fix_high</span>
+                            Add to Grimoire
+                        </button>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group relative bg-surface-container-high rounded-xl overflow-visible transition-all duration-500 hover:-translate-y-2 xl:mt-12">
+<div class="h-80 -mt-8 mx-6 overflow-hidden rounded-xl bg-surface-container-lowest">
+<img alt="Poison Apple Gem" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Deep green glassy candy apple miniature with a glowing translucent center and black licorice branch handle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQIF1bmbqoLneyZaY7JyxrCIyhp_HY_THcl7Vqi3dlcrCDmc-vE5CXpJFrQgIQqn0dQ1YbhB3NaHeMurdU-bRx7mrrVrBXrgTnAc1v18SQE00ilR0szCCPuQ-propYoXtTJZ-dcgH_mWHGcgM6ESvdqXmiA2D7aVnB5vqcSfbrvXwstkTaF1S_KKxu8Okc_9YuiOKAYDH6jslmy8SzDonktvtrMqNSj7Gjxw8DmoDPRV2IQVGv_2iopbJt38aKbE0JP4S8TrfkxFqc"/>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-2xl font-serif italic text-on-background">Poison Apple Gem</h3>
+<span class="text-primary-container font-serif text-xl">$14.00</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-8 line-clamp-2 leading-relaxed">Tart granny smith reduction jellied in a hard emerald sugar shell with a hint of spice.</p>
+<button class="w-full flex items-center justify-center gap-3 bg-surface-container-highest hover:bg-primary-container hover:text-on-primary-fixed py-4 rounded-lg font-bold transition-all group/btn active:scale-95">
+<span class="material-symbols-outlined text-lg">auto_fix_high</span>
+                            Add to Grimoire
+                        </button>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group relative bg-surface-container-high rounded-xl overflow-visible transition-all duration-500 hover:-translate-y-2 xl:mt-12">
+<div class="h-80 -mt-8 mx-6 overflow-hidden rounded-xl bg-surface-container-lowest">
+<img alt="Obsidian Licorice Coil" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Intricate black licorice spiral with silver leaf accents on a dark ceramic dish surrounded by star anise spices" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLRn9bTFbwbZpqd7C0rMSqN0R52ORuWsXoCEGR2XAdf-7vDn7aWBnWuObfRB5bXXxqS2FnZTdspPT18dwdnTubVGk6176AbUkx2kQVrxTWzIdbVcZE7fIySHUtQHWIUaWsBDKvz8uHTN7TsSY78YQ4BDyot650F1YYpFiPl-QfsQRPZ6aBQRL97o7WVkHUr4tb7B3iE1AotDS4S9KpINFCf12Pw6l2hq8BAfq7n8npgoK3EBR9TFybCBb_XdSSy7cRf9le0oqJyFzC"/>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-2xl font-serif italic text-on-background">Obsidian Licorice Coil</h3>
+<span class="text-primary-container font-serif text-xl">$12.00</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-8 line-clamp-2 leading-relaxed">Salty Dutch licorice hand-pulled into intricate coils and dusted with activated charcoal.</p>
+<button class="w-full flex items-center justify-center gap-3 bg-surface-container-highest hover:bg-primary-container hover:text-on-primary-fixed py-4 rounded-lg font-bold transition-all group/btn active:scale-95">
+<span class="material-symbols-outlined text-lg">auto_fix_high</span>
+                            Add to Grimoire
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Join the Coven Section (Asymmetric Bento) -->
+<section class="px-8 py-24 bg-surface-container-lowest">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+<div class="md:col-span-7 bg-surface-container p-12 rounded-2xl flex flex-col justify-center">
+<h2 class="text-5xl font-serif text-on-background mb-6 italic">Join the Atelier's <br/><span class="text-primary">Inner Circle</span></h2>
+<p class="text-on-surface-variant font-body mb-8 max-w-md">Be the first to hear of midnight drops, vault reopenings, and secret seasonal blends.</p>
+<form class="flex flex-col sm:flex-row gap-4">
+<input class="flex-grow bg-surface-container-lowest border-none focus:ring-1 focus:ring-tertiary/20 text-on-surface rounded-xl px-6 py-4 placeholder:opacity-30" placeholder="Your spectral address..." type="email"/>
+<button class="bg-primary hover:bg-primary-container text-on-primary-fixed font-bold px-8 py-4 rounded-xl transition-all">Summon Notifications</button>
+</form>
+</div>
+<div class="md:col-span-5 bg-gradient-to-br from-primary-container/20 to-surface-container-high p-12 rounded-2xl relative overflow-hidden flex flex-col justify-end">
+<span class="material-symbols-outlined text-9xl absolute -top-10 -right-10 opacity-5 text-primary rotate-12">auto_awesome</span>
+<h3 class="text-2xl font-serif text-on-background mb-4 italic">The Tasting Room</h3>
+<p class="text-sm text-on-surface-variant mb-6 font-body">Members get exclusive access to our physical atelier for candlelit tasting events.</p>
+<a class="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all" href="#">Book a Ritual <span class="material-symbols-outlined">arrow_right_alt</span></a>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 bg-[#0e0e0e] flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-[#e5e2e1] opacity-50 font-body text-xs uppercase tracking-widest">© 2024 The Haunted Atelier. Hand-poured in the Shadows.</div>
+<div class="flex gap-8">
+<a class="text-[#e5e2e1] opacity-50 hover:opacity-100 transition-opacity font-body text-xs uppercase tracking-widest" href="#">Privacy</a>
+<a class="text-[#e5e2e1] opacity-50 hover:opacity-100 transition-opacity font-body text-xs uppercase tracking-widest" href="#">Terms</a>
+<a class="text-[#e5e2e1] opacity-50 hover:opacity-100 transition-opacity font-body text-xs uppercase tracking-widest" href="#">Shipping</a>
+<a class="text-[#e5e2e1] opacity-50 hover:opacity-100 transition-opacity font-body text-xs uppercase tracking-widest" href="#">Ingredients</a>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary opacity-30">star</span>
+<span class="material-symbols-outlined text-primary opacity-30">ac_unit</span>
+<span class="material-symbols-outlined text-primary opacity-30">filter_vintage</span>
+</div>
+</footer>
+</main>
+<!-- FAB (Suppressed based on prompt context - focused on browse/cart) -->
+<div class="fixed bottom-8 right-8 z-[60]">
+<button class="w-16 h-16 bg-primary rounded-full shadow-2xl flex items-center justify-center text-on-primary-fixed hover:scale-110 transition-transform active:scale-95 group">
+<span class="material-symbols-outlined text-3xl group-hover:rotate-12 transition-transform">menu_book</span>
+<span class="absolute -top-12 right-0 bg-surface-container text-[10px] font-bold text-primary px-3 py-1 rounded-full whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none uppercase tracking-tighter">Your Grimoire (0)</span>
+</button>
+</div>
+</body></html>
