@@ -1,6 +1,6 @@
 # PLAN-013: Auth Refactor — Role-based JWT + Controller/Service/Repository
 
-**Status**: IN PROGRESS
+**Status**: DONE
 
 ## Context
 

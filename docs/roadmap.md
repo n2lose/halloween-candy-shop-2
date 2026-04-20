@@ -50,11 +50,11 @@ PLAN-006 Integration Tests
 | Seed: admin + customer + 10 products + 30 orders | PLAN-012 | DONE |
 | Repositories: UserRepository, ProductRepository, OrderRepository | PLAN-012 | DONE |
 | types/index.ts: add role, remove emoji, userId → string | PLAN-012 | DONE |
-| Auth service → UserRepository (remove data/users.ts) | PLAN-013 | TODO |
-| JWT payload: `{ userId, role, email, name }` | PLAN-013 | TODO |
-| `authMiddleware` — verify token, attach req.user | PLAN-013 | TODO |
-| `roleMiddleware("admin")` — 403 if wrong role | PLAN-013 | TODO |
-| Controller/Service/Repository architecture | PLAN-013 | TODO |
+| Auth service → UserRepository (remove data/users.ts) | PLAN-013 | DONE |
+| JWT payload: `{ userId, role, email, name }` | PLAN-013 | DONE |
+| `authMiddleware` — verify token, attach req.user | PLAN-013 | DONE |
+| `roleMiddleware("admin")` — 403 if wrong role | PLAN-013 | DONE |
+| Controller/Service/Repository architecture | PLAN-013 | DONE |
 | `GET /admin/dashboard` — admin only | PLAN-014 | TODO |
 | `GET /admin/orders` — ALL orders, paginated + search | PLAN-014 | TODO |
 | `GET /admin/orders/:id` | PLAN-014 | TODO |
