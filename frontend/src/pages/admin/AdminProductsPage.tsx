@@ -173,11 +173,12 @@ export default function AdminProductsPage() {
       .catch(() => setProducts([]))
       .finally(() => setLoading(false));
 
-  useEffect(() => { fetchProducts(); }, []);
+  useEffect(() => { fetchProducts(); }, []); // initial load only
 
   const handleCreate = async (form: FormValues) => {
     await createProduct({ name: form.name, price: Number(form.price), stock: Number(form.stock) });
     setModal({ type: "none" });
+    setLoading(true);
     fetchProducts();
   };
 
@@ -185,6 +186,7 @@ export default function AdminProductsPage() {
     if (modal.type !== "edit") return;
     await updateProduct(modal.product.id, { name: form.name, price: Number(form.price), stock: Number(form.stock) });
     setModal({ type: "none" });
+    setLoading(true);
     fetchProducts();
   };
 
@@ -192,6 +194,7 @@ export default function AdminProductsPage() {
     if (modal.type !== "delete") return;
     await deleteProduct(modal.product.id);
     setModal({ type: "none" });
+    setLoading(true);
     fetchProducts();
   };
 

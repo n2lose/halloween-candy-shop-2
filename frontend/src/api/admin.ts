@@ -1,5 +1,5 @@
 import client from "./client";
-import type { Order, AdminOrderSummary, PaginatedOrders, Product } from "../types/index";
+import type { Order, AdminOrderSummary, PaginatedOrders, Product, OrderStatus } from "../types/index";
 
 // ─── Orders ──────────────────────────────────────────────────────────────────
 
@@ -9,7 +9,7 @@ export const getAdminOrders = (page = 1, q = "") =>
 export const getAdminOrder = (id: string) =>
   client.get<Order>(`/admin/orders/${id}`);
 
-export const updateOrderStatus = (id: string, status: string) =>
+export const updateOrderStatus = (id: string, status: OrderStatus) =>
   client.patch<Order>(`/admin/orders/${id}/status`, { status });
 
 // ─── Products ─────────────────────────────────────────────────────────────────

@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -146,6 +146,7 @@ function CartSummary({ items, products }: { items: CartItem[]; products: Product
         })}
       </div>
       <div className="border-t border-white/5 pt-4 space-y-2">
+        {/* TODO: include shipping in createPaymentIntent payload when backend supports it */}
         <div className="flex justify-between text-sm font-label text-secondary/60">
           <span>Ritual Transport</span><span>$10.00</span>
         </div>
@@ -177,20 +178,20 @@ export default function CheckoutPage() {
   const [piError, setPiError] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
 
-  // Snapshot items at mount — cart shouldn't change during checkout
-  const itemsSnapshot = useRef(items);
+  // Capture items at mount — cart shouldn't change during checkout
+  const [itemsSnapshot] = useState(items);
 
   useEffect(() => {
-    if (itemsSnapshot.current.length === 0) return;
-    createPaymentIntent(itemsSnapshot.current)
+    if (itemsSnapshot.length === 0) return;
+    createPaymentIntent(itemsSnapshot)
       .then(r => setClientSecret(r.data.clientSecret))
       .catch(() => setPiError("Could not initialise payment. Please refresh."));
     getProducts()
       .then(r => setProducts(r.data))
       .catch(() => setProducts([]));
-  }, []);
+  }, [itemsSnapshot]);
 
-  if (items.length === 0) {
+  if (itemsSnapshot.length === 0) {
     return (
       <div className="px-8 py-20 text-center">
         <p className="text-4xl mb-4">🕸️</p>

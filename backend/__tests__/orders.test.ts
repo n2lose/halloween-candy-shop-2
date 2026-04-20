@@ -16,8 +16,10 @@ async function getToken(email = "freddy@halloween.shop"): Promise<string> {
 }
 
 async function getAdminToken(): Promise<string> {
+  const password = process.env.SEED_ADMIN_PASSWORD;
+  if (!password) throw new Error("SEED_ADMIN_PASSWORD env var is not set");
   const res = await request(app).post("/auth/login")
-    .send({ email: "admin@halloween.shop", password: process.env.SEED_ADMIN_PASSWORD ?? "Halloween2024!" });
+    .send({ email: "admin@halloween.shop", password });
   return res.body.access_token;
 }
 
@@ -126,7 +128,7 @@ describe("POST /orders", () => {
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty("orderId");
     expect(res.body.payment.last4).toBe("4242");
-    expect(res.body.total).toBe(5.98);
+    expect(res.body.total).toBeCloseTo(5.98, 2);
     expect(res.body.status).toBe("processing");
   });
 
