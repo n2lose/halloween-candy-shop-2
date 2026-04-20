@@ -6,7 +6,7 @@ dotenv.config();
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { seedDb } from "./db/seed.js";
-import { authRouter } from "./auth/auth.router.js";
+import { authRouter } from "./routes/auth.routes.js";
 import { productsRouter } from "./products/products.router.js";
 import { dashboardRouter } from "./dashboard/dashboard.router.js";
 import { stripeRouter } from "./stripe/stripe.router.js";

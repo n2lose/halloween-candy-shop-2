@@ -18,9 +18,8 @@ export function verifyAccessToken(req: Request, res: Response, next: NextFunctio
     res.status(401).json({ error: "Missing or invalid Authorization header" });
     return;
   }
-  const token = header.slice(7);
   try {
-    req.user = jwt.verify(token, ACCESS_SECRET, { algorithms: ["HS256"] }) as unknown as AccessTokenPayload;
+    req.user = jwt.verify(header.slice(7), ACCESS_SECRET, { algorithms: ["HS256"] }) as unknown as AccessTokenPayload;
     next();
   } catch {
     res.status(401).json({ error: "Invalid or expired token" });

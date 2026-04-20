@@ -1,11 +1,7 @@
-import { Router, Request, Response } from "express";
-import { register, login, refresh, getMe } from "./auth.service.js";
-import { verifyAccessToken } from "./auth.middleware.js";
+import { Request, Response } from "express";
+import * as authService from "../services/auth.service.js";
 
-const router = Router();
-
-// POST /auth/register
-router.post("/register", async (req: Request, res: Response) => {
+export async function registerHandler(req: Request, res: Response): Promise<void> {
   const { name, email, password } = req.body as Record<string, unknown>;
   if (!name || !email || !password) {
     res.status(400).json({ error: "name, email and password are required" });
@@ -16,51 +12,44 @@ router.post("/register", async (req: Request, res: Response) => {
     return;
   }
   try {
-    const tokens = await register(String(name), String(email), String(password));
-    res.status(201).json(tokens);
+    const result = await authService.register(String(name), String(email), String(password));
+    res.status(201).json(result);
   } catch (err) {
     res.status(400).json({ error: (err as Error).message });
   }
-});
+}
 
-// POST /auth/login
-router.post("/login", async (req: Request, res: Response) => {
+export async function loginHandler(req: Request, res: Response): Promise<void> {
   const { email, password } = req.body as Record<string, unknown>;
   if (!email || !password) {
     res.status(400).json({ error: "email and password are required" });
     return;
   }
   try {
-    const tokens = await login(String(email), String(password));
-    res.status(200).json(tokens);
+    const result = await authService.login(String(email), String(password));
+    res.status(200).json(result);
   } catch (err) {
     res.status(401).json({ error: (err as Error).message });
   }
-});
+}
 
-// POST /auth/refresh  (refresh token in Authorization: Bearer header)
-router.post("/refresh", (req: Request, res: Response) => {
+export function refreshHandler(req: Request, res: Response): void {
   const header = req.headers.authorization;
   if (!header?.startsWith("Bearer ")) {
     res.status(401).json({ error: "Refresh token required in Authorization header" });
     return;
   }
   try {
-    const result = refresh(header.slice(7));
-    res.status(200).json(result);
+    res.status(200).json(authService.refresh(header.slice(7)));
   } catch {
     res.status(401).json({ error: "Invalid or expired refresh token" });
   }
-});
+}
 
-// GET /auth/me  (protected)
-router.get("/me", verifyAccessToken, (req: Request, res: Response) => {
+export function getMeHandler(req: Request, res: Response): void {
   try {
-    const profile = getMe(req.user!.userId);
-    res.status(200).json(profile);
+    res.status(200).json(authService.getMe(req.user!.userId));
   } catch {
     res.status(401).json({ error: "User not found" });
   }
-});
-
-export { router as authRouter };
+}
