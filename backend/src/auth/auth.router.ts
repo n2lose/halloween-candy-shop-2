@@ -56,7 +56,7 @@ router.post("/refresh", (req: Request, res: Response) => {
 // GET /auth/me  (protected)
 router.get("/me", verifyAccessToken, (req: Request, res: Response) => {
   try {
-    const profile = getMe(req.user!.sub);
+    const profile = getMe(req.user!.userId);
     res.status(200).json(profile);
   } catch {
     res.status(401).json({ error: "User not found" });
