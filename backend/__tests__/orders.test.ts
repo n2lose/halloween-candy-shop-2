@@ -1,7 +1,7 @@
 import { jest } from "@jest/globals";
 
 // ESM-compatible mock — must use unstable_mockModule + dynamic import
-jest.unstable_mockModule("../src/stripe/stripe.service.js", () => ({
+jest.unstable_mockModule("../src/services/stripe.service.js", () => ({
   createPaymentIntent: jest.fn(),
   verifyPaymentIntent: jest.fn().mockResolvedValue({ last4: "4242" }),
 }));
@@ -11,7 +11,7 @@ import request from "supertest";
 
 async function getToken(): Promise<string> {
   const res = await request(app).post("/auth/login")
-    .send({ email: "freddy@halloween.shop", password: "ElmStreet2019" });
+    .send({ email: "freddy@halloween.shop", password: process.env.SEED_USER_PASSWORD ?? "dev-seed-only" });
   return res.body.access_token;
 }
 
@@ -54,12 +54,12 @@ describe("GET /orders", () => {
     expect(res.body.total).toBeGreaterThan(0);
   });
 
-  it("searches by customer name", async () => {
+  it("searches by order id", async () => {
     const token = await getToken();
-    const res = await request(app).get("/orders?q=freddy")
+    const res = await request(app).get("/orders?q=ORD-0001")
       .set("Authorization", `Bearer ${token}`);
     expect(res.status).toBe(200);
-    expect(res.body.total).toBe(30);
+    expect(res.body.total).toBe(1);
   });
 
   it("returns empty for unmatched search term", async () => {
@@ -116,7 +116,7 @@ describe("POST /orders", () => {
     expect(res.body.status).toBe("processing");
   });
 
-  it("returns 400 for duplicate paymentIntentId", async () => {
+  it("returns 409 for duplicate paymentIntentId", async () => {
     const token = await getToken();
     const body = {
       paymentIntentId: "pi_test_dup_check_unique",
@@ -126,7 +126,7 @@ describe("POST /orders", () => {
     const first = await request(app).post("/orders").set("Authorization", `Bearer ${token}`).send(body);
     expect(first.status).toBe(201);
     const second = await request(app).post("/orders").set("Authorization", `Bearer ${token}`).send(body);
-    expect(second.status).toBe(400);
+    expect(second.status).toBe(409);
     expect(second.body.error).toBe("Payment already used");
   });
 

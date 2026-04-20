@@ -12,6 +12,7 @@ const config: Config = {
     "^.+\\.tsx?$": ["ts-jest", { useESM: true, isolatedModules: true }],
   },
   testMatch: ["**/__tests__/**/*.test.ts"],
+  setupFiles: ["./jest.setup.ts"],
   clearMocks: true,
 };
 

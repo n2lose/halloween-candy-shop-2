@@ -95,7 +95,7 @@ describe("GET /auth/me", () => {
     const res = await request(app).get("/auth/me")
       .set("Authorization", `Bearer ${login.body.access_token}`);
     expect(res.status).toBe(200);
-    expect(res.body).toMatchObject({ id: "usr_1", name: "Freddy", email: "freddy@halloween.shop" });
+    expect(res.body).toMatchObject({ id: "usr_2", name: "Freddy", email: "freddy@halloween.shop", role: "customer" });
   });
 
   it("returns 401 without token", async () => {

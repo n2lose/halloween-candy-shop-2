@@ -17,7 +17,7 @@ import request from "supertest";
 
 async function getToken(): Promise<string> {
   const res = await request(app).post("/auth/login")
-    .send({ email: "freddy@halloween.shop", password: "ElmStreet2019" });
+    .send({ email: "freddy@halloween.shop", password: process.env.SEED_USER_PASSWORD ?? "dev-seed-only" });
   return res.body.access_token;
 }
 

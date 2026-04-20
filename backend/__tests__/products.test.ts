@@ -13,10 +13,10 @@ describe("GET /products", () => {
     expect(res.body[0]).toMatchObject({
       id: expect.any(String),
       name: expect.any(String),
-      emoji: expect.any(String),
       price: expect.any(Number),
       stock: expect.any(Number),
     });
+    expect(res.body[0]).not.toHaveProperty("emoji");
   });
 
   it("does not require auth", async () => {
