@@ -31,10 +31,17 @@ const stmts = {
   insertOrder:     db.prepare("INSERT INTO orders (id,user_id,customer_name,customer_email,address,total,status,payment_intent_id,payment_last4,created_at) VALUES (?,?,?,?,?,?,?,?,?,?)"),
   insertItem:      db.prepare("INSERT INTO order_items (order_id,product_id,name,quantity,price) VALUES (?,?,?,?,?)"),
   updateStatus:    db.prepare<[string, string]>("UPDATE orders SET status=? WHERE id=?"),
-  countUser:       db.prepare("SELECT COUNT(*) as c FROM orders WHERE user_id=? AND (customer_name LIKE ? OR id LIKE ?)"),
-  countAll:        db.prepare("SELECT COUNT(*) as c FROM orders WHERE customer_name LIKE ? OR id LIKE ?"),
-  listUser:        db.prepare("SELECT * FROM orders WHERE user_id=? AND (customer_name LIKE ? OR id LIKE ?) ORDER BY created_at DESC LIMIT ? OFFSET ?"),
-  listAll:         db.prepare("SELECT * FROM orders WHERE customer_name LIKE ? OR id LIKE ? ORDER BY created_at DESC LIMIT ? OFFSET ?"),
+  countUser: db.prepare(`
+    SELECT COUNT(DISTINCT o.id) as c FROM orders o
+    LEFT JOIN order_items oi ON o.id = oi.order_id
+    WHERE o.user_id=? AND (o.id LIKE ? OR oi.name LIKE ?)`),
+  countAll:  db.prepare("SELECT COUNT(*) as c FROM orders WHERE customer_name LIKE ? OR id LIKE ?"),
+  listUser:  db.prepare(`
+    SELECT DISTINCT o.* FROM orders o
+    LEFT JOIN order_items oi ON o.id = oi.order_id
+    WHERE o.user_id=? AND (o.id LIKE ? OR oi.name LIKE ?)
+    ORDER BY o.created_at DESC LIMIT ? OFFSET ?`),
+  listAll:   db.prepare("SELECT * FROM orders WHERE customer_name LIKE ? OR id LIKE ? ORDER BY created_at DESC LIMIT ? OFFSET ?"),
   intentExists:    db.prepare<[string]>("SELECT 1 FROM orders WHERE payment_intent_id=?"),
   nextNum:         db.prepare("SELECT COUNT(*) as c FROM orders"),
 };
