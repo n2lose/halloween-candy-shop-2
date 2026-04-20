@@ -4,9 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Full-stack Halloween candy shop with analytics dashboard and storefront. **Assignment project** — no production database, uses in-memory TypeScript arrays. The code has not been written yet; this repo contains planning docs and is ready for implementation.
+Full-stack Halloween candy shop with analytics dashboard and storefront. **Assignment project** — no production database, uses in-memory TypeScript arrays. Backend is complete (Sprint 1 DONE). Frontend is next (Sprint 2).
 
-**User flow**: Register/Login → Dashboard (stats + chart + bestsellers) → Orders (search + pagination + history) → Checkout (Stripe test mode)
+**Brand**: "The Haunted Atelier" — dark luxury aesthetic, artisanal Halloween confections.
+
+**User flow**: Login/Register → Dashboard (stats + chart + bestsellers) → Orders (manifest + search + pagination + detail) → Products (gallery + cart) → Checkout (Stripe)
+
+**Pages in scope** (Option 2 confirmed):
+- Login + Register
+- Dashboard (Atelier Overview)
+- Orders (Order Manifest)
+- Products (Product Gallery) + Cart (Grimoire Cart) + Checkout
+- ~~Customers~~ — excluded (no API, beyond assignment scope)
 
 ---
 
@@ -52,10 +61,15 @@ app.ts          Express setup, CORS, route mounting
 ### Frontend (`frontend/src/`)
 
 ```
-pages/          LoginPage.tsx, DashboardPage.tsx, OrdersPage.tsx
-components/     Layout/{Sidebar,ProtectedRoute}, Dashboard/{StatsCard,RevenueChart,BestsellersTable}, Orders/{OrdersTable,SearchBar,Pagination}
-api/            client.ts (axios instance), auth.ts, dashboard.ts, orders.ts
-store/          authStore.ts  ← tokens in localStorage
+pages/          LoginPage.tsx, DashboardPage.tsx, OrdersPage.tsx,
+                ProductsPage.tsx, CartPage.tsx, CheckoutPage.tsx
+components/     Layout/{Sidebar,ProtectedRoute,Topbar}
+                Dashboard/{StatsCard,RevenueChart,BestsellersTable}
+                Orders/{OrdersTable,SearchBar,Pagination}
+                Products/{ProductCard,CartDrawer}
+                Checkout/{ShippingForm,PaymentForm,OrderSummary}
+api/            client.ts (axios instance), auth.ts, dashboard.ts, orders.ts, products.ts
+store/          authStore.ts, cartStore.ts  ← tokens + cart in localStorage
 types/          index.ts
 ```
 
@@ -152,4 +166,18 @@ Plans live in `docs/plans/` (PLAN-001 through PLAN-011, currently DRAFT). Work o
 - Stripe test mode only — never charge real money; test card `4242 4242 4242 4242`
 - Card details never touch backend — Stripe handles tokenisation via `@stripe/react-stripe-js`
 - Env vars: `STRIPE_SECRET_KEY`, `VITE_STRIPE_PUBLISHABLE_KEY`, `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`
-- UI designs: `docs/designs/Freddys_Dashboard.png`, `Freddys_Login.png`, `Freddys_Orders.png`
+- UI designs: `docs/designs/stitch/` — each page has `screen.png` + `code.html`
+  - `login_freddy_s_candy_shop/` — Login page
+  - `dashboard_freddy_s_candy_shop/` — Dashboard (compact)
+  - `full_dashboard_the_haunted_atelier/` — Dashboard (full)
+  - `orders_freddy_s_candy_shop_1/`, `orders_freddy_s_candy_shop_2/` — Orders table
+  - `full_orders_the_haunted_atelier_1/`, `full_orders_the_haunted_atelier_2/` — Orders (full)
+  - `product_gallery_the_haunted_atelier/` — Products page
+  - `your_grimoire_cart_the_haunted_atelier/` — Cart page
+  - `checkout_the_haunted_atelier/` — Checkout page
+  - `inventory_the_haunted_atelier/` — Inventory (reference only, not in scope)
+- Design system: `docs/designs/stitch/gilded_ghouls_confections/DESIGN.md`
+  - Colors: `#131313` base, `#db7619` primary, `#8adb4d` success/tertiary, `#e5e2e1` text
+  - Fonts: Newsreader (headings/serif) + Manrope (body/UI)
+  - No 1px borders — depth via color shifts only
+  - Status: processing=orange pulse, shipped=blue, delivered=eerie green
