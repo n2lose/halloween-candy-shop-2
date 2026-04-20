@@ -1,6 +1,6 @@
 # PLAN-016: Integration Tests — Rewrite for SQLite + Roles
 
-**Status**: IN PROGRESS
+**Status**: DONE
 
 ## Context
 

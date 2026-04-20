@@ -67,8 +67,8 @@ PLAN-006 Integration Tests
 | `POST /orders` — validate stock + atomic transaction | PLAN-015 | DONE |
 | `GET /orders` + `GET /orders/:id` — own only | PLAN-015 | DONE |
 | Remove data/*.ts (in-memory arrays deleted) | PLAN-015 | DONE |
-| Rewrite integration tests for SQLite (in-memory :memory:) | PLAN-016 | TODO |
-| Test: auth with role, admin routes, customer routes | PLAN-016 | TODO |
+| Rewrite integration tests for SQLite (in-memory :memory:) | PLAN-016 | DONE |
+| Test: auth with role, admin routes, customer routes | PLAN-016 | DONE |
 
 **Done criteria**: Role-based API working, SQLite persists across restarts, all tests pass
 
@@ -108,7 +108,7 @@ PLAN-006 Integration Tests
 | Milestone | Condition | Status |
 |-----------|-----------|--------|
 | **M1: API Ready** | Sprint 1 done, 11 endpoints + 42 tests | ✅ DONE |
-| **M2: Backend Production-Ready** | Role-based, SQLite, admin API, tests rewritten | ⏳ Sprint 2 |
+| **M2: Backend Production-Ready** | Role-based, SQLite, admin API, tests rewritten | ✅ DONE |
 | **M3: App Working** | Admin + customer full flow end-to-end in browser | ⏳ Sprint 3 |
 | **M4: Deliverable** | README complete, `public/` built, credentials documented | ⏳ Sprint 3 |
 
