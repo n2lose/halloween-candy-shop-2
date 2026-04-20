@@ -2,6 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { authRouter } from "./auth/auth.router.js";
+import { productsRouter } from "./products/products.router.js";
 
 dotenv.config();
 
@@ -15,9 +16,9 @@ app.get("/", (_req: Request, res: Response) => {
 });
 
 app.use("/auth", authRouter);
+app.use("/products", productsRouter);
 
-// Route mounting (filled in PLAN-003 through PLAN-005)
-// app.use("/products", productsRouter);
+// Route mounting (filled in PLAN-004 through PLAN-005)
 // app.use("/dashboard", dashboardRouter);
 // app.use("/orders", ordersRouter);
 // app.use("/stripe", stripeRouter);
