@@ -62,11 +62,11 @@ PLAN-006 Integration Tests
 | `POST /admin/products` | PLAN-014 | DONE |
 | `PUT /admin/products/:id` | PLAN-014 | DONE |
 | `DELETE /admin/products/:id` | PLAN-014 | DONE |
-| `GET /products` + `GET /products/:id` → ProductRepository | PLAN-015 | TODO |
-| `POST /stripe/create-payment-intent` (customer) | PLAN-015 | TODO |
-| `POST /orders` — validate stock + atomic transaction | PLAN-015 | TODO |
-| `GET /orders` + `GET /orders/:id` — own only | PLAN-015 | TODO |
-| Remove data/*.ts (in-memory arrays deleted) | PLAN-015 | TODO |
+| `GET /products` + `GET /products/:id` → ProductRepository | PLAN-015 | DONE |
+| `POST /stripe/create-payment-intent` (customer) | PLAN-015 | DONE |
+| `POST /orders` — validate stock + atomic transaction | PLAN-015 | DONE |
+| `GET /orders` + `GET /orders/:id` — own only | PLAN-015 | DONE |
+| Remove data/*.ts (in-memory arrays deleted) | PLAN-015 | DONE |
 | Rewrite integration tests for SQLite (in-memory :memory:) | PLAN-016 | TODO |
 | Test: auth with role, admin routes, customer routes | PLAN-016 | TODO |
 
