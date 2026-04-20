@@ -6,11 +6,11 @@ dotenv.config();
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { seedDb } from "./db/seed.js";
-import { authRouter } from "./routes/auth.routes.js";
+import { authRouter }    from "./routes/auth.routes.js";
+import { adminRouter }   from "./routes/admin.routes.js";
 import { productsRouter } from "./products/products.router.js";
-import { dashboardRouter } from "./dashboard/dashboard.router.js";
-import { stripeRouter } from "./stripe/stripe.router.js";
-import { ordersRouter } from "./orders/orders.router.js";
+import { stripeRouter }  from "./stripe/stripe.router.js";
+import { ordersRouter }  from "./orders/orders.router.js";
 
 seedDb();
 
@@ -23,11 +23,11 @@ app.get("/", (_req: Request, res: Response) => {
   res.json({ status: "ok" });
 });
 
-app.use("/auth", authRouter);
+app.use("/auth",     authRouter);
+app.use("/admin",    adminRouter);
 app.use("/products", productsRouter);
-app.use("/dashboard", dashboardRouter);
-app.use("/stripe", stripeRouter);
-app.use("/orders", ordersRouter);
+app.use("/stripe",   stripeRouter);
+app.use("/orders",   ordersRouter);
 
 // Global error handler — must have 4 params to be recognised by Express
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
