@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { verifyAccessToken } from "../auth/auth.middleware.js";
+import { verifyAccessToken } from "../middleware/auth.middleware.js";
 import { createPaymentIntent } from "./stripe.service.js";
 import type { CreatePaymentIntentRequest } from "../types/index.js";
 
