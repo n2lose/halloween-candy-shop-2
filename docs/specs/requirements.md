@@ -87,7 +87,7 @@ Request:
 ```json
 {
   "email": "freddy@halloween.shop",
-  "password": "ElmStreet2019"
+  "password": "<SEED_PASSWORD>"
 }
 ```
 

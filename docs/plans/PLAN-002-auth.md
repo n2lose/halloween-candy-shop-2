@@ -246,7 +246,7 @@ curl -s -X POST http://localhost:3001/auth/register \
 # Login with Freddy
 curl -s -X POST http://localhost:3001/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"freddy@halloween.shop","password":"ElmStreet2019"}' | jq
+  -d '{"email":"freddy@halloween.shop","password":"<SEED_PASSWORD>"}' | jq
 
 # Use access token to call /me (replace TOKEN)
 curl -s http://localhost:3001/auth/me \

@@ -13,7 +13,7 @@ describe('AuthService', () => {
     it('should return user when credentials are valid', () => {
       // Arrange
       const username = 'freddy'
-      const password = 'ElmStreet2019'
+      const password = 'test-password-123'
 
       // Act
       const result = validateCredentials(username, password)
@@ -34,7 +34,7 @@ describe('POST /login', () => {
   it('should return 200 with tokens for valid credentials', async () => {
     const res = await request(app)
       .post('/login')
-      .send({ username: 'freddy', password: 'ElmStreet2019' })
+      .send({ username: 'freddy', password: 'test-password-123' })
 
     expect(res.status).toBe(200)
     expect(res.body).toHaveProperty('access_token')

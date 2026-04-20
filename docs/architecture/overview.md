@@ -91,7 +91,7 @@ backend/src/
 ├── data/
 │   ├── orders.ts            ← mock orders array (~30 items)
 │   ├── products.ts          ← Halloween candy products
-│   └── users.ts             ← { freddy: "ElmStreet2019" }
+│   └── users.ts             ← { freddy: "<SEED_PASSWORD>" }
 ├── types/
 │   └── index.ts             ← Order, Product, DashboardResponse types
 └── app.ts                   ← Express setup, CORS, routes mount
