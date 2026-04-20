@@ -77,8 +77,8 @@ Token expired → frontend sends refresh_token → server returns new access_tok
 Bcrypt algorithm in pure JavaScript — no native build tools required (`node-gyp`, Python, C++ compiler).
 
 ```
-Register: bcrypt.hash("ElmStreet2019", 10) → "$2a$10$xxxxx..." (stored in data layer)
-Login:    bcrypt.compare("ElmStreet2019", "$2a$10$xxxxx...") → true/false
+Register: bcrypt.hash(process.env.SEED_USER_PASSWORD, 10) → "$2a$10$xxxxx..." (stored in data layer)
+Login:    bcrypt.compare("<SEED_PASSWORD>", "$2a$10$xxxxx...") → true/false
 ```
 
 Salt rounds = `10` — standard for development. ~30% slower than native `bcrypt`, but negligible for assignment scope (few users).

@@ -139,7 +139,7 @@ Plans live in `docs/plans/` (PLAN-001 through PLAN-011, currently DRAFT). Work o
 
 ## Mock Data
 
-- **Default user**: `{ name: "Freddy", email: "freddy@halloween.shop", password: "ElmStreet2019" }` (pre-seeded, registration also available)
+- **Default user**: `{ name: "Freddy", email: "freddy@halloween.shop", password: "<see SEED_USER_PASSWORD in backend/.env>" }` (pre-seeded, registration also available)
 - **Products**: Pumpkin Spice Lollipop, Witch Finger Gummy, Skull Chocolate Bar, Spider Web Cotton Candy, Ghost Marshmallow, Cauldron Caramel Apple, Vampire Fang Candy Corn, Black Cat Licorice, Frankenstein Fudge, Zombie Brain Gummy
 - **Orders**: ~30 mock orders spread across last 7 days and 12 months (for chart data)
 

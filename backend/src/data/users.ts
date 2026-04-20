@@ -1,7 +1,8 @@
 import bcrypt from "bcryptjs";
 import { User } from "../types/index.js";
 
-const freddyHash = bcrypt.hashSync("ElmStreet2019", 10);
+const seedPassword = process.env.SEED_USER_PASSWORD ?? "dev-seed-only";
+const freddyHash = bcrypt.hashSync(seedPassword, 10);
 
 export const users: User[] = [
   { id: 1, name: "Freddy", email: "freddy@halloween.shop", password: freddyHash },

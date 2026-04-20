@@ -189,7 +189,7 @@ Current hash is fake (72 chars, valid bcrypt is 60). Fix:
 import bcrypt from "bcryptjs";
 
 // Generate real hash at module load (dev only — acceptable for assignment)
-const freddyHash = bcrypt.hashSync("ElmStreet2019", 10);
+const freddyHash = bcrypt.hashSync(process.env.SEED_USER_PASSWORD ?? "dev-seed-only", 10);
 
 export const users: User[] = [
   { id: 1, name: "Freddy", email: "freddy@halloween.shop", password: freddyHash }
