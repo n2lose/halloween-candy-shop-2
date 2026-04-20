@@ -74,7 +74,7 @@ PLAN-006 Integration Tests
 
 ---
 
-## Sprint 3 — Frontend
+## Sprint 3 — Frontend ⏳ IN PROGRESS
 
 **Goal**: React app connected to refactored backend, role-aware routing, full checkout flow
 
@@ -84,20 +84,27 @@ PLAN-006 Integration Tests
 | Tailwind CSS v3 + Haunted Atelier design tokens | PLAN-007 | DONE |
 | Axios client + concurrent-refresh interceptor | PLAN-007 | DONE |
 | Auth store + Cart store (localStorage) | PLAN-007 | DONE |
-| Login page — role-aware redirect (admin → /admin/dashboard, customer → /products) | PLAN-017 | TODO |
-| Register page (role = customer by default) | PLAN-017 | TODO |
-| ProtectedRoute + AdminRoute (role guard) | PLAN-017 | TODO |
-| AdminLayout (sidebar: Dashboard, Orders, Products, Logout) | PLAN-017 | TODO |
-| StorefrontLayout (topnav: Products, Cart badge, My Orders) | PLAN-017 | TODO |
-| Admin Dashboard — stats cards, revenue chart, bestsellers | PLAN-018 | TODO |
-| Admin Orders — ALL orders table, search, pagination, status update | PLAN-018 | TODO |
-| Admin Products — CRUD table (create, edit, delete) | PLAN-018 | TODO |
-| Products gallery — grid, "Add to Cart" | PLAN-019 | TODO |
-| Cart page — qty controls, subtotal, proceed to checkout | PLAN-019 | TODO |
-| Checkout — shipping form + Stripe Card Element | PLAN-019 | TODO |
-| Order confirmation page | PLAN-019 | TODO |
-| Customer Orders page — own orders, paginated | PLAN-020 | TODO |
-| Customer Order detail page | PLAN-020 | TODO |
+| Stitch design review + FRONTEND_DESIGN.md | — | DONE |
+| UI primitives (Button, Input, Badge, Card, StatCard, Spinner, EmptyState, Pagination, SearchBar) | PLAN-017 | DONE |
+| Login page — Stitch design faithful, role-aware redirect | PLAN-017 | DONE |
+| Register page (role = customer by default) | PLAN-017 | DONE |
+| ProtectedRoute — handles hydration spinner + role guard | PLAN-017 | DONE |
+| AdminLayout (glassmorphism topbar + sidebar rounded-r-full active) | PLAN-017 | DONE |
+| StorefrontLayout (sticky topnav, cart badge, drawer stub, user actions) | PLAN-017 | DONE |
+| AppRoutes — all routes wired with role-based guards | PLAN-017 | DONE |
+| Admin Dashboard — 3 StatCards + RevenueChart (Recharts) + BestsellersTable | PLAN-018 | DONE |
+| Admin Orders — table, search, pagination, click-to-detail | PLAN-018 | DONE |
+| Admin Order Detail — items, shipping, payment cards + status select | PLAN-018 | DONE |
+| Admin Products — inventory table, stock indicators | PLAN-018 | DONE |
+| PATCH /admin/orders/:id/status — wire status dropdown | PLAN-018 | DONE |
+| Admin Products CRUD modals (create, edit, delete) | PLAN-018 | DONE |
+| Products gallery — hero, 5-col grid, qty controls, out-of-stock | PLAN-019 | DONE |
+| Cart drawer — open/close, empty state, count badge | PLAN-019 | DONE |
+| Checkout — shipping form + simulated payment + order create | PLAN-019 | DONE |
+| Cart drawer — show product names + prices from API | PLAN-019 | TODO |
+| Checkout — wire real Stripe PaymentElement | PLAN-019 | TODO |
+| Customer Orders — own orders table, search, pagination | PLAN-020 | DONE |
+| Customer Order Detail — items, shipping, payment (read-only) | PLAN-020 | DONE |
 
 **Done criteria**: Admin flow + customer flow end-to-end, Stripe test payment works
 
@@ -109,7 +116,7 @@ PLAN-006 Integration Tests
 |-----------|-----------|--------|
 | **M1: API Ready** | Sprint 1 done, 11 endpoints + 42 tests | ✅ DONE |
 | **M2: Backend Production-Ready** | Role-based, SQLite, admin API, tests rewritten | ✅ DONE |
-| **M3: App Working** | Admin + customer full flow end-to-end in browser | ⏳ Sprint 3 |
+| **M3: App Working** | Admin + customer full flow end-to-end in browser | ⏳ ~80% — Stripe + CartDrawer remaining |
 | **M4: Deliverable** | README complete, `public/` built, credentials documented | ⏳ Sprint 3 |
 
 ---

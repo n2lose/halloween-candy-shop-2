@@ -1,10 +1,11 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import AppRoutes from "./routes/AppRoutes";
 
-// Routes filled in PLAN-008 through PLAN-011
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
-    </Routes>
+    <>
+      {/* Artisanal noise texture overlay — fixed, 2% opacity, z-[9999] */}
+      <div className="noise-overlay" />
+      <AppRoutes />
+    </>
   );
 }

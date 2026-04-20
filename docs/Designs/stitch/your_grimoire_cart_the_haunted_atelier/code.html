@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Haunted Atelier - Your Casket of Curiosities</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#131313",
+                        "primary-container": "#db7619",
+                        "secondary-container": "#36485b",
+                        "on-secondary-fixed": "#091d2e",
+                        "outline-variant": "#594238",
+                        "inverse-on-surface": "#313030",
+                        "surface-tint": "#ffb783",
+                        "primary-fixed": "#ffdcc5",
+                        "primary": "#ffb783",
+                        "on-primary-container": "#451f00",
+                        "background": "#131313",
+                        "on-primary-fixed": "#301400",
+                        "surface-dim": "#131313",
+                        "tertiary-container": "#56a315",
+                        "on-surface-variant": "#e0c0b2",
+                        "on-background": "#e5e2e1",
+                        "surface-container-low": "#1c1b1b",
+                        "on-error-container": "#ffdad6",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#143000",
+                        "surface-container": "#201f1f",
+                        "on-secondary-container": "#a4b7cd",
+                        "surface-variant": "#353534",
+                        "on-tertiary-fixed-variant": "#255100",
+                        "error": "#ffb4ab",
+                        "surface-bright": "#393939",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed-dim": "#b5c8df",
+                        "on-surface": "#e5e2e1",
+                        "inverse-primary": "#944a00",
+                        "secondary-fixed": "#d1e4fb",
+                        "tertiary": "#8adb4d",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary": "#203243",
+                        "primary-fixed-dim": "#ffb783",
+                        "outline": "#a88a7e",
+                        "on-primary-fixed-variant": "#713700",
+                        "tertiary-fixed-dim": "#8adb4d",
+                        "tertiary-fixed": "#a5f866",
+                        "on-tertiary": "#183800",
+                        "secondary": "#b5c8df",
+                        "on-primary": "#4f2500",
+                        "surface-container-highest": "#353534",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#0b2000",
+                        "on-secondary-fixed-variant": "#36485b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .font-serif { font-family: 'Newsreader', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#131313] flex justify-between items-center px-8 h-20 w-full max-w-none">
+<div class="text-2xl font-serif italic text-[#ffb783]">The Haunted Atelier</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-medium text-[#e5e2e1] opacity-80 hover:text-[#ffb783] transition-colors duration-300" href="#">Collections</a>
+<a class="font-medium text-[#e5e2e1] opacity-80 hover:text-[#ffb783] transition-colors duration-300" href="#">Artifacts</a>
+<a class="font-medium text-[#e5e2e1] opacity-80 hover:text-[#ffb783] transition-colors duration-300" href="#">The Vault</a>
+<a class="font-medium text-[#e5e2e1] opacity-80 hover:text-[#ffb783] transition-colors duration-300" href="#">Our Story</a>
+</div>
+<div class="flex items-center gap-6 text-[#ffb783]">
+<button class="active:scale-95 duration-200"><span class="material-symbols-outlined">shopping_bag</span></button>
+<button class="active:scale-95 duration-200"><span class="material-symbols-outlined">person</span></button>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-8 max-w-7xl mx-auto">
+<div class="mb-12">
+<h1 class="text-5xl md:text-6xl font-serif font-light italic mb-2">Casket of Curiosities</h1>
+<p class="text-on-surface-variant font-label tracking-widest uppercase text-xs">Your Selected Confections</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Cart Table Section -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Header row - Hidden on mobile -->
+<div class="hidden md:grid grid-cols-12 px-6 pb-4 border-b border-outline-variant/20 text-on-surface-variant text-xs uppercase tracking-widest font-label">
+<div class="col-span-6">Item</div>
+<div class="col-span-2 text-center">Price</div>
+<div class="col-span-2 text-center">Quantity</div>
+<div class="col-span-2 text-right">Subtotal</div>
+</div>
+<!-- Cart Items -->
+<div class="space-y-4">
+<!-- Item 1 -->
+<div class="group relative bg-surface-container-high p-6 rounded-xl transition-all hover:bg-surface-container-highest">
+<div class="grid grid-cols-1 md:grid-cols-12 items-center gap-6">
+<div class="col-span-6 flex items-center gap-6">
+<div class="w-24 h-24 rounded-lg overflow-hidden bg-surface-container-lowest flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up of a dark, artisanal chocolate truffle dusted with copper edible glitter on a black stone surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMLqP6GzraMfgLQT_S41e-xJiwlp-XpWXCdpzLMDmteKGkjL7X0kmkrHbeT8FfCiIqz9UbncC1Elgt_H8BTLrxZSrV6Ofde1xlReoGL27nYtdTIyXrI-AIVeIbNywtX6lH8g5aPAkIwDvU5qj__IFIG3LkliOunsY3imeVqMHD1E_sNzVtqMD8Pgv6PI8ulWr0QTAwOHUlT2A7vw08EV-lFDj2z-D6RRanAkaQK_EQr6A6Z_qyZo-BJjZ90gSOblkINccVNxxLFYyj"/>
+</div>
+<div>
+<h3 class="font-serif text-xl text-primary">Midnight Ganache Omen</h3>
+<p class="text-sm text-on-surface-variant">72% Cacao, Smoked Sea Salt</p>
+</div>
+</div>
+<div class="md:col-span-2 text-center font-serif text-lg">$14.00</div>
+<div class="md:col-span-2 flex justify-center">
+<div class="flex items-center bg-surface-container-lowest rounded-full px-3 py-1 gap-4 border border-outline-variant/10">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="font-label font-bold text-sm">1</span>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+<div class="md:col-span-2 text-right font-serif text-lg text-primary">$14.00</div>
+</div>
+<button class="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-error-container text-on-error-container p-1 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<!-- Item 2 -->
+<div class="group relative bg-surface-container-high p-6 rounded-xl transition-all hover:bg-surface-container-highest">
+<div class="grid grid-cols-1 md:grid-cols-12 items-center gap-6">
+<div class="col-span-6 flex items-center gap-6">
+<div class="w-24 h-24 rounded-lg overflow-hidden bg-surface-container-lowest flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Handcrafted dark chocolate bark with dried orange slices and crystalline sugar, dimly lit, warm amber tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN439CNQCYvhBzCZqqhKQP1XT6zjo5cNdKfJSuXX8xrGhsUDIUnUBseWDjOIU2nkkSOr5SLpnzwBOnxwsULJ9I3wnUuYoYTMoPZWw2euXzaDp1Aew1gWuw02iYCOiArD7PmmlH3AYcGjNA7IpiN9guMEmCI5HQfpcqK7AUrv_hBE27eedRC1M_bP77NHs7JLz8J75VOQWWnijpL6vs2Bto5RDe5duX_yu1Vyw8PCADdZ0wJm_QnZjuMOrq45yxeePJFgb9340sFF5z"/>
+</div>
+<div>
+<h3 class="font-serif text-xl text-primary">Autumnal Ember Bark</h3>
+<p class="text-sm text-on-surface-variant">Spiced Orange &amp; Crystallized Ginger</p>
+</div>
+</div>
+<div class="md:col-span-2 text-center font-serif text-lg">$22.00</div>
+<div class="md:col-span-2 flex justify-center">
+<div class="flex items-center bg-surface-container-lowest rounded-full px-3 py-1 gap-4 border border-outline-variant/10">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="font-label font-bold text-sm">2</span>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+<div class="md:col-span-2 text-right font-serif text-lg text-primary">$44.00</div>
+</div>
+<button class="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-error-container text-on-error-container p-1 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</div>
+<!-- Cross Sell Section -->
+<div class="pt-12 border-t border-outline-variant/10">
+<h2 class="font-serif text-2xl mb-8 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">auto_awesome</span> Suggested Artifacts
+                    </h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<!-- Cross Sell 1 -->
+<div class="bg-surface-container p-4 rounded-xl flex gap-4 items-center group cursor-pointer transition-all hover:translate-x-2">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A vintage brass tea strainer with intricate patterns sitting on a dark wooden surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKxFfjJv1hWUt9q2bBDiHpH8N_RJ16vmrsh5TX4mp-lPwQpqb6rKQAulmxsZ09FNBfuwK_Kx5UIEu4OxbdCjb6zo0fegX6aaneijoCDR5EfthkYMpSeEa7NxvjtcmzZtETgasQsbHeiMTGaBXAHyvqEWXef4TBd6apiBdRAYnQdDl-Yz9revu--Ttn8VTVFFSkfVWf3jfFLRt256Q05yfwTXyrq5adfKJn4MKs7QVLUtfZa9EzkDq1sCbQKrs-ma6pDn5LH-unyMHm"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-serif text-on-surface">Brass Spirit Strainer</h4>
+<p class="text-primary text-sm">$18.00</p>
+<button class="mt-2 text-[10px] uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors">Add to Casket</button>
+</div>
+</div>
+<!-- Cross Sell 2 -->
+<div class="bg-surface-container p-4 rounded-xl flex gap-4 items-center group cursor-pointer transition-all hover:translate-x-2">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A single beeswax candle burning with a tall flame in a dark shadowy room, warm glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADXpjZYxWkPJ8ZVLsawTaquFnZNUIRKSoPomXp1ityAu0RhEFXJ4I25BpOZps9Sds4RZdAxnT1wggJwaIvwa04b5bR6kCU6KHHnBQVCVYl45bXeykOlhZ2t9WEfgBYuCjyRpUhHP1dxlTdj2-qEA9wuuD5vEKarCGNRFZHBr5DpXQ4pifGFLraGOyZEUGgkUUdGo8CHE_ploATJqLWOyJr7y5G0DD8yzdiIjyHVgdopn50yjypmwlWTmMHJcymyBNnJNeQJE_QJR9u"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-serif text-on-surface">Spectral Glow Pillar</h4>
+<p class="text-primary text-sm">$12.00</p>
+<button class="mt-2 text-[10px] uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors">Add to Casket</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary Section -->
+<div class="lg:col-span-4 sticky top-32">
+<div class="bg-surface-container p-8 rounded-xl backdrop-blur-xl bg-opacity-80 shadow-2xl space-y-8">
+<h2 class="font-serif text-2xl border-b border-outline-variant/10 pb-4">Ritual Summary</h2>
+<div class="space-y-4">
+<div class="flex justify-between text-on-surface-variant">
+<span>Subtotal</span>
+<span class="font-serif">$58.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Shipping</span>
+<span class="font-serif italic">Calculated at ritual</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Tax</span>
+<span class="font-serif">$4.64</span>
+</div>
+<div class="pt-4 border-t border-outline-variant/10 flex justify-between items-baseline">
+<span class="text-xl">Total</span>
+<span class="text-4xl font-serif text-primary">$62.64</span>
+</div>
+</div>
+<div class="space-y-4">
+<button class="w-full py-5 px-8 rounded-xl bg-gradient-to-r from-primary to-primary-container text-on-primary-fixed font-bold text-lg tracking-wider hover:shadow-[0_0_20px_rgba(219,118,25,0.4)] transition-all active:scale-95 duration-200 flex justify-center items-center gap-3">
+                            Proceed to Ritual
+                            <span class="material-symbols-outlined">auto_fix_high</span>
+</button>
+<p class="text-[10px] text-center text-on-surface-variant uppercase tracking-[0.2em]">Guaranteed delivery via shadow-post</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-lg">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">Incantation Code</label>
+<div class="flex gap-2">
+<input class="bg-transparent border border-outline-variant/20 rounded-lg px-3 py-2 text-sm flex-grow focus:ring-0 focus:border-tertiary transition-colors" placeholder="Ghostly secret..." type="text"/>
+<button class="text-tertiary font-bold text-xs uppercase tracking-widest px-4 hover:opacity-80 transition-opacity">Apply</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0e0e0e] w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center w-full gap-6">
+<div class="flex flex-col gap-2 items-center md:items-start">
+<div class="font-sans text-xs uppercase tracking-widest Manrope text-[#e5e2e1] opacity-50">
+                © 2024 The Haunted Atelier. Hand-poured in the Shadows.
+            </div>
+</div>
+<div class="flex gap-8">
+<a class="font-sans text-xs uppercase tracking-widest Manrope text-[#e5e2e1] opacity-50 hover:opacity-100 transition-opacity" href="#">Privacy</a>
+<a class="font-sans text-xs uppercase tracking-widest Manrope text-[#e5e2e1] opacity-50 hover:opacity-100 transition-opacity" href="#">Terms</a>
+<a class="font-sans text-xs uppercase tracking-widest Manrope text-[#e5e2e1] opacity-50 hover:opacity-100 transition-opacity" href="#">Shipping</a>
+<a class="font-sans text-xs uppercase tracking-widest Manrope text-[#e5e2e1] opacity-50 hover:opacity-100 transition-opacity" href="#">Ingredients</a>
+</div>
+</footer>
+</body></html>

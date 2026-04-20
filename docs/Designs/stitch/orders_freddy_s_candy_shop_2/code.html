@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orders Management | The Haunted Atelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#203243",
+                        "on-primary-fixed": "#301400",
+                        "on-tertiary": "#183800",
+                        "surface-dim": "#131313",
+                        "surface-bright": "#393939",
+                        "surface": "#131313",
+                        "primary": "#ffb783",
+                        "on-primary": "#4f2500",
+                        "surface-container": "#201f1f",
+                        "surface-container-low": "#1c1b1b",
+                        "secondary": "#b5c8df",
+                        "on-primary-container": "#451f00",
+                        "on-secondary-fixed": "#091d2e",
+                        "inverse-primary": "#944a00",
+                        "on-background": "#e5e2e1",
+                        "on-primary-fixed-variant": "#713700",
+                        "on-surface-variant": "#e0c0b2",
+                        "on-secondary-container": "#a4b7cd",
+                        "tertiary-fixed-dim": "#8adb4d",
+                        "secondary-fixed-dim": "#b5c8df",
+                        "on-tertiary-container": "#143000",
+                        "tertiary-container": "#56a315",
+                        "primary-container": "#db7619",
+                        "on-error": "#690005",
+                        "primary-fixed": "#ffdcc5",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#353534",
+                        "outline-variant": "#594238",
+                        "secondary-container": "#36485b",
+                        "background": "#131313",
+                        "inverse-surface": "#e5e2e1",
+                        "on-surface": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb783",
+                        "on-tertiary-fixed": "#0b2000",
+                        "tertiary-fixed": "#a5f866",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline": "#a88a7e",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "secondary-fixed": "#d1e4fb",
+                        "inverse-on-surface": "#313030",
+                        "tertiary": "#8adb4d",
+                        "on-tertiary-fixed-variant": "#255100",
+                        "surface-variant": "#353534",
+                        "surface-tint": "#ffb783",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-fixed-variant": "#36485b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #131313;
+            color: #e5e2e1;
+        }
+        .serif-heading {
+            font-family: 'Newsreader', serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ghost-border {
+            outline: 1px solid rgba(89, 66, 56, 0.15);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0e0e0e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased overflow-hidden">
+<!-- SideNavBar Shell -->
+<aside class="fixed inset-y-0 left-0 flex flex-col py-8 h-screen w-64 border-r-0 bg-[#201f1f] z-50 font-['Newsreader'] tracking-tight">
+<div class="px-6 mb-10">
+<h1 class="text-2xl font-bold text-[#ffb783] italic">The Haunted Atelier</h1>
+<p class="text-xs text-[#b5c8df] font-['Manrope'] uppercase tracking-widest mt-1 opacity-70">Elite Confectioner</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-[#b5c8df] hover:text-[#e5e2e1] pl-6 py-3 transition-colors hover:bg-[#2a2a2a] group" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="dashboard">dashboard</span>
+<span class="font-['Manrope'] text-sm tracking-wide">Dashboard</span>
+</a>
+<!-- Active State for Orders -->
+<a class="flex items-center gap-3 text-[#ffb783] border-l-4 border-[#db7619] bg-[#2a2a2a] pl-4 py-3 opacity-90 scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-['Manrope'] text-sm font-semibold tracking-wide">Orders</span>
+</a>
+<a class="flex items-center gap-3 text-[#b5c8df] hover:text-[#e5e2e1] pl-6 py-3 transition-colors hover:bg-[#2a2a2a] group" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="inventory_2">inventory_2</span>
+<span class="font-['Manrope'] text-sm tracking-wide">Inventory</span>
+</a>
+<a class="flex items-center gap-3 text-[#b5c8df] hover:text-[#e5e2e1] pl-6 py-3 transition-colors hover:bg-[#2a2a2a] group" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="group">group</span>
+<span class="font-['Manrope'] text-sm tracking-wide">Customers</span>
+</a>
+</nav>
+<div class="mt-auto px-6 pt-6 flex flex-col gap-1">
+<button class="mb-6 w-full py-3 bg-gradient-to-r from-primary to-primary-container text-on-primary-fixed font-bold rounded-lg text-sm tracking-tight shadow-lg hover:shadow-primary/20 transition-all">
+                New Collection
+            </button>
+<a class="flex items-center gap-3 text-[#b5c8df] hover:text-[#e5e2e1] py-2 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+<span class="font-['Manrope'] text-sm tracking-wide">Settings</span>
+</a>
+<a class="flex items-center gap-3 text-[#b5c8df] hover:text-[#e5e2e1] py-2 transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="logout">logout</span>
+<span class="font-['Manrope'] text-sm tracking-wide">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen bg-surface flex flex-col relative">
+<!-- Top Navigation / Search Bar -->
+<header class="fixed top-0 right-0 left-64 h-16 flex items-center justify-between px-8 z-40 bg-[#131313]/80 backdrop-blur-xl shadow-[0_20_40px_rgba(0,0,0,0.4)]">
+<div class="flex-1 max-w-xl">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-tertiary transition-colors" data-icon="search">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl py-2 pl-10 pr-4 text-sm font-['Manrope'] placeholder:text-outline/50 focus:ring-1 focus:ring-tertiary/30 transition-all ghost-border" placeholder="Search orders, potions, or customer spirits..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6 ml-8">
+<div class="hidden md:flex items-center gap-6 font-['Manrope'] text-xs uppercase tracking-widest text-[#b5c8df]">
+<a class="hover:text-[#8adb4d] transition-colors" href="#">Analytics</a>
+<a class="hover:text-[#8adb4d] transition-colors" href="#">Reports</a>
+</div>
+<div class="flex items-center gap-4 text-[#ffb783]">
+<button class="material-symbols-outlined hover:scale-110 transition-transform" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined hover:scale-110 transition-transform" data-icon="dark_mode">dark_mode</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline/20">
+<img alt="Admin Avatar" class="w-full h-full object-cover" data-alt="Close up portrait of a professional man in a dark suit with moody lighting and a warm orange rim light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZzRR9Quy1c4CuaZjQDIAno2Ig97_QzeGQITZHTE5Fni7N9bUNQySihQMo8V2wi8QbZCd4Z_yfAliaxyvzNJYxAHEUE4MJWWxY7TdMtyJT7PwHT3V59m8f5uJ6BbgMa7CsIEzLa5tcsIjViAHPezuTfH57o0nqELVy6UyuJbPLkoF7mUfrv_LgvXoFFtqjv-IsPM5ZAOW8G4MpkQQ6rH410JJk28EjtrVxmxkLq-DjjjiYkSPVnEg5v-0HNEogB-c95iZvEU0Vnle2"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="pt-24 px-10 pb-12 overflow-y-auto h-full scroll-smooth">
+<!-- Page Heading -->
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="serif-heading text-4xl font-bold text-on-surface mb-2">Order Manifest</h2>
+<p class="font-['Manrope'] text-secondary text-sm opacity-80">Managing the dark delights and whimsical shipments.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 rounded-lg font-['Manrope'] text-sm font-semibold flex items-center gap-2 bg-surface-container-high text-on-surface hover:bg-surface-variant transition-all ghost-border">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                        Filter
+                    </button>
+<button class="px-5 py-2.5 rounded-lg font-['Manrope'] text-sm font-semibold flex items-center gap-2 bg-primary text-on-primary hover:opacity-90 transition-all shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+                        Export Manifest
+                    </button>
+</div>
+</div>
+<!-- Orders Table Container -->
+<div class="bg-surface-container-high rounded-xl overflow-hidden shadow-2xl relative">
+<!-- Subtle Texture Overlay -->
+<div class="absolute inset-0 pointer-events-none opacity-[0.03]" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAMP8QR7cEN8kUAeEOxi2tUbIwx0W8N_cb_LHAy4Q3hX9qN9hDPgjse1jg6Dvjf0D3pseTBTXgj8qyyyHwP-JBlHMCOPr_jWJNtVZ3XD70vq4sJw3eWgkszpYrRShlN5LgcHWsI2Fg-lLyjic0nl-vQaFFbGXBlmTD4cLh9qRkgLdZIHyEvgDHVdH0WrIpHznDxeqXpEVvm_zKjH0Pf647amnXbB78_sQ_ocJNFvb4quCFiQ5Y8mUWHUl6XT6x-RZtm3xX11TxneumU');"></div>
+<table class="w-full text-left border-collapse font-['Manrope'] relative z-10">
+<thead>
+<tr class="bg-surface-container-lowest/50 text-outline text-[11px] uppercase tracking-[0.2em] font-bold">
+<th class="px-8 py-5 border-b border-outline/5">Product Name</th>
+<th class="px-8 py-5 border-b border-outline/5">Date</th>
+<th class="px-8 py-5 border-b border-outline/5 text-right">Price</th>
+<th class="px-8 py-5 border-b border-outline/5">Status</th>
+<th class="px-8 py-5 border-b border-outline/5 text-center">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline/5">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container/50 transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-surface-container shadow-inner">
+<img alt="Midnight Truffles" class="w-full h-full object-cover" data-alt="Macro photo of dark artisanal chocolate truffles with gold leaf accents on a black slate surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1zqLJe4R3Ja3hz1K2oR_L848Xkj1PHQoI8KiExRjKCi7sYFFejdzpTsiaFnycpBrTk7kVRkQ0kbHiEKC0M_93PCuvCBgFsRpP6IzJP932_oQ08YKRv9g6yKbtl7hn1TIm7J33-H6CzZ2get3TIyv-Bwa_koZBvnueNH7n2txuavn5BHbrmN1QnFxP2TgF3MwxNocUWGk1bQssqI1q5aAeT5sePdKwKisKFx7WVnbljDZlqbfYHqKs1shRaNNa1HUReriUXP4R6dRL"/>
+</div>
+<div>
+<p class="font-bold text-on-surface text-sm">Midnight Truffles</p>
+<p class="text-xs text-outline italic">Limited Hallows Collection</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-sm text-secondary">Oct 24, 2023</td>
+<td class="px-8 py-6 text-sm font-bold text-right text-primary-fixed">$48.00</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary-container/20 text-primary-container">
+<span class="material-symbols-outlined text-xs" data-icon="pulse">autorenew</span>
+                                    Processing
+                                </span>
+</td>
+<td class="px-8 py-6 text-center">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors" data-icon="more_horiz">more_horiz</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container/50 transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-surface-container shadow-inner">
+<img alt="Pumpkin Spirits" class="w-full h-full object-cover" data-alt="Artisanal pumpkin-shaped gummy candies glowing with internal orange light on dark parchment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSCPwMPVso2jT-l7q704TQRKaHF2mkSsWsWyDEukDQvx2Y-yuJavhkZ2357gNS4N1LF2elGrDXBXZtzjNY4JG10wmLXPUwNyuRZHatL-tCLYY_F13qABVuR2S5d4iCOawxyWhFH2Pr3JFyc3BuW5KqVzFGBx_BpndjyzOWF0ikX2hGy5lBUYfQx8owss4lJxpz-BQpWbNYZ5SDbRqENfow9477MBkL4zdjmxUoSiLJghKVN3Y4H2tg8C5Q2VF80ZUkGEPXJnCWTlPd"/>
+</div>
+<div>
+<p class="font-bold text-on-surface text-sm">Pumpkin Spirits (12pk)</p>
+<p class="text-xs text-outline italic">Batch #667</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-sm text-secondary">Oct 22, 2023</td>
+<td class="px-8 py-6 text-sm font-bold text-right text-primary-fixed">$32.50</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-tertiary-container/20 text-tertiary">
+<span class="material-symbols-outlined text-xs" data-icon="check_circle">check_circle</span>
+                                    Delivered
+                                </span>
+</td>
+<td class="px-8 py-6 text-center">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors" data-icon="more_horiz">more_horiz</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container/50 transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-surface-container shadow-inner">
+<img alt="Glow Worm Gummies" class="w-full h-full object-cover" data-alt="Bright green neon artisanal gummy worms coiled in a crystal jar with dark gothic atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfC4kc8QhaDr25GOQGDOnzLXr3rYSYwKcsdzSISbB7HuxVyGaOQFKN3HEmGPFPUdYBGQwkpF6XJS4oEOD41ZDdY5FTm_pd6evX1SD-jO_NKaSE-9JYaYNRhlu_Z-SOAKqGNlr_IJDh9bIAl5Cd822zvsiowPRGAG1FuzqL_aQrzvM_RhwJccm4OsVrR2cyXV-IATRIE3dizfECi_OzagZjUTwdaQXMPTNpXgGFCQoTx0t6pAHL0vtQHKyVSp5z2C8-iB8RKsDng-QL"/>
+</div>
+<div>
+<p class="font-bold text-on-surface text-sm">Neon Ghoul Worms</p>
+<p class="text-xs text-outline italic">Artisanal Gummy Series</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-sm text-secondary">Oct 21, 2023</td>
+<td class="px-8 py-6 text-sm font-bold text-right text-primary-fixed">$15.99</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-surface-container-highest text-secondary">
+<span class="material-symbols-outlined text-xs" data-icon="flight_takeoff">flight_takeoff</span>
+                                    Shipped
+                                </span>
+</td>
+<td class="px-8 py-6 text-center">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors" data-icon="more_horiz">more_horiz</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container/50 transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-surface-container shadow-inner">
+<img alt="Crow's Feathers" class="w-full h-full object-cover" data-alt="Black feather-shaped licorice sweets on a silver ornate tray with deep shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-jsY9qQqgzSWxhg1RSzu9EXOluIbBK9GrDz7wwd0dXIMSdinBR-dz62DpXYn76pxszBghw6RcFOBVKG1aEPa1iiylHiMznXKIrl4rnJJNm2JACVswGqJBI_S5tfJ6BJLtZ92xz5EWqOKIFms7pxACPA5vH1-TpxxfOMsDn6frnGUEJw7vtK-JUssTyqt1E30pZMPbXRtxaOYg4YKWMCpY5d5cTe_gGl4CM6VKEIi-l4mteZNWj8Ta6v9WqJZcMv47zHmnCsvA_Nl0"/>
+</div>
+<div>
+<p class="font-bold text-on-surface text-sm">Licorice Crow Feathers</p>
+<p class="text-xs text-outline italic">Heritage Recipe</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-sm text-secondary">Oct 20, 2023</td>
+<td class="px-8 py-6 text-sm font-bold text-right text-primary-fixed">$12.00</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-tertiary-container/20 text-tertiary">
+<span class="material-symbols-outlined text-xs" data-icon="check_circle">check_circle</span>
+                                    Delivered
+                                </span>
+</td>
+<td class="px-8 py-6 text-center">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors" data-icon="more_horiz">more_horiz</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container/50 transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-surface-container shadow-inner">
+<img alt="Ectoplasm Drops" class="w-full h-full object-cover" data-alt="Translucent bright green drops of artisanal sugar candy on a dark wooden textured surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvOVx5Ziqax-EZwUyFlxeIMKMELpHBLLtVzERNLWJ5Bh_hcXHL6JIWNB2trTKgN838tkBKaFOD0AGFxdBxvvG1W6x1EIXPOdH0B8YoqMwJu75ejZJzio7eUovoj6eAsI-R3eYGdw49dYd8Hvvy9bZI7CqL83G_uVcS6xtVqaTl5GmrF_iAhf4rXqVrCsGpsJwIWGD577oWNsvk_0qJH62D7jEHVXpLAzw7n19Z5EWU2gsD06vgxBSzDqaOxBKDOHGY5SB5xOLoTznO"/>
+</div>
+<div>
+<p class="font-bold text-on-surface text-sm">Ectoplasm Dew Drops</p>
+<p class="text-xs text-outline italic">Sour Glow Collection</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-sm text-secondary">Oct 19, 2023</td>
+<td class="px-8 py-6 text-sm font-bold text-right text-primary-fixed">$22.00</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary-container/20 text-primary-container">
+<span class="material-symbols-outlined text-xs" data-icon="hourglass_empty">hourglass_empty</span>
+                                    Processing
+                                </span>
+</td>
+<td class="px-8 py-6 text-center">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors" data-icon="more_horiz">more_horiz</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination Footer -->
+<div class="px-8 py-6 bg-surface-container-lowest/50 flex items-center justify-between border-t border-outline/5 font-['Manrope']">
+<p class="text-sm text-outline">Page <span class="text-on-surface font-bold">1</span> of <span class="text-on-surface font-bold">3</span></p>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg bg-surface-container-high text-outline hover:text-primary disabled:opacity-50 transition-all ghost-border" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-lg bg-primary text-on-primary font-bold text-sm">1</button>
+<button class="w-10 h-10 rounded-lg hover:bg-surface-variant text-outline transition-colors text-sm">2</button>
+<button class="w-10 h-10 rounded-lg hover:bg-surface-variant text-outline transition-colors text-sm">3</button>
+<button class="p-2 rounded-lg bg-surface-container-high text-outline hover:text-primary transition-all ghost-border">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dashboard Stats Preview (Asymmetric Layout) -->
+<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-8 rounded-xl bg-surface-container-high relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 opacity-10 rotate-12 group-hover:rotate-45 transition-transform duration-700">
+<span class="material-symbols-outlined text-8xl" data-icon="skull">skull</span>
+</div>
+<p class="text-xs uppercase tracking-widest text-outline font-bold mb-4">Total Revenue</p>
+<h3 class="serif-heading text-4xl font-bold text-primary">$12,482.00</h3>
+<p class="text-xs text-tertiary mt-2 flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span>
+                        +12.5% vs last week
+                    </p>
+</div>
+<div class="p-8 rounded-xl bg-surface-container-lowest relative overflow-hidden group ghost-border md:col-span-2">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-xs uppercase tracking-widest text-outline font-bold mb-4">Pending Deliveries</p>
+<h3 class="serif-heading text-4xl font-bold text-secondary">82 Spirits</h3>
+</div>
+<div class="w-32 h-1 bg-surface-container-highest rounded-full overflow-hidden mt-4">
+<div class="h-full bg-primary-container w-2/3"></div>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="p-4 rounded-lg bg-surface-container-high/50">
+<p class="text-[10px] text-outline uppercase tracking-widest font-bold">In Transit</p>
+<p class="text-lg font-bold text-on-surface">34</p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-high/50">
+<p class="text-[10px] text-outline uppercase tracking-widest font-bold">Awaiting Pickup</p>
+<p class="text-lg font-bold text-on-surface">48</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Background Watermark -->
+<div class="fixed bottom-10 right-10 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[300px] rotate-[-15deg]" data-icon="bakery_dining">bakery_dining</span>
+</div>
+</main>
+</body></html>

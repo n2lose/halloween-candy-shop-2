@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useCallback, ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, useMemo, ReactNode } from "react";
 import type { CartItem } from "../types/index";
 
 interface CartState {
@@ -14,7 +14,7 @@ interface CartState {
 const CartContext = createContext<CartState | null>(null);
 
 export function CartProvider({ children, userId }: { children: ReactNode; userId: string | null }) {
-  const storageKey = userId ? `cart_${userId}` : null;
+  const storageKey = useMemo(() => (userId ? `cart_${userId}` : null), [userId]);
 
   const loadCart = (): CartItem[] => {
     if (!storageKey) return [];

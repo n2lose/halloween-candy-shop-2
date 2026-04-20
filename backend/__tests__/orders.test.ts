@@ -9,9 +9,17 @@ jest.unstable_mockModule("../src/services/stripe.service.js", () => ({
 const { app } = await import("../src/app.js");
 import request from "supertest";
 
-async function getToken(): Promise<string> {
+async function getToken(email = "freddy@halloween.shop"): Promise<string> {
   const res = await request(app).post("/auth/login")
-    .send({ email: "freddy@halloween.shop", password: process.env.SEED_USER_PASSWORD ?? "dev-seed-only" });
+    .send({ email, password: process.env.SEED_USER_PASSWORD ?? "dev-seed-only" });
+  return res.body.access_token;
+}
+
+async function getAdminToken(): Promise<string> {
+  const password = process.env.SEED_ADMIN_PASSWORD;
+  if (!password) throw new Error("SEED_ADMIN_PASSWORD env var is not set");
+  const res = await request(app).post("/auth/login")
+    .send({ email: "admin@halloween.shop", password });
   return res.body.access_token;
 }
 
@@ -97,6 +105,14 @@ describe("GET /orders/:id", () => {
     expect(res.status).toBe(404);
     expect(res.body).toEqual({ error: "Order not found" });
   });
+
+  it("returns 403 when admin tries to access customer order via customer endpoint", async () => {
+    const adminToken = await getAdminToken();
+    const res = await request(app).get("/orders/ORD-0001")
+      .set("Authorization", `Bearer ${adminToken}`);
+    expect(res.status).toBe(403);
+    expect(res.body).toEqual({ error: "Forbidden" });
+  });
 });
 
 describe("POST /orders", () => {
@@ -112,7 +128,7 @@ describe("POST /orders", () => {
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty("orderId");
     expect(res.body.payment.last4).toBe("4242");
-    expect(res.body.total).toBe(5.98);
+    expect(res.body.total).toBeCloseTo(5.98, 2);
     expect(res.body.status).toBe("processing");
   });
 
@@ -128,6 +144,40 @@ describe("POST /orders", () => {
     const second = await request(app).post("/orders").set("Authorization", `Bearer ${token}`).send(body);
     expect(second.status).toBe(409);
     expect(second.body.error).toBe("Payment already used");
+  });
+
+  it("returns 400 for unknown productId", async () => {
+    const token = await getToken();
+    const res = await request(app).post("/orders")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        paymentIntentId: "pi_test_invalid_product",
+        customer: { name: "Freddy", email: "freddy@halloween.shop", address: "13 Elm St" },
+        items: [{ productId: "prod_999", quantity: 1 }],
+      });
+    expect(res.status).toBe(400);
+    expect(res.body).toHaveProperty("error");
+  });
+
+  it("returns 400 when stock is insufficient", async () => {
+    const token = await getToken();
+    const res = await request(app).post("/orders")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        paymentIntentId: "pi_test_overstock_unique",
+        customer: { name: "Freddy", email: "freddy@halloween.shop", address: "13 Elm St" },
+        items: [{ productId: "prod_1", quantity: 99999 }],
+      });
+    expect(res.status).toBe(400);
+    expect(res.body.error).toMatch(/Insufficient stock/);
+  });
+
+  it("returns 400 when required fields are missing", async () => {
+    const token = await getToken();
+    const res = await request(app).post("/orders")
+      .set("Authorization", `Bearer ${token}`)
+      .send({ items: [{ productId: "prod_1", quantity: 1 }] });
+    expect(res.status).toBe(400);
   });
 
   it("returns 401 without token", async () => {

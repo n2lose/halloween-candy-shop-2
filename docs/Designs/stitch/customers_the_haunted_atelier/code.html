@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Coven Patrons | The Haunted Atelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#8adb4d",
+                    "on-secondary-fixed": "#091d2e",
+                    "outline-variant": "#594238",
+                    "tertiary-container": "#56a315",
+                    "surface-container": "#201f1f",
+                    "secondary-container": "#36485b",
+                    "on-surface-variant": "#e0c0b2",
+                    "on-primary-fixed-variant": "#713700",
+                    "outline": "#a88a7e",
+                    "on-tertiary": "#183800",
+                    "surface-container-highest": "#353534",
+                    "on-tertiary-fixed-variant": "#255100",
+                    "on-secondary": "#203243",
+                    "on-primary-container": "#451f00",
+                    "background": "#131313",
+                    "surface-container-low": "#1c1b1b",
+                    "on-primary": "#4f2500",
+                    "primary-fixed-dim": "#ffb783",
+                    "inverse-on-surface": "#313030",
+                    "surface-tint": "#ffb783",
+                    "surface-bright": "#393939",
+                    "surface-container-high": "#2a2a2a",
+                    "on-secondary-fixed-variant": "#36485b",
+                    "on-tertiary-fixed": "#0b2000",
+                    "on-secondary-container": "#a4b7cd",
+                    "primary-fixed": "#ffdcc5",
+                    "on-error": "#690005",
+                    "secondary-fixed-dim": "#b5c8df",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-dim": "#131313",
+                    "secondary": "#b5c8df",
+                    "surface-container-lowest": "#0e0e0e",
+                    "error": "#ffb4ab",
+                    "inverse-primary": "#944a00",
+                    "on-primary-fixed": "#301400",
+                    "on-background": "#e5e2e1",
+                    "secondary-fixed": "#d1e4fb",
+                    "surface-variant": "#353534",
+                    "tertiary-fixed-dim": "#8adb4d",
+                    "primary": "#ffb783",
+                    "on-error-container": "#ffdad6",
+                    "on-surface": "#e5e2e1",
+                    "error-container": "#93000a",
+                    "tertiary-fixed": "#a5f866",
+                    "surface": "#131313",
+                    "on-tertiary-container": "#143000",
+                    "primary-container": "#db7619"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Manrope", "sans-serif"],
+                    "label": ["Manrope", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24
+    }
+.parchment-texture {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuC7Ttpz_O-iJ89fW_gHKb_leXlei8EbaSwKGbhY0j-O1NO-9z_xGp9wGHONiz_b4qWbIdRkO48MvLYTzU2UDSuvcUuhi_swXfTu9eJtWLFnssLf1WT1zxs1Ds7Uykl3REbLZXllSfI2PBGLnjpHo-WSOeoXqETHELfLv-lM7gDgCAYNnhdeNuOLCcO0Y0oYE3hTNcY5ET2Yzop7L707CDyOTT2x348cWqlWwl7ufECWIRF7QdOy6r1nQicJHQdtnlm_zF3asudPT-j4);
+    opacity: 0.03
+    }</style>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen selection:bg-primary/30 selection:text-primary overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center h-20 px-8 w-full backdrop-blur-md bg-opacity-80 bg-[#131313]">
+<div class="flex items-center gap-6">
+<h1 class="text-2xl font-bold text-[#ffb783] drop-shadow-[0_2px_4px_rgba(219,118,25,0.3)] font-['Newsreader'] tracking-tight">The Haunted Atelier</h1>
+<nav class="hidden md:flex gap-8 ml-8">
+<a class="text-[#e5e2e1] opacity-70 hover:text-[#ffb783] hover:opacity-100 transition-all duration-300 font-['Newsreader'] tracking-tight" href="#">Archives</a>
+<a class="text-[#ffb783] border-b-2 border-[#ffb783] pb-1 font-['Newsreader'] tracking-tight" href="#">Coven Patrons</a>
+<a class="text-[#e5e2e1] opacity-70 hover:text-[#ffb783] hover:opacity-100 transition-all duration-300 font-['Newsreader'] tracking-tight" href="#">Manifestations</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-[#ffb783]">
+<span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform" data-icon="settings">settings</span>
+</div>
+<div class="w-10 h-10 rounded-full border border-primary/20 overflow-hidden shadow-[0_0_15px_rgba(255,183,131,0.2)]">
+<img class="w-full h-full object-cover" data-alt="Dark aesthetic close-up of a person with gothic jewelry and velvet clothing in dim candlelight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDppO8Efr8y5Iuz563S0VNo4vqbyemfC3uKcyPlH4LH9MbVfI_QGqt4mk_Jld7NQydTqW3W98wLIiM1BgQX99q6jj1sbNU4fcwvfAqtDxz1LDdZWkanKANu3fFiXpo2WPq0Jhv67bQYfyyHKgA4JNqLu0LAi6yujW0n_ULTlG8ngaEVeH-w5PW9qplmvgxIkPDvSqN4SaembYk2lrFYDTEDw6WUixuN2HwTEMhJjbQb6953wy5qwPSOe8bZnWTOFj-SwUxFfqPX1YZG"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-40 bg-[#0e0e0e] border-r border-[#594238]/15 flex flex-col py-8 gap-y-2 hidden md:flex">
+<div class="px-8 mb-10 flex flex-col gap-2">
+<div class="w-12 h-12 bg-surface-container rounded-xl flex items-center justify-center border border-primary/10 shadow-inner">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<h2 class="text-[#ffb783] font-['Newsreader'] text-xl">The Haunted Atelier</h2>
+<p class="font-['Manrope'] font-medium uppercase tracking-widest text-[11px] text-[#e5e2e1]/40">Elite Confectioner</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="text-[#e5e2e1]/60 hover:text-[#e5e2e1] pl-10 py-3 hover:bg-[#201f1f] transition-colors duration-200 translate-x-1 transition-transform font-['Manrope'] font-medium uppercase tracking-widest text-[11px]" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-lg" data-icon="dashboard">dashboard</span>
+<span>Sanctum</span>
+</div>
+</a>
+<a class="text-[#e5e2e1]/60 hover:text-[#e5e2e1] pl-10 py-3 hover:bg-[#201f1f] transition-colors duration-200 translate-x-1 transition-transform font-['Manrope'] font-medium uppercase tracking-widest text-[11px]" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-lg" data-icon="liquor">liquor</span>
+<span>Ingredients</span>
+</div>
+</a>
+<a class="text-[#e5e2e1]/60 hover:text-[#e5e2e1] pl-10 py-3 hover:bg-[#201f1f] transition-colors duration-200 translate-x-1 transition-transform font-['Manrope'] font-medium uppercase tracking-widest text-[11px]" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-lg" data-icon="bakery_dining">bakery_dining</span>
+<span>Confections</span>
+</div>
+</a>
+<a class="text-[#ffb783] bg-[#2a2a2a] rounded-r-full mr-4 pl-6 py-3 border-l-4 border-[#ffb783] font-['Manrope'] font-medium uppercase tracking-widest text-[11px]" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-lg" data-icon="groups">groups</span>
+<span>Coven Patrons</span>
+</div>
+</a>
+</nav>
+<div class="mt-auto px-6">
+<button class="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-primary-container text-on-primary-fixed font-bold tracking-tight shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all active:scale-95">
+                Brew New Batch
+            </button>
+</div>
+<footer class="mt-8 pt-8 border-t border-outline-variant/10">
+<a class="text-[#e5e2e1]/60 hover:text-[#e5e2e1] pl-10 py-3 block font-['Manrope'] font-medium uppercase tracking-widest text-[11px]" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-lg" data-icon="auto_fix_high">auto_fix_high</span>
+<span>Support</span>
+</div>
+</a>
+<a class="text-[#e5e2e1]/60 hover:text-[#e5e2e1] pl-10 py-3 block font-['Manrope'] font-medium uppercase tracking-widest text-[11px]" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-lg" data-icon="history">history</span>
+<span>Archive</span>
+</div>
+</a>
+</footer>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-28 pb-32 px-8">
+<!-- Header & Stats Section -->
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+<div class="space-y-2">
+<h2 class="text-5xl font-headline font-bold text-on-surface tracking-tight leading-none">Coven Patrons</h2>
+<p class="text-on-surface-variant font-body text-lg">Managing the elite circle of mystical confection seekers.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="bg-surface-container-lowest border-none rounded-xl pl-12 pr-4 py-3 w-64 focus:ring-1 focus:ring-tertiary/40 text-on-surface placeholder:text-outline/50 transition-all font-body" placeholder="Trace a signature..." type="text"/>
+</div>
+<div class="bg-surface-container-high rounded-xl px-4 py-3 flex items-center gap-3 border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="filter_list">filter_list</span>
+<select class="bg-transparent border-none text-on-surface font-body text-sm focus:ring-0 cursor-pointer pr-8">
+<option value="all">All Tiers</option>
+<option value="arch-witch">Arch-Witch</option>
+<option value="novice">Novice</option>
+<option value="spectral-guest">Spectral Guest</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Patrons Grid (Bento Style Layout) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Highlight Card (Top Client) -->
+<div class="lg:col-span-8 bg-surface-container-high rounded-2xl overflow-hidden relative border border-outline-variant/10 shadow-2xl">
+<div class="absolute inset-0 parchment-texture pointer-events-none"></div>
+<div class="p-8 flex flex-col md:flex-row gap-8 relative z-10">
+<div class="w-full md:w-1/3 aspect-[4/5] rounded-xl overflow-hidden relative group">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Dramatic high-contrast portrait of a sophisticated woman in dark lace, holding a crystal goblet in a library" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtumbfrorJG0bDE7Qy22Mi94fdUMDbk0zzKN7w8gpKtHtUg3kdnsdr5IwdTpJrJAQTVRqAXfhYqK0KbhBGR5y2TPkZKW3wuuzOwddoBeureX-qp2vJPCFllWxfJVYB3YxQPZVkJ9Pmb-P9WPq5YRc9TQXYAI6iYk1ZpUIYanthRN9igOsLKGLLa7ayTZ2iESvzj31768Boz5gjtJvuGzsfUHlB9RyPE2WiXS3nQI13zAxjKPTae9LybOICRsV4bXKHB8VZ6k_Xhyju"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-[10px] uppercase font-bold tracking-widest backdrop-blur-md border border-primary/20">Arch-Witch</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-3xl font-headline font-bold text-primary">Lady Elara Thorne</h3>
+<p class="text-outline italic text-sm mt-1">"Guardian of the Obsidian Archive"</p>
+</div>
+<div class="text-right">
+<div class="text-2xl font-headline text-tertiary">14.2k 🌕</div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Total Offerings</p>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest/50 p-4 rounded-xl border border-outline-variant/5">
+<p class="text-[10px] uppercase text-outline font-bold mb-1">Last Manifestation</p>
+<p class="font-headline text-lg">Hallow's Eve, 2023</p>
+</div>
+<div class="bg-surface-container-lowest/50 p-4 rounded-xl border border-outline-variant/5">
+<p class="text-[10px] uppercase text-outline font-bold mb-1">Coven Status</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></div>
+<p class="font-headline text-lg">Active Entity</p>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-8 flex gap-4">
+<button class="flex-1 py-3 px-6 bg-surface-container-highest rounded-xl text-primary font-bold tracking-tight hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-xl transition-transform group-hover:scale-125" data-icon="send">send</span>
+                                    Send Invocation
+                                </button>
+<button class="py-3 px-6 border border-outline-variant/20 rounded-xl text-on-surface-variant hover:border-primary transition-all font-bold tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-xl" data-icon="auto_stories">auto_stories</span>
+                                    View Grimoire
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Patron Card -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="bg-surface-container p-6 rounded-2xl border border-outline-variant/10 relative overflow-hidden group hover:bg-surface-container-high transition-colors">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-secondary/20 shadow-[0_0_15px_rgba(181,200,223,0.2)]">
+<img class="w-full h-full object-cover" data-alt="Portrait of a mysterious man with sharp features, wearing a dark velvet suit and a silver brooch" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCS-imPU6ahK-_aR48op7-UtHKu6QG9YF_OUm8l98OVeptl-E1DRJ2ArMTLpeGId3hzfa0LY9Phde2zwjHEcorJKXv-Y0PxcMJXDt_Zq4boEhHs_uEcb2D3FCR6Z1kYtP5Sav005o4YG61Z3q16D3-dJXsMWaUobjhPe5PcL03iXFlKNsPZLfyWh69Xo-O2aTszW8NG3KgkF6jiXjXLruBsSdXcaMwvygXnn3opqGC3ZnqvkHy6Qe1hmvwJJOi_xl4shHXIcDixc6ug"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<h4 class="font-headline text-xl text-on-surface">Silas Vane</h4>
+<span class="material-symbols-outlined text-secondary" data-icon="verified">verified</span>
+</div>
+<p class="text-[10px] uppercase font-bold text-secondary tracking-widest">Spectral Guest</p>
+</div>
+</div>
+<div class="mt-6 flex justify-between items-end border-t border-outline-variant/5 pt-4">
+<div>
+<p class="text-[10px] text-outline uppercase font-bold">Offerings</p>
+<p class="text-lg font-headline">4.8k 🌕</p>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center text-outline hover:text-primary transition-colors border border-outline-variant/10">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-2xl border border-outline-variant/10 relative overflow-hidden group hover:bg-surface-container-high transition-colors">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shadow-[0_0_15px_rgba(255,183,131,0.2)]">
+<img class="w-full h-full object-cover" data-alt="Close up of a person with very pale skin and striking eyes, wearing dark Victorian style lace" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2fz_LPtAe8V-Jzs9t5pCBwCKIw76tu4ZBigid5wdbita1LpJM9VElu7opONS_C46V-DM5apC2lK0Lhy3IepWpy0dOa5OtZ-WYo2zpZXXYWH-ZwQ18Jc8gA_VaH4N-_AVxErqawWvFc_CGBCrE3MyL4g038vUYdDimsoyr_H_AZtCQNo7aIhDtDWYwQYbDmdzIm72EGt_abtQrxy6eiYVcH8c7LMD4cpvgyfIYMEqfDsQBBOmUKPmUoTj9eX6ttVpn4LHugY3xn0oH"/>
+</div>
+<div class="flex-1">
+<h4 class="font-headline text-xl text-on-surface">Mina Harker</h4>
+<p class="text-[10px] uppercase font-bold text-primary tracking-widest">Novice</p>
+</div>
+</div>
+<div class="mt-6 flex justify-between items-end border-t border-outline-variant/5 pt-4">
+<div>
+<p class="text-[10px] text-outline uppercase font-bold">Offerings</p>
+<p class="text-lg font-headline">1.2k 🌕</p>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center text-outline hover:text-primary transition-colors border border-outline-variant/10">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- List View Container -->
+<div class="lg:col-span-12 bg-surface-container-lowest rounded-2xl border border-outline-variant/10 overflow-hidden mt-6">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-high">
+<tr>
+<th class="px-8 py-5 text-[10px] uppercase font-bold tracking-widest text-outline">Patron Entity</th>
+<th class="px-8 py-5 text-[10px] uppercase font-bold tracking-widest text-outline">Coven Rank</th>
+<th class="px-8 py-5 text-[10px] uppercase font-bold tracking-widest text-outline">Last Manifestation</th>
+<th class="px-8 py-5 text-[10px] uppercase font-bold tracking-widest text-outline">Offerings</th>
+<th class="px-8 py-5 text-[10px] uppercase font-bold tracking-widest text-outline text-right">Rituals</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="px-8 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all">
+<img class="w-full h-full object-cover" data-alt="Portrait of a woman with dark hair and mysterious expression, lit by soft candle glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvo-6IQoVpeH6pc4IMH37-e5SBvAZbruVNhUP8rHidbliwgh-sa--MMeiI4XpS19_AuFHZir-EVqeRXW4gUoQi55xXRfXzE6GvMXAu4etMhIIliL4oBzc0WfWH11faXNZ6P2mVvABGq_KBdzoupViYiLbQAdvLKcyt5ttQ0Z6jsH4ZKlEHBVB_oIzhGhNy9JKmEQXAzAs1rTAMkJzgllaauP74_Fp45m_GqAzx2ONp13sjGNa4Xiyb9wjeTycezs7cl7iJG_BJ1f7e"/>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface">Dr. Alistair Grey</p>
+<p class="text-[10px] text-outline uppercase tracking-widest">Ethereal Historian</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-4">
+<span class="text-[10px] font-bold text-primary border border-primary/20 px-3 py-1 rounded-full bg-primary/5 uppercase tracking-widest">Arch-Witch</span>
+</td>
+<td class="px-8 py-4 text-on-surface-variant font-body">2 days ago</td>
+<td class="px-8 py-4 text-tertiary font-headline">9.4k 🌕</td>
+<td class="px-8 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="mail">mail</span></button>
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="visibility">visibility</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="px-8 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all">
+<img class="w-full h-full object-cover" data-alt="Man in a dark hood with only a sliver of light illuminating his face" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg_mtmzYZjaLah5q_EmhcJYg3SK1uqpTpohxhmoSHvuEGGm17TgjJrPisEtog7TpMXpUPQ6FSPiOJtUgryXlt0P8J9KCRuSa-ADHZhE9SimiEdRUEnVv3UQRo9tCnTtPJ8lgaJje8b8NT2stisWTsL4UnQHxsEpbJznip6F6-9D4BH26407TN1C-e8_A3wBtS4Lo1dFrvI6x7qN7ymToMjO3_tDJ_ODRNr0KEkQJAas2dpwh5EpbPntXxjIAnpfrtJpxqZe-NuNTK5"/>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface">Julian Blackwood</p>
+<p class="text-[10px] text-outline uppercase tracking-widest">Nocturnal Wanderer</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-4">
+<span class="text-[10px] font-bold text-secondary border border-secondary/20 px-3 py-1 rounded-full bg-secondary/5 uppercase tracking-widest">Spectral Guest</span>
+</td>
+<td class="px-8 py-4 text-on-surface-variant font-body">14 days ago</td>
+<td class="px-8 py-4 text-tertiary font-headline">2.1k 🌕</td>
+<td class="px-8 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="mail">mail</span></button>
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="visibility">visibility</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="px-8 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg overflow-hidden grayscale group-hover:grayscale-0 transition-all">
+<img class="w-full h-full object-cover" data-alt="Woman with elaborate silver hair ornaments and deep purple clothing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDk6La7bxz44-a53bVSIugrTjtPkd01nkUfHZY1xF8ZFDcbadv_mbWoJ3-gRMvqhjkfMUDfBNr-_33UZTT1KHdvn6aHAvJQy_7jLQRIm4BGcQqwLOYXMRo14-vgrVG4Wi_5DNMZeY6NemUdNesbs9c4dSag5HsETIyiHxgO34uHAp7UIPlRpZ9Q2sL_HKP4n2K3sa0AyFfpC7OThKKqyJ0FnNQRa6hV92kZafXMOHNoJgNIxPQq3Lx_Ah0UWimRzmoIcgojQaUphfQ"/>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface">Elena de Mortem</p>
+<p class="text-[10px] text-outline uppercase tracking-widest">Shadow Architect</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-4">
+<span class="text-[10px] font-bold text-primary border border-primary/20 px-3 py-1 rounded-full bg-primary/5 uppercase tracking-widest">Novice</span>
+</td>
+<td class="px-8 py-4 text-on-surface-variant font-body">Just now</td>
+<td class="px-8 py-4 text-tertiary font-headline">0.9k 🌕</td>
+<td class="px-8 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="mail">mail</span></button>
+<button class="p-2 hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="visibility">visibility</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-8 py-6 bg-surface-container-high/30 flex justify-between items-center">
+<p class="text-xs text-outline italic">Consulting 42 active entities in the coven.</p>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded bg-background flex items-center justify-center text-outline hover:text-primary border border-outline-variant/10"><span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span></button>
+<button class="w-8 h-8 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-xs">1</button>
+<button class="w-8 h-8 rounded bg-background flex items-center justify-center text-outline hover:text-primary border border-outline-variant/10 text-xs font-bold">2</button>
+<button class="w-8 h-8 rounded bg-background flex items-center justify-center text-outline hover:text-primary border border-outline-variant/10"><span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-6 pb-6 pt-3 bg-[#201f1f]/90 backdrop-blur-xl rounded-t-[2rem] shadow-[0_-10px_40px_rgba(0,0,0,0.6)] z-50 border-t border-[#594238]/10">
+<a class="flex flex-col items-center justify-center text-[#e5e2e1]/40 p-3 hover:text-[#ffb783] transition-all scale-110 active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="inventory_2">inventory_2</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase mt-1">Inventory</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-gradient-to-b from-[#ffb783] to-[#db7619] text-[#131313] rounded-2xl p-3 shadow-[0_0_15px_rgba(255,183,131,0.4)] scale-110 active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase mt-1">Customers</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#e5e2e1]/40 p-3 hover:text-[#ffb783] transition-all scale-110 active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="receipt_long">receipt_long</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase mt-1">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#e5e2e1]/40 p-3 hover:text-[#ffb783] transition-all scale-110 active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="lock">lock</span>
+<span class="font-['Manrope'] text-[10px] font-bold uppercase mt-1">Vault</span>
+</a>
+</nav>
+</body></html>

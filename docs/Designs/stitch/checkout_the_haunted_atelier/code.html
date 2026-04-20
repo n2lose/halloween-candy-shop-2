@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | The Haunted Atelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#131313",
+                    "primary-container": "#db7619",
+                    "secondary-container": "#36485b",
+                    "on-secondary-fixed": "#091d2e",
+                    "outline-variant": "#594238",
+                    "inverse-on-surface": "#313030",
+                    "surface-tint": "#ffb783",
+                    "primary-fixed": "#ffdcc5",
+                    "primary": "#ffb783",
+                    "on-primary-container": "#451f00",
+                    "background": "#131313",
+                    "on-primary-fixed": "#301400",
+                    "surface-dim": "#131313",
+                    "tertiary-container": "#56a315",
+                    "on-surface-variant": "#e0c0b2",
+                    "on-background": "#e5e2e1",
+                    "surface-container-low": "#1c1b1b",
+                    "on-error-container": "#ffdad6",
+                    "on-error": "#690005",
+                    "on-tertiary-container": "#143000",
+                    "surface-container": "#201f1f",
+                    "on-secondary-container": "#a4b7cd",
+                    "surface-variant": "#353534",
+                    "on-tertiary-fixed-variant": "#255100",
+                    "error": "#ffb4ab",
+                    "surface-bright": "#393939",
+                    "surface-container-high": "#2a2a2a",
+                    "inverse-surface": "#e5e2e1",
+                    "secondary-fixed-dim": "#b5c8df",
+                    "on-surface": "#e5e2e1",
+                    "inverse-primary": "#944a00",
+                    "secondary-fixed": "#d1e4fb",
+                    "tertiary": "#8adb4d",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-secondary": "#203243",
+                    "primary-fixed-dim": "#ffb783",
+                    "outline": "#a88a7e",
+                    "on-primary-fixed-variant": "#713700",
+                    "tertiary-fixed-dim": "#8adb4d",
+                    "tertiary-fixed": "#a5f866",
+                    "on-tertiary": "#183800",
+                    "secondary": "#b5c8df",
+                    "on-primary": "#4f2500",
+                    "surface-container-highest": "#353534",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed": "#0b2000",
+                    "on-secondary-fixed-variant": "#36485b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #131313; color: #e5e2e1; }
+        h1, h2, h3 { font-family: 'Newsreader', serif; }
+        .glass-panel {
+            background: rgba(53, 53, 52, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0e0e0e; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #db7619; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-[#131313] h-20 flex justify-between items-center px-8 max-w-none">
+<div class="text-2xl font-serif italic text-[#ffb783]">The Haunted Atelier</div>
+<nav class="hidden md:flex gap-8 items-center font-medium">
+<a class="text-[#e5e2e1] opacity-80 hover:text-[#ffb783] transition-colors duration-300" href="#">Collections</a>
+<a class="text-[#e5e2e1] opacity-80 hover:text-[#ffb783] transition-colors duration-300" href="#">Artifacts</a>
+<a class="text-[#e5e2e1] opacity-80 hover:text-[#ffb783] transition-colors duration-300" href="#">The Vault</a>
+<a class="text-[#e5e2e1] opacity-80 hover:text-[#ffb783] transition-colors duration-300" href="#">Our Story</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="text-[#ffb783] hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+</button>
+<button class="text-[#ffb783] hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+</button>
+</div>
+</header>
+<main class="pt-32 pb-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+<div class="flex flex-col lg:grid lg:grid-cols-12 gap-16">
+<!-- Left Column: Checkout Rituals -->
+<div class="lg:col-span-7 space-y-12">
+<!-- Shipping Section -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+<h2 class="text-4xl font-headline italic">Shipping Rituals</h2>
+</div>
+<form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="md:col-span-2 space-y-1.5">
+<label class="text-xs uppercase tracking-widest text-outline font-label">Mortal Name</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl p-4 focus:ring-1 focus:ring-tertiary/20 text-on-surface placeholder:text-surface-variant transition-all" placeholder="Who receives the artifact?" type="text"/>
+</div>
+<div class="md:col-span-2 space-y-1.5">
+<label class="text-xs uppercase tracking-widest text-outline font-label">Sanctum Address</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl p-4 focus:ring-1 focus:ring-tertiary/20 text-on-surface placeholder:text-surface-variant transition-all" placeholder="Street and Number" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs uppercase tracking-widest text-outline font-label">City of Shadows</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl p-4 focus:ring-1 focus:ring-tertiary/20 text-on-surface placeholder:text-surface-variant transition-all" placeholder="Village or Metropolis" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs uppercase tracking-widest text-outline font-label">Postal Sigil</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl p-4 focus:ring-1 focus:ring-tertiary/20 text-on-surface placeholder:text-surface-variant transition-all" placeholder="ZIP" type="text"/>
+</div>
+</form>
+</section>
+<!-- Payment Section -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h2 class="text-4xl font-headline italic">Payment Incantations</h2>
+</div>
+<div class="space-y-6">
+<div class="p-6 rounded-xl bg-surface-container border border-outline-variant/10 flex items-center justify-between group cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">credit_card</span>
+<span class="font-label font-medium">Sacred Plastic or Metal</span>
+</div>
+<div class="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="w-2.5 h-2.5 bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 rounded-xl bg-surface-container-lowest/50 border border-outline-variant/5">
+<div class="md:col-span-2 space-y-1.5">
+<label class="text-xs uppercase tracking-widest text-outline font-label">Glyph Number</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl p-4 focus:ring-1 focus:ring-tertiary/20 text-on-surface placeholder:text-surface-variant transition-all" placeholder="0000 0000 0000 0000" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs uppercase tracking-widest text-outline font-label">Temporal End</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl p-4 focus:ring-1 focus:ring-tertiary/20 text-on-surface placeholder:text-surface-variant transition-all" placeholder="MM/YY" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs uppercase tracking-widest text-outline font-label">Secret Cipher</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl p-4 focus:ring-1 focus:ring-tertiary/20 text-on-surface placeholder:text-surface-variant transition-all" placeholder="CVC" type="password"/>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Order Summary -->
+<aside class="lg:col-span-5">
+<div class="sticky top-32 glass-panel rounded-2xl p-8 shadow-2xl overflow-hidden relative border border-outline-variant/10">
+<!-- Subtle Background Decoration -->
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+<h3 class="text-3xl font-headline mb-8 relative z-10">Cart Manifest</h3>
+<div class="space-y-6 mb-8 relative z-10 custom-scrollbar max-h-80 overflow-y-auto pr-2">
+<!-- Item 1 -->
+<div class="flex gap-4 items-center">
+<div class="w-20 h-20 bg-surface-container-lowest rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="close-up of artisan dark chocolate truffles with gold leaf dusting on a black velvet surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6x5rhYfPs78l1NJBK4gUCD97_zpow4M5dXjq3S0ALp77j5a83wg1tpvzc8BAFya49kIVzaPRZWfnoyvzVhXd3HakjYOsyotnQGthBJG21rIiYff3F4C6Hp2SXpB3Gboc5-tJJHAvk6nng3TerjHgf2Ckp40i6S1VZLexH4aTtL6CP_zv78_qLfEg3lf5tvdLrLzyeR0UpE67N4-Ffvr55Juy2FyulEEHpFS-uuVpj_sy2_E5lFz1D4KU_Lf8tnFBkxATqZcDfUciT"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline text-lg">Midnight Cacao Artifacts</h4>
+<p class="text-xs text-outline font-label uppercase tracking-tighter">Small Batch · Heirloom Seed</p>
+</div>
+<div class="text-primary font-bold">$42.00</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-4 items-center">
+<div class="w-20 h-20 bg-surface-container-lowest rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="a glass jar filled with glowing amber honey and dried autumn herbs in a moody library setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPYakMbRAyMHrCwSPgtSXjZ53c1nXeHImSaV78uZ-1te7zrqNp550Ve38btNvp5YLHLRnEo1gtbNwVJDz2fYvJ8YlFIF0xzmXvi8U6Za33p3aJOdKsZtpnFX4YwLxz1AGpndWblzRWRjrhj8HTMlh8lH5ZbdTjT1oNvDQT27OQl0lFJCNIAj6bi0smREVeEbfKzcekXeLWtSzN_8yqy8UweZrTAKIR-JMNx094H8o4ayrvFVWofeIAWfvN0mMSJIvgijceisOASy2H"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline text-lg">Hallowed Harvest Nectar</h4>
+<p class="text-xs text-outline font-label uppercase tracking-tighter">Infused · Limited Spirit</p>
+</div>
+<div class="text-primary font-bold">$28.00</div>
+</div>
+</div>
+<div class="space-y-4 pt-6 border-t border-outline-variant/20 relative z-10">
+<div class="flex justify-between text-on-surface/70 font-label text-sm">
+<span>Artifact Subtotal</span>
+<span>$70.00</span>
+</div>
+<div class="flex justify-between text-on-surface/70 font-label text-sm">
+<span>Ritual Transport</span>
+<span>$12.00</span>
+</div>
+<div class="flex justify-between text-on-surface/70 font-label text-sm">
+<span>Spectral Surcharge</span>
+<span>$4.50</span>
+</div>
+<div class="flex justify-between text-2xl font-headline pt-4">
+<span>Final Offering</span>
+<span class="text-primary">$86.50</span>
+</div>
+</div>
+<button class="w-full mt-10 py-5 bg-gradient-to-r from-primary to-primary-container rounded-xl text-on-primary-fixed font-bold text-lg hover:shadow-[0_0_20px_rgba(219,118,25,0.4)] transition-all active:scale-95 group overflow-hidden relative">
+<span class="relative z-10">Complete the Manifestation</span>
+<div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+</button>
+<p class="text-center mt-6 text-[10px] uppercase tracking-widest text-outline font-label">
+                        Transactions secured by the Shadow Council
+                    </p>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0e0e0e] w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-on-background opacity-50 font-sans text-xs uppercase tracking-widest font-body">
+            © 2024 The Haunted Atelier. Hand-poured in the Shadows.
+        </div>
+<div class="flex gap-8">
+<a class="text-[#e5e2e1] opacity-50 hover:opacity-100 transition-opacity font-sans text-xs uppercase tracking-widest" href="#">Privacy</a>
+<a class="text-[#e5e2e1] opacity-50 hover:opacity-100 transition-opacity font-sans text-xs uppercase tracking-widest" href="#">Terms</a>
+<a class="text-[#e5e2e1] opacity-50 hover:opacity-100 transition-opacity font-sans text-xs uppercase tracking-widest" href="#">Shipping</a>
+<a class="text-[#e5e2e1] opacity-50 hover:opacity-100 transition-opacity font-sans text-xs uppercase tracking-widest" href="#">Ingredients</a>
+</div>
+</footer>
+</body></html>
