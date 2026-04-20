@@ -55,13 +55,13 @@ PLAN-006 Integration Tests
 | `authMiddleware` — verify token, attach req.user | PLAN-013 | DONE |
 | `roleMiddleware("admin")` — 403 if wrong role | PLAN-013 | DONE |
 | Controller/Service/Repository architecture | PLAN-013 | DONE |
-| `GET /admin/dashboard` — admin only | PLAN-014 | TODO |
-| `GET /admin/orders` — ALL orders, paginated + search | PLAN-014 | TODO |
-| `GET /admin/orders/:id` | PLAN-014 | TODO |
-| `PATCH /admin/orders/:id/status` — free-form update | PLAN-014 | TODO |
-| `POST /admin/products` | PLAN-014 | TODO |
-| `PUT /admin/products/:id` | PLAN-014 | TODO |
-| `DELETE /admin/products/:id` | PLAN-014 | TODO |
+| `GET /admin/dashboard` — admin only | PLAN-014 | DONE |
+| `GET /admin/orders` — ALL orders, paginated + search | PLAN-014 | DONE |
+| `GET /admin/orders/:id` | PLAN-014 | DONE |
+| `PATCH /admin/orders/:id/status` — free-form update | PLAN-014 | DONE |
+| `POST /admin/products` | PLAN-014 | DONE |
+| `PUT /admin/products/:id` | PLAN-014 | DONE |
+| `DELETE /admin/products/:id` | PLAN-014 | DONE |
 | `GET /products` + `GET /products/:id` → ProductRepository | PLAN-015 | TODO |
 | `POST /stripe/create-payment-intent` (customer) | PLAN-015 | TODO |
 | `POST /orders` — validate stock + atomic transaction | PLAN-015 | TODO |

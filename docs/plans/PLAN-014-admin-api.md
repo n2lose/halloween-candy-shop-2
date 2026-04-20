@@ -1,6 +1,6 @@
 # PLAN-014: Admin API
 
-**Status**: IN PROGRESS
+**Status**: DONE
 
 ## Context
 
