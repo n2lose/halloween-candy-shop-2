@@ -1,4 +1,5 @@
-import { ReactNode, useState } from "react";
+import { useState } from "react";
+import type { ReactNode } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../store/authStore";
 import { useCart } from "../store/cartStore";

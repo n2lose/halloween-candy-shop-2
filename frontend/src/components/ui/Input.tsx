@@ -1,4 +1,5 @@
-import { InputHTMLAttributes, ReactNode, useId } from "react";
+import { useId } from "react";
+import type { InputHTMLAttributes, ReactNode } from "react";
 
 type InputProps = {
   label?: string;

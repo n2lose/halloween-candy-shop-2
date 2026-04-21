@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useCallback, useMemo, ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, useEffect, useMemo } from "react";
+import type { ReactNode } from "react";
 import type { CartItem } from "../types/index";
 
 interface CartState {
@@ -13,40 +14,56 @@ interface CartState {
 
 const CartContext = createContext<CartState | null>(null);
 
+function readCart(key: string | null): CartItem[] {
+  if (!key) return [];
+  try { return JSON.parse(localStorage.getItem(key) ?? "[]") as CartItem[]; }
+  catch { return []; }
+}
+
 export function CartProvider({ children, userId }: { children: ReactNode; userId: string | null }) {
   const storageKey = useMemo(() => (userId ? `cart_${userId}` : null), [userId]);
 
-  const loadCart = (): CartItem[] => {
-    if (!storageKey) return [];
-    try { return JSON.parse(localStorage.getItem(storageKey) ?? "[]"); }
-    catch { return []; }
-  };
+  const [items, setItems] = useState<CartItem[]>(() => readCart(storageKey));
 
-  const [items, setItems] = useState<CartItem[]>(loadCart);
+  // Reload cart whenever the user changes (login / logout)
+  useEffect(() => {
+    setItems(readCart(storageKey));
+  }, [storageKey]);
 
   const save = useCallback((next: CartItem[]) => {
     setItems(next);
     if (storageKey) localStorage.setItem(storageKey, JSON.stringify(next));
   }, [storageKey]);
 
-  const addItem = (productId: string) => {
-    const existing = items.find((i) => i.productId === productId);
-    if (existing) {
-      save(items.map((i) => i.productId === productId ? { ...i, quantity: i.quantity + 1 } : i));
-    } else {
-      save([...items, { productId, quantity: 1 }]);
-    }
-  };
+  const addItem = useCallback((productId: string) => {
+    setItems(prev => {
+      const existing = prev.find((i) => i.productId === productId);
+      const next = existing
+        ? prev.map((i) => i.productId === productId ? { ...i, quantity: i.quantity + 1 } : i)
+        : [...prev, { productId, quantity: 1 }];
+      if (storageKey) localStorage.setItem(storageKey, JSON.stringify(next));
+      return next;
+    });
+  }, [storageKey]);
 
-  const removeItem = (productId: string) =>
-    save(items.filter((i) => i.productId !== productId));
+  const removeItem = useCallback((productId: string) => {
+    setItems(prev => {
+      const next = prev.filter((i) => i.productId !== productId);
+      if (storageKey) localStorage.setItem(storageKey, JSON.stringify(next));
+      return next;
+    });
+  }, [storageKey]);
 
-  const updateQty = (productId: string, quantity: number) => {
-    if (quantity < 1) return removeItem(productId);
-    save(items.map((i) => i.productId === productId ? { ...i, quantity } : i));
-  };
+  const updateQty = useCallback((productId: string, quantity: number) => {
+    if (quantity < 1) { removeItem(productId); return; }
+    setItems(prev => {
+      const next = prev.map((i) => i.productId === productId ? { ...i, quantity } : i);
+      if (storageKey) localStorage.setItem(storageKey, JSON.stringify(next));
+      return next;
+    });
+  }, [storageKey, removeItem]);
 
-  const clearCart = () => save([]);
+  const clearCart = useCallback(() => save([]), [save]);
 
   return (
     <CartContext.Provider value={{

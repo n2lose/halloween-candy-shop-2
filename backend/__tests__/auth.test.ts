@@ -32,9 +32,11 @@ describe("POST /auth/register", () => {
 });
 
 describe("POST /auth/login", () => {
+  const CUSTOMER_PASSWORD = process.env.SEED_USER_PASSWORD ?? "dev-seed-only";
+
   it("returns 200 with tokens for valid Freddy credentials", async () => {
     const res = await request(app).post("/auth/login")
-      .send({ email: "freddy@halloween.shop", password: "ElmStreet2019" });
+      .send({ email: "freddy@halloween.shop", password: CUSTOMER_PASSWORD });
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty("access_token");
     expect(res.body).toHaveProperty("refresh_token");
@@ -42,7 +44,7 @@ describe("POST /auth/login", () => {
 
   it("is case-insensitive for email", async () => {
     const res = await request(app).post("/auth/login")
-      .send({ email: "FREDDY@HALLOWEEN.SHOP", password: "ElmStreet2019" });
+      .send({ email: "FREDDY@HALLOWEEN.SHOP", password: CUSTOMER_PASSWORD });
     expect(res.status).toBe(200);
   });
 
@@ -68,7 +70,7 @@ describe("POST /auth/login", () => {
 describe("POST /auth/refresh", () => {
   it("returns 200 with new access token only", async () => {
     const login = await request(app).post("/auth/login")
-      .send({ email: "freddy@halloween.shop", password: "ElmStreet2019" });
+      .send({ email: "freddy@halloween.shop", password: process.env.SEED_USER_PASSWORD ?? "dev-seed-only" });
     const res = await request(app).post("/auth/refresh")
       .set("Authorization", `Bearer ${login.body.refresh_token}`);
     expect(res.status).toBe(200);
@@ -91,7 +93,7 @@ describe("POST /auth/refresh", () => {
 describe("GET /auth/me", () => {
   it("returns 200 with user profile", async () => {
     const login = await request(app).post("/auth/login")
-      .send({ email: "freddy@halloween.shop", password: "ElmStreet2019" });
+      .send({ email: "freddy@halloween.shop", password: process.env.SEED_USER_PASSWORD ?? "dev-seed-only" });
     const res = await request(app).get("/auth/me")
       .set("Authorization", `Bearer ${login.body.access_token}`);
     expect(res.status).toBe(200);

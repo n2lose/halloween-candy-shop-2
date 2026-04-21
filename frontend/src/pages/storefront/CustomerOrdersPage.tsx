@@ -19,7 +19,10 @@ export default function CustomerOrdersPage() {
   const [result, setResult] = useState<PaginatedOrders | null>(null);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(params.get("q") ?? "");
-  const [page, setPage] = useState(Number(params.get("page") ?? 1));
+  const [page, setPage] = useState(() => {
+    const raw = parseInt(params.get("page") ?? "", 10);
+    return Number.isFinite(raw) && raw > 0 ? raw : 1;
+  });
 
   useEffect(() => {
     let cancelled = false;

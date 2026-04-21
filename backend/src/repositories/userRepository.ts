@@ -11,8 +11,8 @@ function toUser(row: UserRow): User {
 }
 
 function nextId(): string {
-  const { c } = db.prepare("SELECT COUNT(*) as c FROM users").get() as { c: number };
-  return `usr_${c + 1}`;
+  const { m } = db.prepare("SELECT COALESCE(MAX(CAST(SUBSTR(id,5) AS INTEGER)),0) as m FROM users").get() as { m: number };
+  return `usr_${m + 1}`;
 }
 
 const stmts = {

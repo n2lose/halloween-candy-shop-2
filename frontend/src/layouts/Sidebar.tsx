@@ -18,6 +18,7 @@ export default function Sidebar() {
 
   const initials = user?.name
     .split(" ")
+    .filter(w => w.length > 0)
     .map(w => w[0])
     .slice(0, 2)
     .join("")

@@ -1,4 +1,5 @@
-import { FormEvent, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import type { FormEvent } from "react";
 import { getProducts } from "../../api/products";
 import { createProduct, updateProduct, deleteProduct } from "../../api/admin";
 import type { Product } from "../../types/index";
@@ -167,35 +168,38 @@ export default function AdminProductsPage() {
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState<ModalState>({ type: "none" });
 
-  const fetchProducts = () =>
-    getProducts()
-      .then(r => setProducts(r.data))
-      .catch(() => setProducts([]))
-      .finally(() => setLoading(false));
+  const fetchProducts = useCallback(async () => {
+    setLoading(true);
+    try {
+      const r = await getProducts();
+      setProducts(r.data);
+    } catch {
+      setProducts([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
-  useEffect(() => { fetchProducts(); }, []); // initial load only
+  useEffect(() => { void fetchProducts(); }, [fetchProducts]);
 
   const handleCreate = async (form: FormValues) => {
     await createProduct({ name: form.name, price: Number(form.price), stock: Number(form.stock) });
     setModal({ type: "none" });
-    setLoading(true);
-    fetchProducts();
+    await fetchProducts();
   };
 
   const handleEdit = async (form: FormValues) => {
     if (modal.type !== "edit") return;
     await updateProduct(modal.product.id, { name: form.name, price: Number(form.price), stock: Number(form.stock) });
     setModal({ type: "none" });
-    setLoading(true);
-    fetchProducts();
+    await fetchProducts();
   };
 
   const handleDelete = async () => {
     if (modal.type !== "delete") return;
     await deleteProduct(modal.product.id);
     setModal({ type: "none" });
-    setLoading(true);
-    fetchProducts();
+    await fetchProducts();
   };
 
   if (loading) return <div className="flex items-center justify-center h-64"><Spinner size="lg" /></div>;

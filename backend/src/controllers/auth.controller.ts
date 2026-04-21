@@ -7,6 +7,14 @@ export async function registerHandler(req: Request, res: Response): Promise<void
     res.status(400).json({ error: "name, email and password are required" });
     return;
   }
+  if (typeof name !== "string" || name.trim().length === 0 || name.length > 100) {
+    res.status(400).json({ error: "name must be 1–100 characters" });
+    return;
+  }
+  if (typeof email !== "string" || !/.+@.+\..+/.test(email)) {
+    res.status(400).json({ error: "Invalid email format" });
+    return;
+  }
   if (typeof password !== "string" || password.length < 6 || password.length > 100) {
     res.status(400).json({ error: "Password must be 6–100 characters" });
     return;
