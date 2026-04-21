@@ -23,18 +23,34 @@ export function getOrderHandler(req: Request, res: Response): void {
   res.json(order);
 }
 
+const VALID_STATUSES = ["processing", "shipped", "delivered"] as const;
+
 export function updateOrderStatusHandler(req: Request, res: Response): void {
   const { status } = req.body as Record<string, unknown>;
   if (!status || typeof status !== "string") {
     res.status(400).json({ error: "status is required" });
     return;
   }
-  const order = orderRepository.updateStatus(req.params.id, status);
+  if (!(VALID_STATUSES as readonly string[]).includes(status)) {
+    res.status(400).json({ error: "status must be one of: processing, shipped, delivered" });
+    return;
+  }
+  const order = orderRepository.updateStatus(req.params.id, status as import("../types/index.js").OrderStatus);
   if (!order) { res.status(404).json({ error: "Order not found" }); return; }
   res.json(order);
 }
 
 // ─── Products (admin CRUD) ────────────────────────────────────────────────────
+
+function parsePrice(value: unknown): number | null {
+  const n = Number(value);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+function parseStock(value: unknown): number | null {
+  const n = Number(value);
+  return Number.isInteger(n) && n >= 0 ? n : null;
+}
 
 export function createProductHandler(req: Request, res: Response): void {
   const { name, price, stock } = req.body as Record<string, unknown>;
@@ -42,20 +58,26 @@ export function createProductHandler(req: Request, res: Response): void {
     res.status(400).json({ error: "name, price and stock are required" });
     return;
   }
-  const product = productRepository.create({
-    name:  String(name),
-    price: Number(price),
-    stock: Number(stock),
-  });
+  const priceNum = parsePrice(price);
+  const stockNum = parseStock(stock);
+  if (priceNum === null) { res.status(400).json({ error: "price must be a positive number" }); return; }
+  if (stockNum === null) { res.status(400).json({ error: "stock must be a non-negative integer" }); return; }
+  const product = productRepository.create({ name: String(name), price: priceNum, stock: stockNum });
   res.status(201).json(product);
 }
 
 export function updateProductHandler(req: Request, res: Response): void {
   const { name, price, stock } = req.body as Record<string, unknown>;
+  if (price !== undefined && parsePrice(price) === null) {
+    res.status(400).json({ error: "price must be a positive number" }); return;
+  }
+  if (stock !== undefined && parseStock(stock) === null) {
+    res.status(400).json({ error: "stock must be a non-negative integer" }); return;
+  }
   const updated = productRepository.update(req.params.id, {
     ...(name  !== undefined && { name:  String(name)  }),
-    ...(price !== undefined && { price: Number(price) }),
-    ...(stock !== undefined && { stock: Number(stock) }),
+    ...(price !== undefined && { price: parsePrice(price)! }),
+    ...(stock !== undefined && { stock: parseStock(stock)! }),
   });
   if (!updated) { res.status(404).json({ error: "Product not found" }); return; }
   res.json(updated);

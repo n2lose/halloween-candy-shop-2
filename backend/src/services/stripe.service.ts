@@ -31,6 +31,7 @@ export async function verifyPaymentIntent(paymentIntentId: string): Promise<{ la
   });
   if (intent.status !== "succeeded") throw new Error("Payment not confirmed");
   const pm   = intent.payment_method as Stripe.PaymentMethod | null;
-  const last4 = pm?.card?.last4 ?? "4242";
+  const last4 = pm?.card?.last4;
+  if (!last4) throw new Error("Payment method has no card information");
   return { last4 };
 }

@@ -25,11 +25,16 @@ function toOrder(row: OrderRow, items: ItemRow[]): Order {
   };
 }
 
+const PAGE_SIZE = 10;
+
+const VALID_STATUSES = new Set<string>(["processing", "shipped", "delivered"]);
+
 const stmts = {
   byId:            db.prepare<[string]>("SELECT * FROM orders WHERE id = ?"),
   itemsByOrderId:  db.prepare<[string]>("SELECT * FROM order_items WHERE order_id = ?"),
   insertOrder:     db.prepare("INSERT INTO orders (id,user_id,customer_name,customer_email,address,total,status,payment_intent_id,payment_last4,created_at) VALUES (?,?,?,?,?,?,?,?,?,?)"),
   insertItem:      db.prepare("INSERT INTO order_items (order_id,product_id,name,quantity,price) VALUES (?,?,?,?,?)"),
+  decrementStock:  db.prepare<[number, string]>("UPDATE products SET stock = stock - ? WHERE id = ?"),
   updateStatus:    db.prepare<[string, string]>("UPDATE orders SET status=? WHERE id=?"),
   countUser: db.prepare(`
     SELECT COUNT(DISTINCT o.id) as c FROM orders o
@@ -43,12 +48,12 @@ const stmts = {
     ORDER BY o.created_at DESC LIMIT ? OFFSET ?`),
   listAll:   db.prepare("SELECT * FROM orders WHERE customer_name LIKE ? OR id LIKE ? ORDER BY created_at DESC LIMIT ? OFFSET ?"),
   intentExists:    db.prepare<[string]>("SELECT 1 FROM orders WHERE payment_intent_id=?"),
-  nextNum:         db.prepare("SELECT COUNT(*) as c FROM orders"),
+  nextNum:         db.prepare("SELECT COALESCE(MAX(CAST(SUBSTR(id,5) AS INTEGER)),0) as m FROM orders"),
 };
 
 function nextId(): string {
-  const { c } = stmts.nextNum.get() as { c: number };
-  return `ORD-${String(c + 1).padStart(4, "0")}`;
+  const { m } = stmts.nextNum.get() as { m: number };
+  return `ORD-${String(m + 1).padStart(4, "0")}`;
 }
 
 function fetchWithItems(row: OrderRow): Order {
@@ -62,7 +67,7 @@ function buildPaginated(rows: OrderRow[], total: number, page: number): Paginate
       orderId: r.id, customerName: r.customer_name,
       total: r.total, status: r.status as OrderStatus, createdAt: r.created_at,
     })),
-    total, page, per_page: 10, total_pages: Math.ceil(total / 10),
+    total, page, per_page: PAGE_SIZE, total_pages: Math.ceil(total / PAGE_SIZE),
   };
 }
 
@@ -88,13 +93,15 @@ export const orderRepository = {
       stmts.insertOrder.run(id, data.userId, data.customerName, data.customerEmail, data.address, data.total, "processing", data.paymentIntentId, data.paymentLast4, now);
       for (const item of data.items) {
         stmts.insertItem.run(id, item.productId, item.name, item.quantity, item.price);
+        stmts.decrementStock.run(item.quantity, item.productId);
       }
     });
     run();
     return orderRepository.findById(id)!;
   },
 
-  updateStatus(id: string, status: string): Order | undefined {
+  updateStatus(id: string, status: OrderStatus): Order | undefined {
+    if (!VALID_STATUSES.has(status)) return undefined;
     stmts.updateStatus.run(status, id);
     return orderRepository.findById(id);
   },
@@ -103,7 +110,7 @@ export const orderRepository = {
     const safePage = Math.max(1, page);
     const like = `%${q}%`;
     const { c } = stmts.countUser.get(userId, like, like) as { c: number };
-    const rows  = stmts.listUser.all(userId, like, like, 10, (safePage - 1) * 10) as OrderRow[];
+    const rows  = stmts.listUser.all(userId, like, like, PAGE_SIZE, (safePage - 1) * PAGE_SIZE) as OrderRow[];
     return buildPaginated(rows, c, safePage);
   },
 
@@ -111,7 +118,7 @@ export const orderRepository = {
     const safePage = Math.max(1, page);
     const like = `%${q}%`;
     const { c } = stmts.countAll.get(like, like) as { c: number };
-    const rows  = stmts.listAll.all(like, like, 10, (safePage - 1) * 10) as OrderRow[];
+    const rows  = stmts.listAll.all(like, like, PAGE_SIZE, (safePage - 1) * PAGE_SIZE) as OrderRow[];
     return buildPaginated(rows, c, safePage);
   },
 };

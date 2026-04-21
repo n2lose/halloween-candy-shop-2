@@ -26,8 +26,9 @@ const processQueue = (error: unknown, token: string | null) => {
 client.interceptors.response.use(
   (res) => res,
   async (error) => {
+    if (!axios.isAxiosError(error)) return Promise.reject(error);
     const original = error.config as typeof error.config & { _retry?: boolean };
-    if (error.response?.status !== 401 || original._retry) return Promise.reject(error);
+    if (error.response?.status !== 401 || !original || original._retry) return Promise.reject(error);
 
     if (isRefreshing) {
       return new Promise<string>((resolve, reject) => queue.push({ resolve, reject }))
@@ -54,7 +55,7 @@ client.interceptors.response.use(
     } catch (err) {
       processQueue(err, null);
       clearTokens();
-      window.location.href = "/login";
+      window.location.replace("/login");
       return Promise.reject(err);
     } finally {
       isRefreshing = false;

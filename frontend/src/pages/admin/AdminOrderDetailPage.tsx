@@ -33,7 +33,7 @@ export default function AdminOrderDetailPage() {
       .finally(() => setLoading(false));
   }, [id]);
 
-  const handleStatusChange = async (status: string) => {
+  const handleStatusChange = async (status: OrderStatus) => {
     if (!order) return;
     setSaving(true);
     setSaveMsg("");
@@ -81,7 +81,7 @@ export default function AdminOrderDetailPage() {
           {saving && <Spinner size="sm" />}
           <select
             value={order.status}
-            onChange={e => handleStatusChange(e.target.value)}
+            onChange={e => handleStatusChange(e.target.value as OrderStatus)}
             disabled={saving}
             className="bg-surface-container-high border-none rounded-xl px-4 py-2.5 text-sm font-label
                        text-on-surface focus:ring-1 focus:ring-primary/40 outline-none cursor-pointer

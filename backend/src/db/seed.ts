@@ -78,9 +78,8 @@ const insertOrder   = db.prepare("INSERT INTO orders (id,user_id,customer_name,c
 const insertItem    = db.prepare("INSERT INTO order_items (order_id,product_id,name,quantity,price) VALUES (?,?,?,?,?)");
 
 const seedAll = db.transaction(() => {
-  // gitguard-ignore
-  const adminHash    = bcrypt.hashSync("Halloween2024!", 10);
-  const customerHash = bcrypt.hashSync(process.env.SEED_USER_PASSWORD ?? "dev-seed-only", 10);
+  const adminHash    = bcrypt.hashSync(process.env.SEED_ADMIN_PASSWORD ?? "dev-seed-only", 10);
+  const customerHash = bcrypt.hashSync(process.env.SEED_USER_PASSWORD  ?? "dev-seed-only", 10);
   const now          = new Date().toISOString();
 
   insertUser.run("usr_1", "Admin",  "admin@halloween.shop",  adminHash,    "admin",    now);

@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import type { ReactNode } from "react";
 import { getTokens, clearTokens } from "./tokenStorage";
 import { getMe } from "../api/auth";
 import type { UserProfile, AuthResponse } from "../types/index";
@@ -20,12 +21,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Re-hydrate user from access_token on page load (runs once)
   useEffect(() => {
+    let cancelled = false;
     const token = getTokens().access_token;
-    // Always resolve via promise so setState is called in callback, not synchronously
     const hydrate = token
-      ? getMe().then(r => setUser(r.data)).catch(() => clearTokens())
+      ? getMe()
+          .then(r => { if (!cancelled) setUser(r.data); })
+          .catch(() => { if (!cancelled) clearTokens(); })
       : Promise.resolve();
-    hydrate.finally(() => setLoading(false));
+    hydrate.finally(() => { if (!cancelled) setLoading(false); });
+    return () => { cancelled = true; };
   }, []);
 
   const login = (res: AuthResponse) => {

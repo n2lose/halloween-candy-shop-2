@@ -2,8 +2,9 @@ import request from "supertest";
 import { app } from "../src/app.js";
 
 async function getAdminToken(): Promise<string> {
+  const password = process.env.SEED_ADMIN_PASSWORD ?? "dev-seed-only";
   const res = await request(app).post("/auth/login")
-    .send({ email: "admin@halloween.shop", password: "Halloween2024!" });
+    .send({ email: "admin@halloween.shop", password });
   return res.body.access_token;
 }
 

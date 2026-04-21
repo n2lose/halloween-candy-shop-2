@@ -1,4 +1,5 @@
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import type { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -220,7 +221,7 @@ export default function CheckoutPage() {
         )}
 
         <div className="lg:col-span-2">
-          <CartSummary items={items} products={products} />
+          <CartSummary items={itemsSnapshot} products={products} />
         </div>
       </div>
     </div>

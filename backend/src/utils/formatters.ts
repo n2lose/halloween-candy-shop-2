@@ -5,7 +5,3 @@ export function formatCurrency(amount: number): string {
 export function formatDate(date: Date): string {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
-
-export function formatOrderId(id: number): string {
-  return `ORD-${String(id).padStart(4, "0")}`;
-}

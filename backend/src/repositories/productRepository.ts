@@ -14,8 +14,8 @@ function toProduct(row: ProductRow): Product {
 }
 
 function nextId(): string {
-  const { c } = db.prepare("SELECT COUNT(*) as c FROM products").get() as { c: number };
-  return `prod_${c + 1}`;
+  const { m } = db.prepare("SELECT COALESCE(MAX(CAST(SUBSTR(id,6) AS INTEGER)),0) as m FROM products").get() as { m: number };
+  return `prod_${m + 1}`;
 }
 
 const stmts = {

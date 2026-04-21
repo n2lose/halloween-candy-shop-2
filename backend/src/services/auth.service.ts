@@ -19,9 +19,10 @@ function generateTokenPair(userId: string, role: "admin" | "customer", email: st
 }
 
 export async function register(name: string, email: string, password: string): Promise<AuthResult> {
-  if (userRepository.findByEmail(email)) throw new Error("Email already registered");
+  const normalizedEmail = email.toLowerCase();
+  if (userRepository.findByEmail(normalizedEmail)) throw new Error("Email already registered");
   const hashed = await bcrypt.hash(password, 10);
-  const user = userRepository.create({ name, email: email.toLowerCase(), password: hashed });
+  const user = userRepository.create({ name, email: normalizedEmail, password: hashed });
   const tokens = generateTokenPair(user.id, user.role, user.email, user.name);
   return { ...tokens, user: { id: user.id, name: user.name, email: user.email, role: user.role } };
 }

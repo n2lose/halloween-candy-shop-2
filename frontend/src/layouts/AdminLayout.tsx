@@ -1,4 +1,5 @@
-import { ReactNode, useState } from "react";
+import { useState } from "react";
+import type { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import SearchBar from "../components/ui/SearchBar";
@@ -26,7 +27,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           <SearchBar
             value={search}
             onChange={setSearch}
-            placeholder="Search orders, ingredients, or spirits..."
+            placeholder="Search orders..."
           />
         </form>
 
