@@ -239,7 +239,12 @@ export default function AdminProductsPage() {
                   <tr key={p.id} className="border-b border-white/[0.03] hover:bg-surface-container-highest/40 transition-colors group">
                     <td className="py-4 text-secondary/30 font-label text-xs">{i + 1}</td>
                     <td className="py-4 font-headline italic font-semibold text-on-surface">{p.name}</td>
-                    <td className="py-4 text-2xl">{p.emoji ?? "🍬"}</td>
+                    <td className="py-4">
+                      {p.imageUrl
+                        ? <img src={p.imageUrl} alt={p.name} className="w-10 h-10 rounded-lg object-cover" />
+                        : <span className="text-2xl">🍬</span>
+                      }
+                    </td>
                     <td className="py-4 font-label text-secondary/80">${p.price.toFixed(2)}</td>
                     <td className="py-4">
                       <span className={`font-label text-sm font-semibold ${p.stock > 10 ? "text-tertiary" : p.stock > 0 ? "text-primary" : "text-error"}`}>

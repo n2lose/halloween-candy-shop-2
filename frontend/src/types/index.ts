@@ -23,9 +23,9 @@ export interface AuthResponse {
 export interface Product {
   id: string;
   name: string;
-  emoji: string;
   price: number;
   stock: number;
+  imageUrl?: string;
 }
 
 // ─── Orders ──────────────────────────────────────────────────────────────────

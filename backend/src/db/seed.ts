@@ -19,16 +19,16 @@ function monthsAgo(months: number): string {
 }
 
 const PRODUCTS = [
-  { id: "prod_1",  name: "Pumpkin Spice Lollipop",    price: 2.99, stock: 100 },
-  { id: "prod_2",  name: "Witch Finger Gummy",         price: 3.49, stock: 85  },
-  { id: "prod_3",  name: "Skull Chocolate Bar",        price: 4.99, stock: 60  },
-  { id: "prod_4",  name: "Spider Web Cotton Candy",    price: 1.99, stock: 120 },
-  { id: "prod_5",  name: "Ghost Marshmallow",          price: 2.49, stock: 90  },
-  { id: "prod_6",  name: "Cauldron Caramel Apple",     price: 5.99, stock: 45  },
-  { id: "prod_7",  name: "Vampire Fang Candy Corn",    price: 1.99, stock: 150 },
-  { id: "prod_8",  name: "Black Cat Licorice",         price: 3.99, stock: 75  },
-  { id: "prod_9",  name: "Frankenstein Fudge",         price: 4.49, stock: 55  },
-  { id: "prod_10", name: "Zombie Brain Gummy",         price: 3.29, stock: 80  },
+  { id: "prod_1",  name: "Pumpkin Spice Lollipop",    price: 2.99, stock: 100, imageUrl: "https://images.unsplash.com/photo-1587822409291-ae8bc7239a6e?w=400&q=80" },
+  { id: "prod_2",  name: "Witch Finger Gummy",         price: 3.49, stock: 85,  imageUrl: "https://images.unsplash.com/photo-1666595162324-df6f452108e7?w=400&q=80" },
+  { id: "prod_3",  name: "Skull Chocolate Bar",        price: 4.99, stock: 60,  imageUrl: "https://images.unsplash.com/photo-1600231409360-e58ed635543a?w=400&q=80" },
+  { id: "prod_4",  name: "Spider Web Cotton Candy",    price: 1.99, stock: 120, imageUrl: "https://images.unsplash.com/photo-1740135756200-edc70f515775?w=400&q=80" },
+  { id: "prod_5",  name: "Ghost Marshmallow",          price: 2.49, stock: 90,  imageUrl: "https://images.unsplash.com/photo-1697546671079-d84c3fb37644?w=400&q=80" },
+  { id: "prod_6",  name: "Cauldron Caramel Apple",     price: 5.99, stock: 45,  imageUrl: "https://images.unsplash.com/photo-1643450046169-4fe45bb5d29b?w=400&q=80" },
+  { id: "prod_7",  name: "Vampire Fang Candy Corn",    price: 1.99, stock: 150, imageUrl: "https://images.unsplash.com/photo-1764570208257-f9a5fc9ed702?w=400&q=80" },
+  { id: "prod_8",  name: "Black Cat Licorice",         price: 3.99, stock: 75,  imageUrl: "https://images.unsplash.com/photo-1682663754530-053de1dc5637?w=400&q=80" },
+  { id: "prod_9",  name: "Frankenstein Fudge",         price: 4.49, stock: 55,  imageUrl: "https://images.unsplash.com/photo-1638258682206-0a95e15e4030?w=400&q=80" },
+  { id: "prod_10", name: "Zombie Brain Gummy",         price: 3.29, stock: 80,  imageUrl: "https://images.unsplash.com/photo-1709651669999-57741c9bf085?w=400&q=80" },
 ];
 
 interface SeedOrderItem { productId: string; quantity: number }
@@ -73,7 +73,7 @@ const SEED_ORDERS: SeedOrder[] = [
 ];
 
 const insertUser    = db.prepare("INSERT INTO users (id,name,email,password,role,created_at) VALUES (?,?,?,?,?,?)");
-const insertProduct = db.prepare("INSERT INTO products (id,name,price,stock,created_at) VALUES (?,?,?,?,?)");
+const insertProduct = db.prepare("INSERT INTO products (id,name,price,stock,image_url,created_at) VALUES (?,?,?,?,?,?)");
 const insertOrder   = db.prepare("INSERT INTO orders (id,user_id,customer_name,customer_email,address,total,status,payment_intent_id,payment_last4,created_at) VALUES (?,?,?,?,?,?,?,?,?,?)");
 const insertItem    = db.prepare("INSERT INTO order_items (order_id,product_id,name,quantity,price) VALUES (?,?,?,?,?)");
 
@@ -87,7 +87,7 @@ const seedAll = db.transaction(() => {
   insertUser.run("usr_2", "Freddy", "freddy@halloween.shop", customerHash, "customer", now);
 
   for (const p of PRODUCTS) {
-    insertProduct.run(p.id, p.name, p.price, p.stock, now);
+    insertProduct.run(p.id, p.name, p.price, p.stock, p.imageUrl ?? null, now);
   }
 
   const productMap = new Map(PRODUCTS.map((p) => [p.id, p]));
