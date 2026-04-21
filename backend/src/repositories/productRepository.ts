@@ -2,11 +2,15 @@ import db from "../db/sqlite.js";
 import type { Product } from "../types/index.js";
 
 interface ProductRow {
-  id: string; name: string; price: number; stock: number; created_at: string;
+  id: string; name: string; price: number; stock: number; image_url: string | null; created_at: string;
 }
 
 function toProduct(row: ProductRow): Product {
-  return { id: row.id, name: row.name, price: row.price, stock: row.stock, createdAt: row.created_at };
+  return {
+    id: row.id, name: row.name, price: row.price, stock: row.stock,
+    imageUrl: row.image_url ?? undefined,
+    createdAt: row.created_at,
+  };
 }
 
 function nextId(): string {
@@ -17,7 +21,7 @@ function nextId(): string {
 const stmts = {
   all:    db.prepare("SELECT * FROM products ORDER BY id"),
   byId:   db.prepare<[string]>("SELECT * FROM products WHERE id = ?"),
-  insert: db.prepare("INSERT INTO products (id,name,price,stock,created_at) VALUES (?,?,?,?,?)"),
+  insert: db.prepare("INSERT INTO products (id,name,price,stock,image_url,created_at) VALUES (?,?,?,?,?,?)"),
   update: db.prepare("UPDATE products SET name=?,price=?,stock=? WHERE id=?"),
   delete: db.prepare<[string]>("DELETE FROM products WHERE id=?"),
 };
@@ -34,7 +38,7 @@ export const productRepository = {
 
   create(data: { name: string; price: number; stock: number }): Product {
     const id = nextId();
-    stmts.insert.run(id, data.name, data.price, data.stock, new Date().toISOString());
+    stmts.insert.run(id, data.name, data.price, data.stock, null, new Date().toISOString());
     return productRepository.findById(id)!;
   },
 

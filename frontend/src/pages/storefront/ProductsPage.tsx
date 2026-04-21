@@ -15,10 +15,16 @@ function ProductCard({ product }: { product: Product }) {
   return (
     <div className="bg-surface-container-high rounded-xl overflow-hidden group hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300">
       {/* Product visual */}
-      <div className="bg-surface-container-highest h-48 flex items-center justify-center relative">
-        <span className="text-7xl group-hover:scale-110 transition-transform duration-300">
-          {product.emoji}
-        </span>
+      <div className="bg-surface-container-highest h-48 relative overflow-hidden">
+        {product.imageUrl ? (
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-6xl">🍬</div>
+        )}
         {outOfStock && (
           <div className="absolute inset-0 bg-surface/60 flex items-center justify-center">
             <span className="text-xs font-label uppercase tracking-widest text-error">Out of Stock</span>

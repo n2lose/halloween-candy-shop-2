@@ -16,6 +16,7 @@ export function initDb(): void {
       name        TEXT NOT NULL,
       price       REAL NOT NULL,
       stock       INTEGER NOT NULL DEFAULT 0,
+      image_url   TEXT,
       created_at  TEXT NOT NULL
     );
 
